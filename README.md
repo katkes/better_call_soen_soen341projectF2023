@@ -12,6 +12,10 @@ Professional Broker Network: Our application connects users with experienced rea
 Favorite Properties: Users can create lists of their favorite properties, making it convenient to compare and revisit their top choices.
 Mortage Calculator: We offer a built-in mortage calculator to help homebuyers estimate monthly payments based on loan amount and interest rate.
 
+Roles: Team manager, scheduel coordinator, Q&A coordinator, Document manager, meeting coordinator, Code reviewers
+
+Project Approach and Technology: 
+
 
 ID | Name | Position
 
