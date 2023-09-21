@@ -24,6 +24,7 @@ For the front end of the project, the team decided to use the React framework. T
 - HTML
 - CSS
 - JavaScript
+- Python
 
 ## Team Members
 
