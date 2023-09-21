@@ -33,6 +33,11 @@ For the front end of the project, the team decided to use the React framework. T
 - JavaScript
 - Python
 
+## Technologies
+- MySQL Workbench
+- Visual Studio Code
+- IntelliJ
+
 ## Team Members
 
 ID | Name | Position
