@@ -13,6 +13,7 @@ Favourite Properties: Users can create lists of their favourite properties, maki
 Mortgage Calculator: We offer a built-in mortgage calculator to help homebuyers estimate monthly payments based on loan amount and interest rate.
 
 ## Roles
+
 - Team manager
 - schedule coordinator
 - Q&A coordinator
