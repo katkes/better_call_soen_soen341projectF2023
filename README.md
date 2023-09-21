@@ -25,16 +25,18 @@ For the front end of the project, the team decided to use the React framework. T
 - CSS
 - JavaScript
 
+## Team Members
+
 ID | Name | Position
 
-40249407 | Keshan Kathiripilay | Team Leader 
+- 40249407 | Keshan Kathiripilay | Team Leader 
 
-40248834 | Carlo Aldabi |
+- 40248834 | Carlo Aldabi |
 
-40245873 | Arnab Das |
+- 40245873 | Arnab Das |
 
-40250945 | Mohamed Sanoko |
+- 40250945 | Mohamed Sanoko |
 
-40238989 | Roberto Rodriguez |
+- 40238989 | Roberto Rodriguez |
 
-40248733 | Tahsin Islam |
+- 40248733 | Tahsin Islam |
