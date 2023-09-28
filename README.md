@@ -38,18 +38,16 @@ For the front end of the project, the team decided to use the React framework. T
 - Visual Studio Code
 - IntelliJ
 
-## Team Members
+## Team Members | Roles
 
-ID | Name | Position
+- Keshan Kathiripilay | Team Manager 
 
-- 40249407 | Keshan Kathiripilay | Team Leader 
+- Carlo Aldabi | Meeting Coordinator
 
-- 40248834 | Carlo Aldabi |
+- Arnab Das | Schedule Coordinator
 
-- 40245873 | Arnab Das |
+- Mohamed Sanoko | Code Reviewer
+ 
+- Roberto Rodriguez | Document Manager
 
-- 40250945 | Mohamed Sanoko |
-
-- 40238989 | Roberto Rodriguez |
-
-- 40248733 | Tahsin Islam |
+- Tahsin Islam | Q&A Coordinator
