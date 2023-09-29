@@ -23,5 +23,3 @@ Acceptance Criteria:
 6. Visit Management
   a. I should be able to manage the property visits including rescheduling or cancelling them if necessary
   b. If a visit is rescheduled it should notify both the client and the listing owner
-
-Additional Notes:

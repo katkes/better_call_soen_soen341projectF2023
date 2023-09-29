@@ -9,4 +9,3 @@ User Acceptance Flow:
 1. CRUD operations on brokers
   a. I should be able to create, read, update, and delete broker accounts as necessary
 
-Additional Notes:
