@@ -50,7 +50,7 @@ For the front end of the project, the team decided to use the React framework. T
  
 - 40238989 | roburnto | Roberto Rodriguez | Document Manager, organizes and maintains documentation related to projects, or processes, ensuring that information is up to date, easily accessible and well-organized.
 
-- 40248733 | Tahsin Islam | Q&A Coordinator, oversees testing processes to ensure that the project meet quality standards and function as intended. Reporting defects or issues for resolution.
+- 40248733 | Tahsin-Islam | Tahsin Islam | Q&A Coordinator, oversees testing processes to ensure that the project meet quality standards and function as intended. Reporting defects or issues for resolution.
 
 ## Installation Instructions
 To set up the project locally, follow these steps: 
