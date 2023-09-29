@@ -42,7 +42,7 @@ For the front end of the project, the team decided to use the React framework. T
 
 - Keshan Kathiripilay | Team Manager, provides direction to the team, set goals, assign tasks and ensure the team's overall success.
 
-- Carlo Aldabi | Meeting Coordinator, organizes and schedules team meetings, make sure participants are informed about meetings, and facilitate smooth and productive discussions.
+- Student ID | thermoNuke1 | Carlo Aldabi | Meeting Coordinator, organizes and schedules team meetings, make sure participants are informed about meetings, and facilitate smooth and productive discussions.
 
 - Arnab Das | Schedule Coordinator, manages and maintains the team's schedule, including project timelines and deadlines.
 
