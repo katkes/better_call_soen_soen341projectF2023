@@ -46,7 +46,7 @@ For the front end of the project, the team decided to use the React framework. T
 
 - Arnab Das | Schedule Coordinator, manages and maintains the team's schedule, including project timelines and deadlines.
 
-- Mohamed Sanoko | Code Reviewer, reviews and assesses code written by team members for quality, adherence to coding standards, and functionality, also providing feedback and guidance for improvement.
+- 40250945 | mohamedsanoko | Mohamed Sanoko | Code Reviewer, reviews and assesses code written by team members for quality, adherence to coding standards, and functionality, also providing feedback and guidance for improvement.
  
 - 40238989 | roburnto | Roberto Rodriguez | Document Manager, organizes and maintains documentation related to projects, or processes, ensuring that information is up to date, easily accessible and well-organized.
 
