@@ -44,7 +44,7 @@ For the front end of the project, the team decided to use the React framework. T
 
 - Student ID | thermoNuke1 | Carlo Aldabi | Meeting Coordinator, organizes and schedules team meetings, make sure participants are informed about meetings, and facilitate smooth and productive discussions.
 
-- Arnab Das | Schedule Coordinator, manages and maintains the team's schedule, including project timelines and deadlines.
+- Student ID | ArnabDasSOEN | Arnab Das | Schedule Coordinator, manages and maintains the team's schedule, including project timelines and deadlines.
 
 - 40250945 | mohamedsanoko | Mohamed Sanoko | Code Reviewer, reviews and assesses code written by team members for quality, adherence to coding standards, and functionality, also providing feedback and guidance for improvement.
  
