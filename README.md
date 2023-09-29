@@ -66,3 +66,5 @@ To set up the project locally, follow these steps:
 3. Scheduling Property Visits: Click on a property listing to view details, then use the scheduling feature to set up property visits.
 4. Mortage Calculator: Find teh mortage calculator tool in the "Tools" section to estimate monthly payments based on your preferred loan amount and interest rate.
 
+## Reference to Wiki
+For additional information about meeting minutes, planning, team rules, and management guidelines, please refer to our Wiki section (https://github.com/katkes/better_call_soen_soen341projectF2023/wiki).
