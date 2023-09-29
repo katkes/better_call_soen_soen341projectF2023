@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Node.js Button Click Example</title>
+</head>
 <body>
-<h1>Hello World!</h1>
+<h1>Click the button!</h1>
+<button id="myButton">Click Me</button>
+<p id="responseMessage"></p>
+
+<script>
+    // JavaScript code to handle button click and send a POST request to the server
+    const button = document.getElementById("myButton");
+    const responseMessage = document.getElementById("responseMessage");
+
+    button.addEventListener("click", () => {
+        fetch('/handleClick', { method: 'POST' })
+            .then(response => response.text())
+            .then(data => {
+                responseMessage.textContent = data;
+            });
+    });
+</script>
 </body>
 </html>
