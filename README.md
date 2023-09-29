@@ -48,7 +48,7 @@ For the front end of the project, the team decided to use the React framework. T
 
 - Mohamed Sanoko | Code Reviewer, reviews and assesses code written by team members for quality, adherence to coding standards, and functionality, also providing feedback and guidance for improvement.
  
-- Roberto Rodriguez | Document Manager, organizes and maintains documentation related to projects, or processes, ensuring that information is up to date, easily accessible and well-organized.
+- 40238989 | roburnto | Roberto Rodriguez | Document Manager, organizes and maintains documentation related to projects, or processes, ensuring that information is up to date, easily accessible and well-organized.
 
 - Tahsin Islam | Q&A Coordinator, oversees testing processes to ensure that the project meet quality standards and function as intended. Reporting defects or issues for resolution.
 
