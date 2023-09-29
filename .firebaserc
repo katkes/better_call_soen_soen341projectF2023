@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "bettercallsoen"
-  }
+    "default": "better-call-soen"
+  },
+  "targets": {},
+  "etags": {}
 }
