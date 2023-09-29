@@ -40,26 +40,14 @@ For the front end of the project, the team decided to use the React framework. T
 
 ## Team Members | Roles
 
-- Keshan Kathiripilay | Team Manager
+- Keshan Kathiripilay | Team Manager, provides direction to the team, set goals, assign tasks and ensure the team's overall success.
 
-Role: Provides direction to the team, set goals, assign tasks and ensure the team's overall success.
+- Carlo Aldabi | Meeting Coordinator, organizes and schedules team meetings, make sure participants are informed about meetings, and facilitate smooth and productive discussions.
 
-- Carlo Aldabi | Meeting Coordinator
+- Arnab Das | Schedule Coordinator, manages and maintains the team's schedule, including project timelines and deadlines.
 
-Role: Organizes and schedules team meetings, make sure participants are informed about meetings, and facilitate smooth and productive discussions.
-
-- Arnab Das | Schedule Coordinator
-
-Role: Manages and maintains the team's schedule, including project timelines and deadlines.
-
-- Mohamed Sanoko | Code Reviewer
-
-Role: Reviews and assesses code written by team members for quality, adherence to coding standards, and functionality, also providing feedback and guidance for improvement.
+- Mohamed Sanoko | Code Reviewer, reviews and assesses code written by team members for quality, adherence to coding standards, and functionality, also providing feedback and guidance for improvement.
  
-- Roberto Rodriguez | Document Manager
+- Roberto Rodriguez | Document Manager, organizes and maintains documentation related to projects, or processes, ensuring that information is up to date, easily accessible and well-organized.
 
-Role: Organizes and maintains documentation related to projects, or processes, ensuring that information is up to date, easily accessible and well-organized.
-
-- Tahsin Islam | Q&A Coordinator
-
-Role: Oversees testing processes to ensure that the project meet quality standards and function as intended. Reporting defects or issues for resolution.
+- Tahsin Islam | Q&A Coordinator, oversees testing processes to ensure that the project meet quality standards and function as intended. Reporting defects or issues for resolution.
