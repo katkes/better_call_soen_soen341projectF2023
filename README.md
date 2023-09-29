@@ -59,3 +59,10 @@ To set up the project locally, follow these steps:
 3. Install dependencies: 'npm install (for front-end) and 'npm install' (for back-end).
 4. Configure the database connection in the 'config.js' file.
 5. Run the application: 'npm start'.
+
+## Usage Guidelines
+1. Accessing Different Features: Once the application is running, open your web browser and navigate to 'http://localhost:3000' to access the Real Estate Web Application.
+2. Property Search: Use the search bar to filter properties based on your criteria, such as location, price range, and more.
+3. Scheduling Property Visits: Click on a property listing to view details, then use the scheduling feature to set up property visits.
+4. Mortage Calculator: Find teh mortage calculator tool in the "Tools" section to estimate monthly payments based on your preferred loan amount and interest rate.
+
