@@ -51,3 +51,11 @@ For the front end of the project, the team decided to use the React framework. T
 - Roberto Rodriguez | Document Manager, organizes and maintains documentation related to projects, or processes, ensuring that information is up to date, easily accessible and well-organized.
 
 - Tahsin Islam | Q&A Coordinator, oversees testing processes to ensure that the project meet quality standards and function as intended. Reporting defects or issues for resolution.
+
+## Installation Instructions
+To set up the project locally, follow these steps: 
+1. Clone the repository: 'git clone https://github.com/katkes/better_call_soen_soen341projectF2023'.
+2. Navigate to the project directory: 'cd real-estate-web-app'.
+3. Install dependencies: 'npm install (for front-end) and 'npm install' (for back-end).
+4. Configure the database connection in the 'config.js' file.
+5. Run the application: 'npm start'.
