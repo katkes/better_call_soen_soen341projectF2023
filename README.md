@@ -41,6 +41,7 @@ For the front end of the project, the team decided to use the React framework. T
 ## Team Members | Roles
 
 - Keshan Kathiripilay | Team Manager, provides direction to the team, set goals, assign tasks and ensure the team's overall success.
+- Background: 
 
 - Carlo Aldabi | Meeting Coordinator, organizes and schedules team meetings, make sure participants are informed about meetings, and facilitate smooth and productive discussions.
 
