@@ -26,8 +26,8 @@ For the front end of the project, the team decided to use the React framework. T
 
 ## Languages
 - React.js
-- Node.js
-- SQL
+- Node.js (express, axios, among other libraries)
+- MySQL
 - HTML
 - CSS
 - JavaScript
@@ -37,6 +37,7 @@ For the front end of the project, the team decided to use the React framework. T
 - MySQL Workbench
 - Visual Studio Code
 - IntelliJ
+- Google Firebase
 
 ## Student ID | Team Members GitHub ID | Team Members Name and Roles
 
