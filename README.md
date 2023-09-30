@@ -38,13 +38,13 @@ For the front end of the project, the team decided to use the React framework. T
 - Visual Studio Code
 - IntelliJ
 
-## Team Members | Roles
+## Student ID | Team Members GitHub ID | Team Members Name and Roles
 
-- Student ID | katkes | Keshan Kathiripilay | Team Manager, provides direction to the team, set goals, assign tasks and ensure the team's overall success.
+- 40249407 | katkes | Keshan Kathiripilay | Team Manager, provides direction to the team, set goals, assign tasks and ensure the team's overall success.
 
-- Student ID | thermoNuke1 | Carlo Aldabi | Meeting Coordinator, organizes and schedules team meetings, make sure participants are informed about meetings, and facilitate smooth and productive discussions.
+- 40248834 | thermoNuke1 | Carlo Aldabi | Meeting Coordinator, organizes and schedules team meetings, make sure participants are informed about meetings, and facilitate smooth and productive discussions.
 
-- Student ID | ArnabDasSOEN | Arnab Das | Schedule Coordinator, manages and maintains the team's schedule, including project timelines and deadlines.
+- 40245873 | ArnabDasSOEN | Arnab Das | Schedule Coordinator, manages and maintains the team's schedule, including project timelines and deadlines.
 
 - 40250945 | mohamedsanoko | Mohamed Sanoko | Code Reviewer, reviews and assesses code written by team members for quality, adherence to coding standards, and functionality, also providing feedback and guidance for improvement.
  
