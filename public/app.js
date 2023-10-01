@@ -1,6 +1,7 @@
+
 //document content loaded or not
 document.addEventListener("DOMContentLoaded", event => {
-
+    
     const app =firebase.app();
     console.log(app);
 });
