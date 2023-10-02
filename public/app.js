@@ -1,4 +1,3 @@
-
 //document content loaded or not
 document.addEventListener("DOMContentLoaded", event => {
     
