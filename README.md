@@ -1,5 +1,5 @@
 # SOEN-341-Real-Estate-Web-Application
-Real estate web application made for SOEN 341 class assignment
+Real estate web application made for SOEN 341 class assignment 
 
 ## Project Description 
 Comprehensive Real Estate Web Application designed to help people buy, sell, and rent properties. Our platform offers an intuitive, user-friendly interface that simplifies complex real estate transactions.
@@ -26,8 +26,8 @@ For the front end of the project, the team decided to use the React framework. T
 
 ## Languages
 - React.js
-- Node.js
-- SQL
+- Node.js (express, axios, among other libraries)
+- MySQL
 - HTML
 - CSS
 - JavaScript
@@ -37,19 +37,35 @@ For the front end of the project, the team decided to use the React framework. T
 - MySQL Workbench
 - Visual Studio Code
 - IntelliJ
+- Google Firebase
 
-## Team Members
+## Student ID | Team Members GitHub ID | Team Members Name and Roles
 
-ID | Name | Position
+- 40249407 | katkes | Keshan Kathiripilay | Team Manager, provides direction to the team, set goals, assign tasks and ensure the team's overall success.
 
-- 40249407 | Keshan Kathiripilay | Team Leader 
+- 40248834 | thermoNuke1 | Carlo Aldabi | Meeting Coordinator, organizes and schedules team meetings, make sure participants are informed about meetings, and facilitate smooth and productive discussions.
 
-- 40248834 | Carlo Aldabi |
+- 40245873 | ArnabDasSOEN | Arnab Das | Schedule Coordinator, manages and maintains the team's schedule, including project timelines and deadlines.
 
-- 40245873 | Arnab Das |
+- 40250945 | mohamedsanoko | Mohamed Sanoko | Code Reviewer, reviews and assesses code written by team members for quality, adherence to coding standards, and functionality, also providing feedback and guidance for improvement.
+ 
+- 40238989 | roburnto | Roberto Rodriguez | Document Manager, organizes and maintains documentation related to projects, or processes, ensuring that information is up to date, easily accessible and well-organized.
 
-- 40250945 | Mohamed Sanoko |
+- 40248733 | Tahsin-Islam | Tahsin Islam | Q&A Coordinator, oversees testing processes to ensure that the project meet quality standards and function as intended. Reporting defects or issues for resolution.
 
-- 40238989 | Roberto Rodriguez |
+## Installation Instructions
+To set up the project locally, follow these steps: 
+1. Clone the repository: 'git clone https://github.com/katkes/better_call_soen_soen341projectF2023'.
+2. Navigate to the project directory: 'cd real-estate-web-app'.
+3. Install dependencies: 'npm install (for front-end) and 'npm install' (for back-end).
+4. Configure the database connection in the 'config.js' file.
+5. Run the application: 'npm start'.
 
-- 40248733 | Tahsin Islam |
+## Usage Guidelines
+1. Accessing Different Features: Once the application is running, open your web browser and navigate to 'http://localhost:3000' to access the Real Estate Web Application.
+2. Property Search: Use the search bar to filter properties based on your criteria, such as location, price range, and more.
+3. Scheduling Property Visits: Click on a property listing to view details, then use the scheduling feature to set up property visits.
+4. Mortage Calculator: Find teh mortage calculator tool in the "Tools" section to estimate monthly payments based on your preferred loan amount and interest rate.
+
+## Reference to Wiki
+For additional information about meeting minutes, planning, team rules, and management guidelines, please refer to our Wiki section (https://github.com/katkes/better_call_soen_soen341projectF2023/wiki).

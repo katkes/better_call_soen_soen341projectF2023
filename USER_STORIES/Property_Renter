@@ -18,5 +18,3 @@ User Acceptance Flow
 4. Search for brokers
   a. Given I am on the platform, If I search for brokers, I should be presented with a list of registered brokers
   b. Given I click on a broker, I should be presented with a list of properties associated with the broker
-
-Additional notes
