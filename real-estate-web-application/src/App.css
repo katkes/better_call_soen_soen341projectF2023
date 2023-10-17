@@ -7,15 +7,46 @@
   .sideBar a {font-size: 18px;}
 }
 
-.sideBar{
+
+.sidebar {
+  width: 0;
   position: fixed;
-  left: 0;
-  top: 51px;
+  top: 0;
+  left: -250px;
   height: 100%;
-  width: 250px; 
   background-color: #104f55ff;
-  color: #fff;
-  transition: width 0.3s;
+  transition: 0.3s;
+  overflow-x: hidden;
+  padding-top: 60px;
+  z-index: 1;
+}
+
+
+.sidebar.open {
+  width: 250px;
+  left: 0;
+}
+
+.openbtn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 35px;
+  height: 35px; 
+  background-color: #104f55ff;
+  color: white;
+  border: none;
+  text-align-last: top;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 2;
+  border: none;
+  border-radius: 4px; 
+  transition: 0.3s;
+}
+
+.openbtn:hover {
+  background-color: rgb(7, 56, 59);
 }
 
 .sideBar a {
