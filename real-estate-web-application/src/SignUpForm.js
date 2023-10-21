@@ -1,6 +1,6 @@
 function SignUp(){
 return(
-<div>
+<div class="slide-in">
     <form class="signUpForm" action="###" method="POST">
         <h2>Sign Up</h2>
         <div class="signupformInner">

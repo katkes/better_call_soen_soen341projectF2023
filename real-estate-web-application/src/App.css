@@ -106,19 +106,42 @@
   border-radius: 5px;
 }
 
+.slide-in {
+  position: relative;
+  animation-name: slideIn;
+  animation-duration: 1s;
+}
+
+@keyframes slideIn {
+ from { right:-400%; width: 0%;}
+ 
+  to { right:0;width: 100%;}
+}
+
 .signUpForm h2 {
   text-align: center;
   color: #104f55ff;
+  animation: fadeIn;
+  animation-duration: 2s;
 }
 
 .signupformInner {
   margin: 30px;
+  animation: fadeIn;
+  animation-duration: 2s;
 }
 
 .signupformInner label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  
+}
+
+@keyframes fadeIn{
+0%{opacity: 0;}
+50%{opacity: 0;}
+100%{opacity: 1;}
 }
 
 .signupformInner input[type="text"],
@@ -134,7 +157,6 @@
   font-size: 16px;
 
 }
-
 
 
 .signupformInner button {
