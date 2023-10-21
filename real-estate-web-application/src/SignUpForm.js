@@ -3,7 +3,7 @@ return(
 <div>
     <form class="signUpForm" action="###" method="POST">
         <h2>Sign Up</h2>
-        <div class="signup-form">
+        <div class="signupformInner">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required></input>
             <br></br>
@@ -26,7 +26,8 @@ return(
                 <option value="broker">Broker</option>
             </select>
             <br></br>
-            <button type="submit" class="signUpBtn">Sign Up</button>
+            <br></br>
+            <button type="submit" class="submitSignUp">Sign Up</button>
         </div>
     </form>
 

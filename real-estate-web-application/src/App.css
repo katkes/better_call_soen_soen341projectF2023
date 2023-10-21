@@ -91,7 +91,67 @@
 
 .content{
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top:10%;
+  left:40%;
   color:black;
+}
+
+.signUpForm {
+  width: 110%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.signUpForm h2 {
+  text-align: center;
+  color: #104f55ff;
+}
+
+.signupformInner {
+  margin: 30px;
+}
+
+.signupformInner label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.signupformInner input[type="text"],
+.signupformInner input[type="tel"],
+.signupformInner input[type="email"],
+.signupformInner input[type="password"],
+.signupformInner select {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+
+}
+
+
+
+.signupformInner button {
+  width: 50%;
+  padding: 10px;
+  background-color: #104f55ff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.submitSignUp button:hover {
+  background-color: rgb(7, 56, 59);
+}
+
+.submitSignUp button:active {
+  background-color: rgb(3, 23, 24);
 }
