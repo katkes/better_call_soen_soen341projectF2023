@@ -1,7 +1,7 @@
 function SignUp(){
 return(
 <div>
-    <form class="App" action="your-server-endpoint" method="POST">
+    <form class="signUpForm" action="###" method="POST">
         <h2>Sign Up</h2>
         <div class="signup-form">
             <label for="name">Name:</label>
