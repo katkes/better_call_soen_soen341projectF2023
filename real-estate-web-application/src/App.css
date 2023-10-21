@@ -29,14 +29,13 @@
 
 .openbtn {
   position: fixed;
-  top: 10px;
+  top: 8px;
   left: 10px;
   width: 35px;
   height: 35px; 
   background-color: #104f55ff;
   color: white;
   border: none;
-  text-align-last: top;
   font-size: 26px;
   cursor: pointer;
   z-index: 2;
@@ -69,4 +68,23 @@
   width: 100%; 
   background-color: #104f55ff;
   border-bottom: 1px solid #331e38ff;
+}
+
+.signUpBtn{
+  position: fixed;
+  top: 8px;
+  right: 10px;
+  background-color:#104f55ff;
+  color:#ffffffc0;
+  border: none;
+  padding:0.5%;
+  border-radius: 4px;
+}
+
+.signUpBtn:hover {
+  background-color: rgb(7, 56, 59);
+}
+
+.signUpBtn:active {
+  background-color: rgb(3, 23, 24);
 }
