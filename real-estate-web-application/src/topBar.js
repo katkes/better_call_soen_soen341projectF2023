@@ -1,5 +1,6 @@
 import React from "react";
 import SignUp from "./SignUpForm";
+import "./css/topBar.css";
 
 function TopBar({ setContentText }) {
   const handleButtonClick = () => {
@@ -10,7 +11,7 @@ function TopBar({ setContentText }) {
 
   return (
     <div className="topBar">
-        <div className="pageLogo"><img src="Logo.png" alt="Urban Utopia"></img></div>
+        <div className="pageLogo"> <a href="public/index.html"><img src="Logo.png" alt="Urban Utopia"></img></a>   </div>
       <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
     </div>
   );
