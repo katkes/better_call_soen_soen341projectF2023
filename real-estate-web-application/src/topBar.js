@@ -1,10 +1,18 @@
-function TopBar() {
-    return(
-       
-        <div className="topBar">
-            <button className="signUpBtn" onClick={()=>console.log("pressed")}>Sign up</button>
-        </div>
-    );
-  }
+import React from "react";
+import SignUp from "./SignUpForm";
 
-  export default TopBar;
+function TopBar({ setContentText }) {
+  const handleButtonClick = () => {
+    // Change the content when the button is clicked
+    const signUpContent = SignUp();
+    setContentText(signUpContent);
+  };
+
+  return (
+    <div className="topBar">
+      <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
+    </div>
+  );
+}
+
+export default TopBar;
