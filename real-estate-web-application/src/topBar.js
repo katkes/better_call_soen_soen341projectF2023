@@ -2,6 +2,8 @@ import React from "react";
 import SignUp from "./SignUpForm";
 import "./css/topBar.css";
 
+
+
 function TopBar({ setContentText }) {
   const handleButtonClick = () => {
     // Change the content when the button is clicked 
@@ -20,10 +22,9 @@ function TopBar({ setContentText }) {
         </div>
 
         <div className="filterForm"> {/*This may not even be implemented. Well see*/}
-          <form id="ApiFilterSearch">
-          <label for="filter">Filter  </label>
+          <form id="ApiFilterSearch" action="filterSearch" method="GET"> 
+          <label for="filter">Filter properties </label>
           <input type="text" name="filter" id="filter"></input>
-          
           </form>
         </div>
         

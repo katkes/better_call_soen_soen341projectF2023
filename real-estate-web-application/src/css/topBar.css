@@ -37,14 +37,13 @@
 
 #ApiFilterSearch label{
   color:white;
+  padding-right:5px;
 }
+
 .filterForm{
-  display:flex;
   position:relative;
   top: 2.2em;
   justify-content: center;
-  align-items: bottom;
-  float: bottom;
 }
 
 
