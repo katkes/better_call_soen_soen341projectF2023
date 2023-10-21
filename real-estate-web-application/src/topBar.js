@@ -10,6 +10,7 @@ function TopBar({ setContentText }) {
 
   return (
     <div className="topBar">
+        <div className="pageLogo"><img src="Logo.png" alt="Urban Utopia"></img></div>
       <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
     </div>
   );
