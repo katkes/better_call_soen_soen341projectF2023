@@ -83,14 +83,14 @@
 .content {
   position: absolute;
   top: 130px;
-  left: 12%;
+  left: 9%;
   transform: translateX(-5%);
   color: black;
 }
 @media (max-width: 767px) {
   .content {
     top: 130px;
-    left: 12%;
+    left: 9%;
   }
 }
 
@@ -106,7 +106,7 @@
 }
 
 .slide-in {
-  left: 27.5vw;
+  left: 30.5vw;
   position: relative;
   animation-name: slideIn;
   animation-duration: 1s;
@@ -118,7 +118,7 @@
     left: 0;
   }
   .slide-in {
-    left: 2vw;
+    left: 4vw;
     animation-name: slideInSmallerScreen;
     animation-duration: 1s;
   }
@@ -130,7 +130,7 @@
   }
 
   to {
-    left: 27.5vw;
+    left: 30.5vw;
   }
 }
 
@@ -140,7 +140,7 @@
   }
 
   to {
-    left: 2vw;
+    left: 4vw;
   }
 }
 
