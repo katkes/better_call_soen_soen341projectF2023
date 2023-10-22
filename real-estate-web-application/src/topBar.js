@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import SignUp from "./SignUpForm";
 import "./css/topBar.css";
 
 
 
 function TopBar({ setContentText }) {
+  const [isSignUpClicked, setIsSignUpClicked] = useState(false);
   const handleButtonClick = () => {
     // Change the content when the button is clicked 
+    setIsSignUpClicked(true);
     const signUpContent = SignUp();
     setContentText(signUpContent);
   };
@@ -28,7 +30,11 @@ function TopBar({ setContentText }) {
           </form>
         </div>
         
-      <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
+        {isSignUpClicked ? null : (
+        <button className="signUpBtn" onClick={handleButtonClick}>
+          Sign up
+        </button>
+      )}
     </div>
   );
 }
