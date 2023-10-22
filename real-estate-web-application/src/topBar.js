@@ -22,13 +22,13 @@ function TopBar({ setContentText }) {
           </img>
         </a>
         </div>
-
         <div className="filterForm"> {/*This may not even be implemented. Well see*/}
           <form id="ApiFilterSearch" action="filterSearch" method="GET"> 
           <label for="filter">Filter properties </label>
           <input type="text" name="filter" id="filter"></input>
           </form>
         </div>
+       
         
         {isSignUpClicked ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>

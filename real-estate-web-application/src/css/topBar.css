@@ -1,13 +1,13 @@
 .topBar{
   display:block;
-  position: fixed;
+  /*position:static*/
   left: 0;
   top: 0;
   height: 110px;
   width: 100%; 
   background-color: #104f55ff;
-  border-bottom: 1px solid #331e38ff;
-  margin-bottom: 5%;
+  border-bottom: 5px solid #331e38ff;
+  
 }
 
 .pageLogo {

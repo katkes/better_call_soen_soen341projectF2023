@@ -16,7 +16,7 @@ function App() {
       <Content contentText={contentText}/>
       <SideBar/>
       <TopBar setContentText={setContentText}/>
-
+      <PropertySection/>
       
 
 
