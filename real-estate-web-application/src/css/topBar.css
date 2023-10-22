@@ -11,7 +11,7 @@
 }
 
 .pageLogo {
-  display: flex;
+  display: fixed;
   justify-content: center;
   align-items: center;
   
@@ -30,11 +30,26 @@
   
 }
 /*The filter form text itself*/
-#filter{
-  width: 35em;
-  height: 15px;
-  border-radius: 25px;
-  border: 2px solid white;
+#filter {
+  width: 300px; 
+  height: 2px; 
+  border-radius: 20px; 
+  border: 2px solid #ccc; 
+  margin-top: 7px;
+  padding: 10px; 
+  font-size: 16px; 
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9; 
+  color: #333; 
+  outline: none; 
+}
+
+#filter::placeholder {
+  color: #999; 
+}
+
+#filter:focus {
+  border-color: #007BFF; 
 }
 
 @media (max-width: 767px) {
