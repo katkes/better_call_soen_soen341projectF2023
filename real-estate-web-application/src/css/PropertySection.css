@@ -1,19 +1,37 @@
 .PropertySection {
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    margin: 5em auto 4em;
-    max-width: 90%;
-    border: 2px solid black;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .PropertySection .card {
-    flex: 1; /* Each card takes up an equal part of the available space */
-    max-width: calc(33.33% - 20px); /* Adjust the width based on the number of cards you want in a row */
-    margin: 10px; /* Add some space between cards */
+    flex: 0 0 calc(33.33% - 20px);
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.PropertySection .card:hover {
+    transform: scale(1.05);
 }
 
 @media (max-width: 767px) {
     .PropertySection {
-        max-width: 90vw;
+        flex-direction: column;
+        align-items: stretch; 
+    }
+
+    .PropertySection .card {
+        position: realtive;
+        min-width: 65vw;
     }
 }
