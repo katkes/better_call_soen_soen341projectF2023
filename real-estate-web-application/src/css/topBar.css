@@ -3,7 +3,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  height: 13%;
+  height: 110px;
   width: 100%; 
   background-color: #104f55ff;
   border-bottom: 1px solid #331e38ff;
@@ -14,15 +14,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin:5px;
-  height: 45px;  /* height: 45px;*/
+  
+  height: 35px;  
   
 }
 
 .pageLogo img {
-  margin-top: 4rem;
-  max-width: 15em;
-  max-height: 15em;
+  margin-top: 30px;
+  max-width: auto;
+  max-height: 45px;
 }
 
 #LogoAnchorHome{
@@ -32,9 +32,15 @@
 /*The filter form text itself*/
 #filter{
   width: 35em;
-  height: 1.4em;
+  height: 15px;
   border-radius: 25px;
   border: 2px solid white;
+}
+
+@media (max-width: 767px) {
+  #filter {
+    max-width: 50vw;
+  }
 }
 
 #ApiFilterSearch label{

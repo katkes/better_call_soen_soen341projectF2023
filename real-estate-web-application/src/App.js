@@ -6,8 +6,9 @@ import Content from './Content';
 //import SingularCard from './singularCard.js';
 import PropertySection from "./PropertySection.js";
 
+
 function App() {
-  const [contentText, setContentText] = useState("Initial content");
+  const [contentText, setContentText] = useState(PropertySection());
 
   return (
     <div className="App">
@@ -15,7 +16,7 @@ function App() {
       <SideBar/>
       <TopBar setContentText={setContentText}/>
 
-      <PropertySection/>
+      
 
 
 

@@ -105,14 +105,21 @@
 
 .content {
   position: absolute;
-  top: 10vh;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 130px;
+  left: 12%;
+  transform: translateX(-5%);
   color: black;
+}
+@media (max-width: 767px) {
+  .content {
+    top: 130px;
+    left: 12%;
+  }
 }
 
 .signUpForm {
   width: 100vw;
+  left: 50vw;
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -126,6 +133,7 @@
 @media (max-width: 767px) {
   .signUpForm {
     max-width: 300px;
+    left: 0;
   }
 }
 

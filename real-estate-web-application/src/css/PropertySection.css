@@ -1,10 +1,19 @@
-.PropertySection{
-    
-    display:flex;
+.PropertySection {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
     margin: 5em auto 4em;
     max-width: 90%;
-    max-height: 90%;
-    height:max-content;
-    width: max-content;
     border: 2px solid black;
+}
+
+.PropertySection .card {
+    flex: 1; /* Each card takes up an equal part of the available space */
+    max-width: calc(33.33% - 20px); /* Adjust the width based on the number of cards you want in a row */
+    margin: 10px; /* Add some space between cards */
+}
+
+@media (max-width: 767px) {
+    .PropertySection {
+        max-width: 90vw;
+    }
 }
