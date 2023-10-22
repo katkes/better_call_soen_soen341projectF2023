@@ -9,12 +9,26 @@
    border: 2px solid #331e38;
    border-radius: 20px;
    padding:2px;
-   margin: 0.1em;
+   margin: 0.5em;
    max-width:15%;
    max-height:10%;
-   
+   background-color: #cdf7f6;
+
    height:auto;
    width:auto;
+}
 
-  
+.card p{
+    color: #1a281f;
+}
+button{
+    border: 2px solid black;
+    border-radius: 25px;
+    padding:4px;
+    color:white;
+    background-color: #EC058E ;
+    width: 4em;
+}
+button:hover{
+
 }

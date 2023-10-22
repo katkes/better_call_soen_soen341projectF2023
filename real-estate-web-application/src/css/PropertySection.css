@@ -1,4 +1,10 @@
 .PropertySection{
+    
     display:flex;
-    margin: 5em;
+    margin: 5em auto 4em;
+    max-width: 90%;
+    max-height: 90%;
+    height:max-content;
+    width: max-content;
+    border: 2px solid black;
 }
