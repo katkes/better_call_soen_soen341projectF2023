@@ -21,14 +21,23 @@
 .card p{
     color: #1a281f;
 }
-button{
-    border: 2px solid black;
+.buyButton {
+    display: inline-block;
+    border: 2px solid #EC058E;
     border-radius: 25px;
-    padding:4px;
-    color:white;
-    background-color: #EC058E ;
-    width: 4em;
-}
-button:hover{
-
-}
+    padding: 10px 20px; 
+    color: white;
+    background-color: #EC058E;
+    font-size: 16px;
+    font-weight: bold; 
+    text-align: center; 
+    text-decoration: none; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    width: auto; 
+  }
+  
+  .buyButton:hover {
+    background-color: #FF007E; 
+    color: white; 
+  }
