@@ -12,8 +12,7 @@ function SideBar() {
         <button className="openbtn" onClick={toggleSidebar}>
           {isOpen ? "\u2715" : "\u2261"}
         </button>
-        { <div className="sideBar">
-  
+        {<div className="sideBar">
         <a id="classElement1" href="./App.js">Buy</a>
         <a id="classElement2" href="./App.js">Sell</a>
         <a id="classElement3" href="./App.js">My Broker</a>

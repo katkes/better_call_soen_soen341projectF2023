@@ -18,8 +18,7 @@ function TopBar({ setContentText }) {
 
         <div className="pageLogo">
         <a href="App.js" id="LogoAnchorHome">  
-          <img src="./Logo.png" alt="Urban Utopia">
-          </img>
+          <img src="./Logo.png" alt="Urban Utopia"></img>
         </a>
         </div>
         <div className="filterForm"> {/*This may not even be implemented. Well see*/}

@@ -1,6 +1,6 @@
 .topBar{
   display:block;
-  /*position:static*/
+  position:static;
   left: 0;
   top: 0;
   height: 110px;

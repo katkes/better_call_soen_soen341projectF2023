@@ -15,6 +15,7 @@
   left: -250px;
   height: 100%;
   background-color: #104f55ff;
+  border-right: 2px solid #331e38ff;
   transition: 0.3s;
   overflow-x: hidden;
   padding-top: 60px;
@@ -25,7 +26,7 @@
   width: 250px;
   left: 0;
 }
-
+/*This is the 3 dash lines on the top left*/
 .openbtn {
   position: fixed;
   top: 8px;
@@ -47,13 +48,15 @@
 .openbtn:hover {
   background-color: rgb(7, 56, 59);
 }
-
+/*the buttons in the sidebar*/
 .sideBar a {
   display: block;
   padding: 15px 20px;
+  margin: 0.05vw 0;
   text-decoration: none;
   color: #fff;
   transition: background-color 0.3s;
+  box-sizing: border-box;
 }
 
 .sideBar a:hover {
@@ -69,6 +72,7 @@
   background-color:#104f55ff;
   color:#ffffffc0;
   border: none;
+  
   padding:0.5%;
   border-radius: 4px;
   width: auto;
