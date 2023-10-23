@@ -1,0 +1,66 @@
+.card img{
+    max-width: 100%;
+    max-height: 50%;
+    border-radius: 20px;
+}
+
+.card{
+   
+   border: 2px solid #331e38;
+   border-radius: 20px;
+   padding:2px;
+   margin: 0.4em;
+   max-width:15%;
+   max-height:10%;
+   background-color: #cdf7f6;
+
+   height:auto;
+   width:auto;
+}
+
+.card p{
+    color: #1a281f;
+}
+.buyButton {
+    display: inline-block;
+    border: 2px solid #EC058E;
+    border-radius: 25px;
+    padding: 10px 20px; 
+    color: white;
+    background-color: #EC058E;
+    font-size: 16px;
+    font-weight: bold; 
+    text-align: center; 
+    text-decoration: none; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    width: auto; 
+  }
+  .buyButton:hover {
+    background-color: #FF007E; 
+    color: white; 
+  }
+
+  .visitButton{
+    display: inline-block;
+    border: 2px solid yellow;
+    background-color: yellow;
+    color: black;
+
+    border-radius: 25px;
+    padding: 10px 20px; 
+    
+    font-size: 16px;
+    font-weight: bold; 
+    text-align: center; 
+    text-decoration: none; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    width: auto; 
+    margin-left: 1vw;
+  }
+
+  .visitButton:hover{
+    background-color:rgb(194, 194, 13);
+    border-color:rgb(194, 194, 13);
+  }

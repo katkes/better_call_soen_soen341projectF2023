@@ -1,20 +1,22 @@
-import './App.css';
+import React, { useState } from "react";
+import './css/App.css';
+import SideBar from './sideBar';
+import TopBar from './topBar';
+import Content from './Content';
+//import SingularCard from './singularCard.js';
+import PropertySection from "./PropertySection.js";
+import HomePage from "./home";
+
 
 function App() {
+  const [contentText, setContentText] = useState(HomePage());
+
   return (
     <div className="App">
- 
-    <div className="topBar">
-        <button className="openbtn" >&#9776; Open Sidebar</button>
-    </div>
-    <div className="sideBar">
-  
-        <a id="classElement1" href="#">Buy</a>
-        <a id="classElement2" href="#">Sell</a>
-        <a id="classElement3" href="#">My Broker</a>
-        <a id="classElement4" href="#">Profile</a>
-        <a id="classElement5" href="#">About us</a>
-    </div>
+      <Content contentText={contentText}/>
+      <SideBar/>
+      <TopBar setContentText={setContentText}/>
+      <PropertySection/>
     </div>
   );
 }
