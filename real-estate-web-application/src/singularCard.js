@@ -8,7 +8,10 @@ function SingularCard({name,price,country,rating}){
                 <p>Price: ${price}</p>
                 <p>Country/address: {country}</p>
                 <p>Rating: {rating}☆</p>
+                <div className="buttonOptions">
                 <button className="buyButton" /*onClick={}*/>Buy</button>
+                <button className="visitButton" /*onClick={}*/>visit</button>
+                </div>
             </div>
         </div>
     );

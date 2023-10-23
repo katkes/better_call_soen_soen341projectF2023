@@ -17,11 +17,6 @@ function App() {
       <SideBar/>
       <TopBar setContentText={setContentText}/>
       <PropertySection/>
-      
-
-
-
-
     </div>
   );
 }
