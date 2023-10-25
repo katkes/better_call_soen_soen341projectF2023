@@ -3,7 +3,6 @@ import SignUp from "./SignUpForm";
 import "./css/topBar.css";
 
 
-
 function TopBar({ setContentText }) {
   const [isSignUpClicked, setIsSignUpClicked] = useState(false);
   const handleButtonClick = () => {
@@ -28,7 +27,7 @@ function TopBar({ setContentText }) {
           </form>
         </div>
        
-        
+       
         {isSignUpClicked ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>
           Sign up

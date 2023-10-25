@@ -1,0 +1,40 @@
+.loginForm {
+    width: 100vw;
+    left: 50vw;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .loginButton, .cancelLoginButton {
+    border-radius: 5px;
+    border: none;
+    background-color: #104f55ff;
+    color: white;
+    padding: 15px 30px; 
+    font-size: 20px; 
+    cursor: pointer;
+    margin: 2em auto;
+    display: block;
+  }
+  
+  .loginButton:hover, .cancelLoginButton:hover {
+    background-color: rgb(7, 56, 59);
+  }
+  
+  .cancelLoginButtonAnchorTag {
+    text-decoration: none;
+  }
+  
+  .loginForm input[type="email"],
+  .loginForm input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }

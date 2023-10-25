@@ -1,5 +1,14 @@
 import "./css/singularCard.css";
+/*import { useState } from "react";*/
+
+ 
+
 function SingularCard({name,price,country,rating}){
+   /* const [displayLogin,setdisplayLogin]= useState(false);*/
+
+    
+
+
     return(
         <div className="card">
             <img src="https://i.pinimg.com/736x/a9/8a/d3/a98ad31b4947ed09d9e3e9918cf3379b.jpg" alt="fix BOZO"></img>
@@ -10,7 +19,7 @@ function SingularCard({name,price,country,rating}){
                 <p>Rating: {rating}☆</p>
                 <div className="buttonOptions">
                 <button className="buyButton" /*onClick={}*/>Buy</button>
-                <button className="visitButton" /*onClick={}*/>visit</button>
+                <button className="visitButton" /*onClick={wantLogIn}*/>visit</button>
                 </div>
             </div>
         </div>

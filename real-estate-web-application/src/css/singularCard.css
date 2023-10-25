@@ -61,6 +61,7 @@
   }
 
   .visitButton:hover{
-    background-color:rgb(194, 194, 13);
-    border-color:rgb(194, 194, 13);
+    background-color:rgb(56, 56, 3); /* rgb(194, 194, 13)*/
+    border-color:rgb(56, 56, 3);
+    color: whitesmoke;
   }
