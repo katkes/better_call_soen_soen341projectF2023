@@ -9,7 +9,7 @@ import LoginForm from "./LoginForm";
 
 
 function App() {
-  const [contentText, setContentText] = useState(HomePage());
+  const [contentText, setContentText] = useState(LoginForm());
 
   return (
     <div className="App">
@@ -17,7 +17,7 @@ function App() {
       <SideBar/>
       <TopBar setContentText={setContentText}/>
       {/* <PropertySection/> */}
-      <LoginForm/>
+      
     </div>
   );
 }
