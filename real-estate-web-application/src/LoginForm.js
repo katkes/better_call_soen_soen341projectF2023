@@ -3,6 +3,7 @@ import "./css/LoginForm.css";
 function LoginForm(){
 
     return(
+        <div class="slide-in">
         <div className="loginForm">
             <form action="#" method="POST">
             <h2>Login</h2>
@@ -18,6 +19,8 @@ function LoginForm(){
             </div>
             </form>
         </div>
+        </div>
+    
     );
 }
 
