@@ -7,9 +7,8 @@ import Content from './Content';
 import HomePage from "./home";
 import LoginForm from "./LoginForm";
 
-
 function App() {
-  const [contentText, setContentText] = useState(LoginForm());
+  const [contentText, setContentText] = useState(HomePage());
 
   return (
     <div className="App">

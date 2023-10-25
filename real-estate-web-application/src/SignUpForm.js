@@ -1,4 +1,5 @@
 function SignUp(){
+    
 return(
 <div class="slide-in">
     <form class="signUpForm" action="###" method="POST">
@@ -28,6 +29,14 @@ return(
             <br></br>
             <br></br>
             <button type="submit" class="submitSignUp">Sign Up</button>
+            <br></br>
+            -
+            <br></br>
+            OR
+            <br></br>
+            -
+            <br></br>
+            <button class="submitLogIn" onClick="" >Log In</button>
         </div>
     </form>
 

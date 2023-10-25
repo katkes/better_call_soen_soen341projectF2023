@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SignUp from "./SignUpForm";
 import "./css/topBar.css";
+import HomePage from "./home";
 
 
 function TopBar({ setContentText }) {
@@ -12,13 +13,20 @@ function TopBar({ setContentText }) {
     setContentText(signUpContent);
   };
 
+  const handleButtonClick2 = () => {
+    // Change the content when the button is clicked 
+    setIsSignUpClicked(false);
+    const HomePageContent = HomePage();
+    setContentText(HomePageContent);
+  };
+
   return (
     <div className="topBar">
 
         <div className="pageLogo">
-        <a href="App.js" id="LogoAnchorHome">  
+        <button onClick={handleButtonClick2} id="LogoAnchorHome">  
           <img src="./Logo.png" alt="Urban Utopia"></img>
-        </a>
+        </button>
         </div>
         <div className="filterForm"> {/*This may not even be implemented. Well see*/}
           <form id="ApiFilterSearch" action="filterSearch" method="GET"> 
