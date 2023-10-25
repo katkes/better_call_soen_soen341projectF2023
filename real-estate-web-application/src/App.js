@@ -3,9 +3,9 @@ import './css/App.css';
 import SideBar from './sideBar';
 import TopBar from './topBar';
 import Content from './Content';
-//import SingularCard from './singularCard.js';
-import PropertySection from "./PropertySection.js";
+// import PropertySection from "./PropertySection.js";
 import HomePage from "./home";
+import LoginForm from "./LoginForm";
 
 
 function App() {
@@ -16,7 +16,8 @@ function App() {
       <Content contentText={contentText}/>
       <SideBar/>
       <TopBar setContentText={setContentText}/>
-      <PropertySection/>
+      {/* <PropertySection/> */}
+      <LoginForm/>
     </div>
   );
 }
