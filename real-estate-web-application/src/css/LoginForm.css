@@ -2,19 +2,20 @@
     border: 1px solid rgb(158, 158, 158);
     background-color: #f0f0f0;
     justify-content: center;
-    max-width: 25vw;
-    max-height: 35vh;
+    
+    width: 25%;
+    height: 35%;
     border-radius:3px;
     align-items:center;
 }
 
-.loginForm *{
+/* .loginForm *{
     display:block;
     align-items: center;
-}
+} */
 
 .loginButton, .cancelLoginButton{
-    display: inline;
+    /* display: inline; */
     border-radius: 5px;
     border: none;
     background-color: #104f55ff;
@@ -35,9 +36,9 @@
 
 .loginForm input[type="email"],
 .loginForm input[type="password"]{
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 15px;
+    width: 85%;
+    padding: 2%;
+    margin-bottom: 3%;
     border: 1px solid #ccc;
     border-radius: 3px;
     font-size: 16px;
