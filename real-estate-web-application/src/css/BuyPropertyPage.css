@@ -1,43 +1,87 @@
-.BuyPropertyPage{
-    border:2px solid grey;
-    background-color: #f0f0f0 ;
-    border-radius:5px;
-    width: 80%;
-    
-}
-
-.imgBuyPropertyPage{
-    width: 40%;
-}
-
-
-.BuySectionOfBuyPage *{
-    display: inline-block;
-    margin:2%;
-}
-
-.propertyAddress{
-    font-size: 1.5em;
-}
-
-.propertyPrice{
- font-size:1.5em;
- margin:0;
-}
-
-
-
-.buyButton{
-    /* display: inline-block; */
-    border: 2px solid #EC058E;
-    border-radius: 25px;
-    padding: 10px 20px; 
+.real-estate-listing {
+    border: 1px solid #ccc;
+    padding: 16px;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    margin: 0 auto; 
+  }
+  
+  
+  .top {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .property-type {
+    font-weight: bold;
+  }
+  
+  .photos {
+    max-height: 20%;
+    width: auto;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .big-preview {
+    max-height: 50%;
+    width: auto;
+  }
+  
+  .small-previews img {
+    margin-top: 5px;
+  }
+  
+  .actions button {
+    background-color: #007bff;
     color: white;
-    background-color: #EC058E;
-    font-size: 16px;
-    font-weight: bold; 
-    /* text-align: center;  */
-    cursor: pointer; 
-    transition: background-color 0.3s; 
-    
-}
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the active (favorite) button */
+  .favorite.active {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .favorite.active:hover {
+    background-color: #e54635;
+  }
+  
+  .favorite.active {
+    background-color: #ff6347;
+    color: white;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .feature-item {
+    margin: 5px 0;
+  }
+  
