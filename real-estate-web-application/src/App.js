@@ -3,9 +3,9 @@ import './css/App.css';
 import SideBar from './sideBar';
 import TopBar from './topBar';
 import Content from './Content';
-// import PropertySection from "./PropertySection.js";
-//import HomePage from "./home";
-//import LoginForm from "./LoginForm";
+import PropertySection from "./PropertySection.js";
+import HomePage from "./home";
+import LoginForm from "./LoginForm";
 import RealEstateListing from "./BuyPropertyPage.js";
 
 const propertyData = {
@@ -30,7 +30,7 @@ const propertyData = {
 };
 
 function App() {
-  const [contentText, setContentText] = useState();/*BuyPropertyPage()*/ 
+  const [contentText, setContentText] = useState(PropertySection());/*BuyPropertyPage()*/ 
 
 
   return (
@@ -39,7 +39,7 @@ function App() {
       <SideBar/>
       <TopBar setContentText={setContentText}/>
       {/* <PropertySection/> */}
-      <RealEstateListing property={propertyData} />
+      
     </div>
   );
 }
