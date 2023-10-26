@@ -3,14 +3,14 @@ import "./css/singularCard.css";
 import React from 'react'
 /*import { useState } from "react";*/
 import GenerateBuyPage from "./GenerateBuyPage.js";
- 
+
 
 
 function SingularCard({name,price,country,rating,setContentText}){
-  
+        //{name,price,country,rating},setContentText={setContentText}
         let type= 'Apartment';
         let address= '123 Main St, City, State';
-        price= '$500,000';
+        price= '500,000';
         let previewPhotos= [
            'https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CCDDDDDDDDDD2&t=pi&w=640&h=480&sm=c',
            'https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CEDDDDDDDDDDC&t=pi&w=320&h=240&sm=c',
@@ -28,8 +28,8 @@ function SingularCard({name,price,country,rating,setContentText}){
         ];
      
     const handleClick3 = () => {
-        
-        setContentText(<GenerateBuyPage type={type} address={address} price={price} previewPhotos={previewPhotos} broker={broker} favorite={favorite} features={features} />); //type, address, price, previewPhotos, broker, favorite, features 
+
+        setContentText(<GenerateBuyPage type={type} address={address} price={price} previewPhotos={previewPhotos} broker={broker} favorite={favorite} features={features} />); //type, address, price, previewPhotos, broker, favorite, features
       };
    /* const [displayLogin,setdisplayLogin]= useState(false);*/
 
