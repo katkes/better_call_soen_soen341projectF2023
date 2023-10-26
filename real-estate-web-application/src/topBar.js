@@ -28,7 +28,7 @@ function TopBar({ setContentText }) {
         </button>
         </div>
         <div className="filterForm"> {/*This may not even be implemented. Well see*/}
-          <form id="ApiFilterSearch" action="filterSearch" method="GET"> 
+          <form id="ApiFilterSearch" action="" method="GET"> 
           <label htmlFor="filter">Filter properties </label>
           <input type="text" name="filter" id="filter"></input>
           </form>
