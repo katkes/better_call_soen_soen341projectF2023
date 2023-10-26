@@ -1,8 +1,8 @@
-import RealEstateListing from "./BuyPropertyPage"; 
+// import RealEstateListing from "./BuyPropertyPage"; 
 import "./css/singularCard.css";
 import React from 'react'
 /*import { useState } from "react";*/
-
+import GenerateBuyPage from "./GenerateBuyPage.js";
  
 
 
@@ -29,9 +29,11 @@ function SingularCard({name,price,country,rating,setContentText}){
      
     const handleClick3 = () => {
         
-        setContentText(RealEstateListing(type, address, price, previewPhotos, broker, favorite, features ));
+        setContentText(<GenerateBuyPage type={type} address={address} price={price} previewPhotos={previewPhotos} broker={broker} favorite={favorite} features={features} />); //type, address, price, previewPhotos, broker, favorite, features 
       };
    /* const [displayLogin,setdisplayLogin]= useState(false);*/
+
+
     return(
         <div onClick={handleClick3} className="card">
             <img src="https://i.pinimg.com/736x/a9/8a/d3/a98ad31b4947ed09d9e3e9918cf3379b.jpg" alt="fix BOZO"></img>
