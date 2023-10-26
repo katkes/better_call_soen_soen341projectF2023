@@ -13,11 +13,11 @@
     <p>Rating: {{ property.rating }}</p>
 
     <!-- Link to edit property -->
-    <a href="{% url 'property_edit' property.id %}">Edit Property</a>
+    <a href="{% url 'property_edit' property.property_id %}">Edit Property</a>
 
     <!-- Form for deleting property -->
     <form
-      action="{% url 'property_delete' property.id %}"
+      action="{% url 'property_delete' property.property_id %}"
       method="post"
       style="display: inline"
     >

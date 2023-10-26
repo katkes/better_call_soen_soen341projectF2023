@@ -8,7 +8,7 @@
   <body>
     <h1>Edit Property</h1>
 
-    <form action="{% url 'property_edit' property.id %}" method="post">
+    <form action="{% url 'property_edit' property.property_id %}" method="post">
       {% csrf_token %}
       <label for="name">Name:</label>
       <input

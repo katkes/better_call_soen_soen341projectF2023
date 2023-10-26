@@ -12,7 +12,7 @@
     <ul>
       {% for property in properties %}
       <li>
-        <a href="{% url 'property_detail' property.id %}">
+        <a href="{% url 'property_detail' property.property_id %}">
           <strong>Name:</strong> {{ property.name }}<br />
           <strong>Price:</strong> {{ property.price }}<br />
           <strong>Country:</strong> {{ property.country }}<br />
