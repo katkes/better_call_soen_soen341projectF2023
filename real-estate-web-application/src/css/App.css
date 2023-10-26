@@ -28,7 +28,7 @@
 }
 /*This is the 3 dash lines on the top left*/
 .openbtn {
-  position: fixed;
+  position: absolute;
   top: 8px;
   left: 10px;
   width: 35px;
@@ -39,7 +39,7 @@
   padding-bottom: 5px;
   font-size: 26px;
  
-  z-index: 2;
+  z-index: 3;
   border: none;
   border-radius: 4px; 
   transition: 0.3s;
@@ -65,7 +65,7 @@
 
 
 .signUpBtn{
-  position: fixed;
+  position: absolute;
   top: 8px;
   right: 10px;
   background-color:#104f55ff;
