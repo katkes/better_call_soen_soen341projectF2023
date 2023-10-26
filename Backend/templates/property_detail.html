@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Property Details</title>
+  </head>
+
+  <body>
+    <h1>{{ property.name }}</h1>
+    <p>Price: {{ property.price }}</p>
+    <p>Country: {{ property.country }}</p>
+    <p>Rating: {{ property.rating }}</p>
+
+    <!-- Link to edit property -->
+    <a href="{% url 'property_edit' property.id %}">Edit Property</a>
+
+    <!-- Form for deleting property -->
+    <form
+      action="{% url 'property_delete' property.id %}"
+      method="post"
+      style="display: inline"
+    >
+      {% csrf_token %}
+      <input type="submit" value="Delete Property" />
+    </form>
+  </body>
+</html>
