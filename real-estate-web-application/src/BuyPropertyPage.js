@@ -2,8 +2,7 @@
 import React from "react";
 import "./css/BuyPropertyPage.css";
 
-const RealEstateListing = ({ property }) => { //{name,price,img,rating,country}
-    const { type, address, price, previewPhotos, broker, favorite, features } = property;
+const RealEstateListing = ({ type, address, price, previewPhotos, broker, favorite, features  }) => {
   
     return (
       <div className="real-estate-listing">
@@ -13,10 +12,10 @@ const RealEstateListing = ({ property }) => { //{name,price,img,rating,country}
           <div className="property-price">{price}</div>
         </div>
         <div className="photos">
-          <img src={previewPhotos.big} alt="Big Preview" className="big-preview" /> 
+          <img src={previewPhotos.big} alt="Big Preview" className="big-preview" />
           <div className="small-previews">
-            <img src={previewPhotos.small1} alt="Small Preview 1" />
-            <img src={previewPhotos.small2} alt="Small Preview 2" />
+            <img src={previewPhotos[1]} alt="Small Preview 1" />
+            <img src={previewPhotos[2]} alt="Small Preview 2" />
           </div>
         </div>
         <div className="actions">
