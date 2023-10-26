@@ -20,7 +20,8 @@ function App() {
       <SideBar/>
       <TopBar setContentText={setContentText}/>
       {/* <PropertySection/> */}
-
+      <PropertySection setContentText={setContentText}/>
+      
     </div>
   );
 }
