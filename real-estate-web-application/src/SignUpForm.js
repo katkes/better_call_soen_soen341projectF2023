@@ -117,6 +117,13 @@ return(
           <button type="submit" className="submitSignUp">
             Sign Up
           </button>
+          <br></br>
+          <br></br>
+          OR
+          <br></br>
+          <br></br>
+          <button type="submit" className="submitLogIn">Log in
+          </button>
         </div>
       </form>
     </div>
