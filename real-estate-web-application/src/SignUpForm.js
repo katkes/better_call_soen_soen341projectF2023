@@ -122,7 +122,7 @@ return(
           OR
           <br></br>
           <br></br>
-          <button type="submit" className="submitLogIn">Log in
+          <button className="submitLogIn">Log in
           </button>
         </div>
       </form>
