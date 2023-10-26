@@ -21,7 +21,7 @@ function TopBar({ setContentText }) {
   };
 
   return (
-    <div onClick={handleButtonClick2} className="topBar">
+    <div className="topBar">
         <div className="pageLogo">
         <button onClick={handleButtonClick2} id="LogoAnchorHome">  
           <img src="./Logo.png" alt="Urban Utopia"></img>
