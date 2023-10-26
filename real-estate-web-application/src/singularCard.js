@@ -31,7 +31,6 @@ function SingularCard({name,price,country,rating,setContentText}){
 
         setContentText(<GenerateBuyPage type={type} address={address} price={price} previewPhotos={previewPhotos} broker={broker} favorite={favorite} features={features} />); //type, address, price, previewPhotos, broker, favorite, features
       };
-   /* const [displayLogin,setdisplayLogin]= useState(false);*/
 
 
     return(
