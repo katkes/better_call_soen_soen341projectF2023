@@ -32,21 +32,21 @@ def create_property(request):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            # Redirect to a list view or detail view
-            return redirect('property_list')
+            property = form.save()  # Save the form and get the created property object
+            # Redirect to the property_detail view for the newly created property
+            return redirect('property_detail', property_id=property.property_id)
     else:
         form = PropertyForm()
     return render(request, 'property_create.html', {'form': form})
 
 
 def property_detail(request, property_id):
-    property = Property.objects.get(id=property_id)
+    property = Property.objects.get(property_id=property_id)
     return render(request, 'property_detail.html', {'property': property})
 
 
 def property_edit(request, property_id):
-    property = Property.objects.get(id=property_id)
+    property = Property.objects.get(property_id=property_id)
 
     if request.method == 'POST':
         form = PropertyForm(request.POST, instance=property)
@@ -60,6 +60,6 @@ def property_edit(request, property_id):
 
 
 def property_delete(request, property_id):
-    property = Property.objects.get(id=property_id)
+    property = Property.objects.get(property_id=property_id)
     property.delete()
     return redirect('property_list')
