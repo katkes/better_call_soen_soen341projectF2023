@@ -12,7 +12,7 @@ const RealEstateListing = ({ type, address, price, previewPhotos, broker, favori
           <div className="property-price">{price}</div>
         </div>
         <div className="photos">
-          <img src={previewPhotos.big} alt="Big Preview" className="big-preview" />
+          <img src={previewPhotos[0]} alt="Big Preview" className="big-preview" />
           <div className="small-previews">
             <img src={previewPhotos[1]} alt="Small Preview 1" />
             <img src={previewPhotos[2]} alt="Small Preview 2" />
