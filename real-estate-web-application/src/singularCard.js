@@ -7,29 +7,29 @@ import React from 'react'
 
 
 function SingularCard({name,price,country,rating,setContentText}){
-    const propertyData = {
-        type: 'Apartment',
-        address: '123 Main St, City, State',
-        price: '$500,000',
-        previewPhotos: {
-          big: 'https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CCDDDDDDDDDD2&t=pi&w=640&h=480&sm=c',
-          small1: 'https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CEDDDDDDDDDDC&t=pi&w=320&h=240&sm=c',
-          small2: 'https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CEDDDDDDDDDDC&t=pi&w=320&h=240&sm=c',
-        },
-        broker: 'John Doe',
-        favorite: false,
-        features: [
+  
+        let type= 'Apartment';
+        let address= '123 Main St, City, State';
+        price= '$500,000';
+        let previewPhotos= [
+           'https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CCDDDDDDDDDD2&t=pi&w=640&h=480&sm=c',
+           'https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CEDDDDDDDDDDC&t=pi&w=320&h=240&sm=c',
+           'https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CEDDDDDDDDDDC&t=pi&w=320&h=240&sm=c',
+        ];
+        let broker= 'John Doe';
+        let favorite= false;
+        let features= [
           '3 Bedrooms',
           '2 Bathrooms',
           '1,200 sq. ft.',
           'Swimming Pool',
           'Garage',
           'Near Schools',
-        ],
-      };
+        ];
+     
     const handleClick3 = () => {
         
-        setContentText(RealEstateListing(propertyData));
+        setContentText(RealEstateListing(type, address, price, previewPhotos, broker, favorite, features ));
       };
    /* const [displayLogin,setdisplayLogin]= useState(false);*/
     return(
