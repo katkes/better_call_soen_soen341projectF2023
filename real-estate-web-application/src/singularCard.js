@@ -1,5 +1,6 @@
 import RealEstateListing from "./BuyPropertyPage"; 
 import "./css/singularCard.css";
+import React from 'react'
 /*import { useState } from "react";*/
 
  
@@ -8,10 +9,8 @@ import "./css/singularCard.css";
 function SingularCard({name,price,country,rating,setContentText}){
 
     const handleClick3 = () => {
-        // Change the content when the button is clicked 
         
-        const RealEstate = RealEstateListing();
-        setContentText(RealEstate);
+        setContentText(<RealEstateListing/>);
       };
    /* const [displayLogin,setdisplayLogin]= useState(false);*/
     return(

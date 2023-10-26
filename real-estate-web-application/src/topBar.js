@@ -21,14 +21,14 @@ function TopBar({ setContentText }) {
   };
 
   return (
-    <div className="topBar">
+    <div onClick={handleButtonClick2} className="topBar">
         <div className="pageLogo">
         <button onClick={handleButtonClick2} id="LogoAnchorHome">  
           <img src="./Logo.png" alt="Urban Utopia"></img>
         </button>
         </div>
         <div className="filterForm"> {/*This may not even be implemented. Well see*/}
-          <form id="ApiFilterSearch" action="filterSearch" method="GET"> 
+          <form id="ApiFilterSearch" action="" method="GET"> 
           <label htmlFor="filter">Filter properties </label>
           <input type="text" name="filter" id="filter"></input>
           </form>
