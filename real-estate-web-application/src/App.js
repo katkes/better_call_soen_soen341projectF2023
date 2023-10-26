@@ -32,7 +32,7 @@ const propertyData = {
 function App() {
   const [contentText, setContentText] = useState(PropertySection());/*BuyPropertyPage()*/ 
 
-
+  
   return (
     <div className="App">
       <Content contentText={contentText}/>

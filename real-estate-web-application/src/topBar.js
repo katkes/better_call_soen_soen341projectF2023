@@ -5,11 +5,12 @@ import HomePage from "./home";
 
 
 function TopBar({ setContentText }) {
+  
   const [isSignUpClicked, setIsSignUpClicked] = useState(false);
   const handleButtonClick = () => {
     // Change the content when the button is clicked 
     setIsSignUpClicked(true);
-    setContentText(<SignUp />);
+    setContentText(<SignUp setContentText={setContentText} setIsSignUpClicked={setIsSignUpClicked}/>);
   };
 
   const handleButtonClick2 = () => {

@@ -1,6 +1,15 @@
 import React, { useState } from "react";
+import App from "./App";
+import LoginForm from "./LoginForm";
 
-function SignUp(){
+function SignUp({setContentText, setIsSignUpClicked}){
+
+
+  const handleButtonClick4 = () => {
+    setIsSignUpClicked(false);
+   
+    setContentText(<LoginForm />);
+  };
 
       const [formData, setFormData] = useState({
     name: "",
@@ -122,10 +131,10 @@ return(
           OR
           <br></br>
           <br></br>
-          <button className="submitLogIn">Log in
-          </button>
+          <button className="submitLogIn" onClick={handleButtonClick4}>Log in</button>
         </div>
       </form>
+     
     </div>
   );
 }
