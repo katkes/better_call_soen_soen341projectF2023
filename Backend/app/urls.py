@@ -2,6 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.home, name="home")
-    # path("",  views.ReactView.as_view(), name ="anything")
+    path("", views.home, name="home"),
 ]

@@ -2,11 +2,6 @@
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
 
-
-# from rest_framework import status
-# from rest_framework.response import Response
-# from rest_framework.decorators import api_view
-
 from django.shortcuts import render
 from rest_framework import generics
 from .models import *
@@ -36,13 +31,3 @@ from .serializers import *
 class ReactView(generics.ListCreateAPIView):
     queryset = React.objects.all()
     serializer_class = ReactSerializer
-
-# @api_view(['GET', 'POST'])
-# def data_list(request):
-#     if request.method == 'GET':
-#         data = DataModel.objects.all()
-#         serializer = DataSerializer(data, many=True)  # Create a serializer
-#         return Response(serializer.data)
-
-
-

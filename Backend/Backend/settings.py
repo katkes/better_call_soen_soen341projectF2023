@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,22 @@ SECRET_KEY = 'django-insecure-r#je+mo@ppmg-asj_90zk(o06n*poac3-pz2n5p=7x=+0(lu=2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1",
+    "http://localhost:3000",
+    "http://localhost"
+]
+ALLOWED_HOSTS = [
+    "*",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1",
+    "http://localhost:3000",
+    "http://localhost",
+    "27.0.0.1",
+    "localhost"
+]
 
 
 # Application definition
@@ -39,7 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +74,11 @@ MIDDLEWARE = [
 
 REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES':
                       ['rest_framework.permissions.AllowAny']}
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+ 'http://127.0.0.1:3000',
+]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -110,6 +133,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -132,3 +156,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build', 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
