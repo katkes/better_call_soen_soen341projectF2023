@@ -9,10 +9,11 @@ function SideBar() {
     };
   
     return (
+      <><button className="openbtn" onClick={toggleSidebar}>
+      {isOpen ? "\u2715" : "\u2261"}
+    </button>
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
-        <button className="openbtn" onClick={toggleSidebar}>
-          {isOpen ? "\u2715" : "\u2261"}
-        </button>
+        
         {<div className="sideBar">
         <a id="classElement1" href="./App.js">Buy</a>
         <a id="classElement2" href="./App.js">Sell</a>
@@ -21,6 +22,7 @@ function SideBar() {
         <a id="classElement5" href="./App.js">About us</a>
         </div>}
       </div>
+      </>
     );
   }
 

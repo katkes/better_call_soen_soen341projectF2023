@@ -9,5 +9,16 @@
   <body>
     <h1>Welcome to My Django App</h1>
     <p>This is the index page.</p>
+
+    <!-- Add a link to the property search results page -->
+
+    <ul>
+      <li><a href="{% url 'property_search' %}">Search Properties</a></li>
+      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'create_property' %}">Create New Property</a></li>
+      <li><a href="{% url 'user_list' %}">User List</a></li>
+      <li><a href="{% url 'create_user' %}">Create User</a></li>
+    </ul>
   </body>
 </html>
