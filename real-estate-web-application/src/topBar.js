@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import SignUp from "./SignUpForm";
 import "./css/topBar.css";
-import HomePage from "./home";
+//import HomePage from "./home";
 import PropertySection from "./PropertySection";
-
+// import FilterSelect from "./FilterSelect";
 
 function TopBar({ setContentText }) {
-  
   const [isSignUpClicked, setIsSignUpClicked] = useState(false);
   const handleButtonClick = () => {
     // Change the content when the button is clicked 
@@ -14,12 +13,13 @@ function TopBar({ setContentText }) {
     setContentText(<SignUp setContentText={setContentText} setIsSignUpClicked={setIsSignUpClicked}/>);
   };
 
+
   const handleButtonClick2 = () => {
     // Change the content when the button is clicked 
     setIsSignUpClicked(false);
-    
     setContentText(<PropertySection setContentText={setContentText}/>);
   };
+  
 
   return (
     <div className="topBar">
@@ -33,13 +33,13 @@ function TopBar({ setContentText }) {
           <label htmlFor="filter">Filter properties </label>
           <input type="text" name="filter" id="filter"></input>
           </form>
+          
         </div>
        
+
        
         {isSignUpClicked ? null : (
-        <button className="signUpBtn" onClick={handleButtonClick}>
-          Sign up
-        </button>
+        <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
       )}
     </div>
   );
