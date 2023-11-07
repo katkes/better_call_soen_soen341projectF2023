@@ -2,10 +2,12 @@ from django.contrib.auth import login
 import json
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
+
+from properties.models import Property
 from .forms import SignUpForm, UserUpdateForm
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
-from .models import CustomUser
+from .models import Broker, CustomUser
 
 
 @csrf_exempt
@@ -98,4 +100,17 @@ def search_brokers(request):
     if query:
         brokers = brokers.filter(name__icontains=query)
 
+    # Get active property listings for each broker
     return render(request, 'search_brokers.html', {'brokers': brokers})
+
+def request_info(request, broker_id):
+    broker = get_object_or_404(Broker, id=broker_id)
+    # Handle the request (send email, save to database, etc.)
+    # Add your logic here...
+    return render(request, 'request_info.html', {'broker': broker})
+
+def broker_property_listings(request, broker_id):
+    broker = get_object_or_404(CustomUser, id=broker_id)
+    properties = Property.objects.filter(assigned_user=broker)
+
+    return render(request, 'broker_property_listings.html', {'broker': broker, 'properties': properties})

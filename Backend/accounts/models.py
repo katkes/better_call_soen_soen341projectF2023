@@ -44,3 +44,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+class Broker(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    license_number = models.CharField(max_length=20)
+    agency = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.user.name} {self.user.email}"

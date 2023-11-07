@@ -16,7 +16,16 @@
       <li>
         Name: {{ broker.name }}<br />
         Email: {{ broker.email }}<br />
-        Phone Number: {{ broker.phone_number }}
+        Phone Number: {{ broker.phone_number }}<br />
+        License Number: {{ broker.broker.license_number }}<br />
+        Agency: {{ broker.broker.agency }}<br />
+        <form action="{% url 'request_info' broker.id %}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Request Info" />
+        </form>
+        <a href="{% url 'broker_property_listings' broker.id %}"
+          >View Property Listings</a
+        >
       </li>
       {% endfor %}
     </ul>
