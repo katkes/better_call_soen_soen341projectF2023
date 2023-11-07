@@ -5,9 +5,7 @@
   top: 0;
   height: 110px;
   width: 100%; 
-  background-color: #104f55ff;
- 
-  
+  background-color: #185c9c;
 }
 
 .pageLogo {
@@ -27,7 +25,7 @@
 
 #LogoAnchorHome{
   border: none;
-  background-color: #104f55ff;
+  background-color: #185c9c;
   text-decoration: none;
   
 }

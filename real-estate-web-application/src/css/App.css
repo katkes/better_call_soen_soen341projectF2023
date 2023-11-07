@@ -1,12 +1,15 @@
 .App{
   text-align:center;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Avenir", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 }
 
 @media screen and (max-height: 450px) {
   .sideBar a {font-size: 18px;}
 }
 
+body {
+  background-color: #EFF5FF;
+}
 
 .sidebar {
   width: 0;
@@ -14,8 +17,8 @@
   top: 0;
   left: -250px;
   height: 100%;
-  background-color: #104f55ff;
-  border-right: 2px solid #331e38ff;
+  background-color: #185c9c;
+  border-right: 1px solid #ffffff;
   transition: 0.3s;
   overflow-x: hidden;
   padding-top: 60px;
@@ -32,8 +35,8 @@
   top: 8px;
   left: 10px;
   width: 35px;
-  height: 40px; 
-  background-color: #104f55ff;
+  height: 32px; 
+  background-color: #185c9c;
   color: white;
   border: none;
   padding-bottom: 5px;
@@ -46,7 +49,8 @@
 }
 
 .openbtn:hover {
-  background-color: rgb(7, 56, 59);
+  background-color: white;
+  color: #185c9c;
 }
 /*the buttons in the sidebar*/
 .sideBar a {
@@ -60,7 +64,8 @@
 }
 
 .sideBar a:hover {
-  background-color:  rgb(7, 56, 59);
+  background-color:  white;
+  color: #185c9c;
 }
 
 
@@ -68,16 +73,17 @@
   position: absolute;
   top: 8px;
   right: 10px;
-  background-color:#104f55ff;
-  color:#ffffffc0;
+  background-color: #ffffff;
+  color:#185c9c;
   border: none;
   padding:0.5%;
-  border-radius: 4px;
-  width: auto;
+  border-radius: 25px;
+  width: 100px;
 }
 
 .signUpBtn:hover {
-  background-color: rgb(7, 56, 59);
+  background-color: black;
+  color: white;
 }
 
 .signUpBtn:active {
@@ -104,7 +110,7 @@
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
@@ -148,9 +154,11 @@
 
 .signUpForm h2 {
   text-align: center;
-  color: #104f55ff;
+  color: #185c9c;
   animation: fadeIn;
   animation-duration: 2s;
+  font-size: 40px;
+  font-weight: lighter;
 }
 
 .signupformInner {
@@ -180,7 +188,8 @@
   width: 90%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  border: solid#B1B1B1;
+  background-color: #FFFFFF;
   border-radius: 3px;
   font-size: 16px;
 
@@ -190,29 +199,39 @@
 .submitSignUp {
   width: 50%;
   padding: 10px;
-  background-color: #104f55ff;
+  background-color: #185c9c;
   color: #fff;
   border: none;
   border-radius: 3px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 25px;
 }
 
 .submitLogIn{
   width: 50%;
-  padding: 5px 10px;
+  padding: 10px;
   background-color: #fff;
-  color: #104f55ff;
-  border: 2px solid #104f55ff;
+  color: #185c9c;
+  border: 2px solid #185c9c;
   border-radius: 3px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 25px;
 }
 
 .submitSignUp:hover {
-  background-color: rgb(7, 56, 59);
+  background-color: white;
+  color: #185c9c;
+  border: 2px solid #185c9c;
 }
 
-.submitSignUp:active {
-  background-color: rgb(3, 23, 24);
+.submitLogIn:hover {
+  background-color: #185c9c;
+  color: white;
+  border: 2px solid white;
 }
+
+/*.submitSignUp:active {
+  background-color: rgb(3, 23, 24);
+}*/
