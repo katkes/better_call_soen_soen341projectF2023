@@ -33,7 +33,7 @@ function TopBar({ setContentText }) {
           <label htmlFor="filter">Filter properties </label>
           <input type="text" name="filter" id="filter"></input>
           </form>
-          
+        
         </div>
        
 
