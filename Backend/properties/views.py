@@ -1,4 +1,4 @@
-from .forms import PropertyForm
+from .forms import PropertyForm, OfferForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -67,6 +67,7 @@ def property_delete(request, property_id):
     property.delete()
     return redirect('property_list')
 
+
 def request_visit(request, property_id):
     property = get_object_or_404(Property, property_id=property_id)
     assigned_user_email = property.assigned_user.email
@@ -81,12 +82,14 @@ def request_visit(request, property_id):
 
 # views.py
 
+
 def email_form(request):
     # Get the 'to' parameter from the query string
     to_email = request.GET.get('to', '')
 
     # Pass the 'to' parameter to the template
     return render(request, 'email_form.html', {'to_email': to_email})
+
 
 def send_email(request):
     if request.method == 'POST':
@@ -97,9 +100,29 @@ def send_email(request):
 
         send_mail(subject, message, from_email, [to_email])
 
-        return redirect('email_success')  # Redirect to a success page or wherever you want
+        # Redirect to a success page or wherever you want
+        return redirect('email_success')
 
     return HttpResponseBadRequest('Invalid request')
 
+
 def email_success(request):
     return render(request, 'email_success.html')
+
+
+def submit_offer(request, property_id):
+    property = get_object_or_404(Property, property_id=property_id)
+
+    if request.method == 'POST':
+        form = OfferForm(request.POST)
+        if form.is_valid():
+            offer = form.save(commit=False)
+            # Assuming request.user is authenticated and has a broker profile
+            offer.buyer_broker = request.user.broker
+            offer.property = property
+            offer.save()
+            return redirect('property_detail', property_id=property.property_id)
+    else:
+        form = OfferForm()
+
+    return render(request, 'offer_submission.html', {'form': form, 'property': property})
