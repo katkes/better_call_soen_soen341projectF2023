@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from properties.models import Property
 from .forms import SignUpForm, UserUpdateForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from .models import Broker, CustomUser
 
@@ -138,3 +138,8 @@ def profile_view(request):
 
 def index(request):
     return render(request, 'index.html')
+
+
+def custom_logout(request):
+    logout(request)
+    return redirect('index')

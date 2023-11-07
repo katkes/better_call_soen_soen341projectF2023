@@ -16,5 +16,8 @@ urlpatterns = [
          broker_property_listings, name='broker_property_listings'),
     path('accounts/profile/', profile_view, name='profile'),
     path('', index, name='index'),
+    path('logout/', custom_logout, name='logout'),
+    path('user/<int:user_id>/delete/', delete_user, name='delete_user'),
+
     # Add any other URLs you may need
 ]
