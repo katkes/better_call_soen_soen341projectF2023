@@ -13,16 +13,27 @@ from .models import Broker, CustomUser
 @csrf_exempt
 def signup(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        form = SignUpForm(data)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            print("hello")
-            # You can add additional logic here, such as sending a confirmation email
-            # Redirect to login page after successful registration
-            return redirect('home')
+            email = form.cleaned_data['email']
+            name = form.cleaned_data['name']
+            phone_number = form.cleaned_data['phone_number']
+            role = form.cleaned_data['role']
+            password = form.cleaned_data['password']
+
+            # Create user with hashed password
+            user = CustomUser.objects.create_user(
+                email=email,
+                name=name,
+                phone_number=phone_number,
+                role=role,
+                password=password
+            )
+
+            # Redirect to index.html after successful signup
+            return redirect('index')
         else:
-            print(form.errors)
+            print(form.errors)  # Print form errors for debugging
     else:
         form = SignUpForm()
         print("hello not valid")
@@ -32,19 +43,21 @@ def signup(request):
 @csrf_exempt
 def custom_login(request):
     if request.method == 'POST':
-        data = json.loads(request.body.decode('utf-8'))
-        # Assuming your JSON contains an 'email' field
-        email = data.get('email')
-        password = data.get('password')
-        user = authenticate(request, username=email,
-                            password=password)  # Use email as username
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        print(f"Email: {email}, Password: {password}")
+        user = authenticate(request, username=email, password=password)
+        print(f"User: {user}")
 
         if user is not None:
             login(request, user)
-            # Replace with your desired response
             return JsonResponse({'message': 'Login successful'})
         else:
             return JsonResponse({'message': 'Invalid credentials'}, status=401)
+
+    elif request.method == 'GET':
+        # Assuming your login template is named 'login.html'
+        return render(request, 'login.html')
 
     return JsonResponse({'message': 'Method not allowed'}, status=405)
 
@@ -103,11 +116,13 @@ def search_brokers(request):
     # Get active property listings for each broker
     return render(request, 'search_brokers.html', {'brokers': brokers})
 
+
 def request_info(request, broker_id):
     broker = get_object_or_404(Broker, id=broker_id)
     # Handle the request (send email, save to database, etc.)
     # Add your logic here...
     return render(request, 'request_info.html', {'broker': broker})
+
 
 def broker_property_listings(request, broker_id):
     broker = get_object_or_404(CustomUser, id=broker_id)
@@ -115,6 +130,11 @@ def broker_property_listings(request, broker_id):
 
     return render(request, 'broker_property_listings.html', {'broker': broker, 'properties': properties})
 
+
 def profile_view(request):
     user = request.user  # Assuming the user is logged in
     return render(request, 'profile.html', {'user': user})
+
+
+def index(request):
+    return render(request, 'index.html')

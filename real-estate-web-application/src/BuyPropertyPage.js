@@ -2,6 +2,8 @@
 import React from "react";
 import "./css/BuyPropertyPage.css";
 
+
+
 const RealEstateListing = ({ type, address, price, previewPhotos, broker, favorite, features  }) => {
   
     return (

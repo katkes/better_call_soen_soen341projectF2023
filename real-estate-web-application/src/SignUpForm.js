@@ -55,8 +55,8 @@ function SignUp({setContentText, setIsSignUpClicked}){
   };
     
 return(
-<div class="slide-in">
-    <form class="signUpForm" onSubmit={handleSubmit}>
+<div className="slide-in">
+    <form className="signUpForm" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
         <div className="signupformInner">
           <label htmlFor="name">Name:</label>
