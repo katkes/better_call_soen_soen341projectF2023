@@ -28,5 +28,8 @@
     <a href="{% url 'email_form' %}?to={{ property.assigned_user.email }}"
       >Contact Assigned User</a
     >
+    {% if user.is_authenticated and user.broker %}
+    <a href="{% url 'submit_offer' property.property_id %}">Submit Offer</a>
+    {% endif %}
   </body>
 </html>

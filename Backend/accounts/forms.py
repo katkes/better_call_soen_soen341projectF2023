@@ -3,6 +3,7 @@ from .models import CustomUser
 
 
 class SignUpForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
     password_confirmation = forms.CharField(
         widget=forms.PasswordInput(), label="Confirm Password")
 
