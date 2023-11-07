@@ -114,3 +114,7 @@ def broker_property_listings(request, broker_id):
     properties = Property.objects.filter(assigned_user=broker)
 
     return render(request, 'broker_property_listings.html', {'broker': broker, 'properties': properties})
+
+def profile_view(request):
+    user = request.user  # Assuming the user is logged in
+    return render(request, 'profile.html', {'user': user})
