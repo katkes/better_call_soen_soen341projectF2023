@@ -1,8 +1,10 @@
 from .forms import PropertyForm
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect
+from django.core.mail import send_mail
+from django.http import HttpResponseBadRequest, JsonResponse
 from .models import Property
 
 
@@ -32,8 +34,9 @@ def create_property(request):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
-            property = form.save()  # Save the form and get the created property object
-            # Redirect to the property_detail view for the newly created property
+            property = form.save(commit=False)
+            property.assigned_user = request.user
+            property.save()
             return redirect('property_detail', property_id=property.property_id)
     else:
         form = PropertyForm()
@@ -63,3 +66,40 @@ def property_delete(request, property_id):
     property = Property.objects.get(property_id=property_id)
     property.delete()
     return redirect('property_list')
+
+def request_visit(request, property_id):
+    property = get_object_or_404(Property, property_id=property_id)
+    assigned_user_email = property.assigned_user.email
+
+    # Send the visit request email
+    subject = 'Visit Request for Property'
+    message = f'Hello,\n\nI would like to request a visit for the property: {property.name}.'
+    sender_email = 'sender@example.com'
+    send_mail(subject, message, sender_email, [assigned_user_email])
+
+    return redirect('property_detail', property_id=property_id)
+
+# views.py
+
+def email_form(request):
+    # Get the 'to' parameter from the query string
+    to_email = request.GET.get('to', '')
+
+    # Pass the 'to' parameter to the template
+    return render(request, 'email_form.html', {'to_email': to_email})
+
+def send_email(request):
+    if request.method == 'POST':
+        to_email = request.POST.get('to')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        from_email = 'webmaster@example.com'  # Change this to your actual sender email
+
+        send_mail(subject, message, from_email, [to_email])
+
+        return redirect('email_success')  # Redirect to a success page or wherever you want
+
+    return HttpResponseBadRequest('Invalid request')
+
+def email_success(request):
+    return render(request, 'email_success.html')

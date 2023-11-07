@@ -87,3 +87,15 @@ def delete_user(request, user_id):
     user.delete()
     # Redirect to user list after successful deletio
     return redirect('user_list')
+
+
+# views.py
+
+def search_brokers(request):
+    query = request.GET.get('query')
+    brokers = CustomUser.objects.filter(role='broker')
+
+    if query:
+        brokers = brokers.filter(name__icontains=query)
+
+    return render(request, 'search_brokers.html', {'brokers': brokers})

@@ -11,6 +11,7 @@
     <p>Price: {{ property.price }}</p>
     <p>Country: {{ property.country }}</p>
     <p>Rating: {{ property.rating }}</p>
+    <p>Assigned User: {{ property.assigned_user }}</p>
 
     <!-- Link to edit property -->
     <a href="{% url 'property_edit' property.property_id %}">Edit Property</a>
@@ -24,5 +25,8 @@
       {% csrf_token %}
       <input type="submit" value="Delete Property" />
     </form>
+    <a href="{% url 'email_form' %}?to={{ property.assigned_user.email }}"
+      >Contact Assigned User</a
+    >
   </body>
 </html>

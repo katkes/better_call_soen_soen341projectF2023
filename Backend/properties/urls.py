@@ -12,5 +12,10 @@ urlpatterns = [
          views.property_edit, name='property_edit'),
     path('property/<int:property_id>/delete/',
          views.property_delete, name='property_delete'),
+    path('request_visit/<int:property_id>/', views.request_visit, name='request_visit'),
+    path('email_form/', views.email_form, name='email_form'),
+    path('send_email/', views.send_email, name='send_email'),
+    path('email_success/', views.email_success, name='email_success'),  # Create this view as well
+
     # Add other URL patterns as needed
 ]

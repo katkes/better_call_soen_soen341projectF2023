@@ -1,0 +1,6 @@
+Hello,
+
+I would like to request a visit for the property: {{ property.name }}.
+
+Best regards,
+Your Name
