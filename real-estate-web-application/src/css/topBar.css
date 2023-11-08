@@ -5,16 +5,22 @@
   top: 0;
   height: 110px;
   width: 100%; 
-  background-color: #104f55ff;
- 
-  
+  background-color: #185c9c;
+}
+
+.topBar h1 {
+  text-align: center;
+  color: white;
+  animation: fadeIn;
+  font-size: 35px;
+  font-weight: lighter;
+  font-family: "Avenir";
 }
 
 .pageLogo {
   display: fixed;
   justify-content: center;
   align-items: center;
-  
   height: 35px;  
   
 }
@@ -27,7 +33,7 @@
 
 #LogoAnchorHome{
   border: none;
-  background-color: #104f55ff;
+  background-color: #185c9c;
   text-decoration: none;
   
 }
@@ -38,7 +44,7 @@
 
 #filter {
   width: 300px; 
-  height: 2px; 
+  height: 5px; 
   border-radius: 20px; 
   border: 2px solid #ccc; 
   margin-top: 7px;
@@ -52,6 +58,8 @@
 
 #filter::placeholder {
   color: #999; 
+  font-family: 'Avenir Next';
+  font-style: italic;
 }
 
 #filter:focus {

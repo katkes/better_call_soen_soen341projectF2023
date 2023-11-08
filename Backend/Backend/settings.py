@@ -74,11 +74,11 @@ MIDDLEWARE = [
 ]
 
 REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES':
-                      ['rest_framework.permissions.AllowAny']}
+                  ['rest_framework.permissions.AllowAny']}
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
- 'http://127.0.0.1:3000',
+    'http://127.0.0.1:3000',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -88,8 +88,7 @@ ROOT_URLCONF = 'Backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,6 +136,7 @@ LOGIN_REDIRECT_URL = 'profile'
 
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+# AUTHENTICATION_BACKENDS = ['your_app.backends.CustomUserBackend']
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

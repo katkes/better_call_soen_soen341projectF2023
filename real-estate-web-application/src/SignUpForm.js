@@ -31,6 +31,12 @@ function SignUp({setContentText, setIsSignUpClicked}){
     e.preventDefault();
     console.log(formData);
 
+
+    if (formData.password !== formData.password_confirmation) {
+    console.error("Passwords do not match");
+    return;
+    }
+
     try {
       const response = await fetch("http://localhost:8000/signup/", {
         method: "POST",
@@ -43,20 +49,26 @@ function SignUp({setContentText, setIsSignUpClicked}){
       console.log("response of ", response)
       if (response.ok) {
         console.log("User registered successfully");
+        const answer = response.json()
+        console.log("Message from backend ", answer)
         // Redirect or show success message
       } else {
         console.error("Error registering user");
         console.log(response.status)
       }
     }
-    catch (error){
-      console.log("Error: ", error.response.status);
+        catch (error) {
+      if (error.response && error.response.status) {
+        console.log("Error Status: ", error.response.status);
+      } else {
+        console.log("An error occurred:", error);
+      }
     }
   };
     
 return(
-<div class="slide-in">
-    <form class="signUpForm" onSubmit={handleSubmit}>
+<div className="slide-in">
+    <form className="signUpForm" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
         <div className="signupformInner">
           <label htmlFor="name">Name:</label>

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, name, phone_number, role, password=None):
         if not email:
@@ -13,6 +14,7 @@ class CustomUserManager(BaseUserManager):
         )
         user.set_password(password)
         user.save(using=self._db)
+        print(f"Hashed password for user {user.email}: {user.password}")
         return user
 
     def create_superuser(self, email, password):
@@ -27,6 +29,7 @@ class CustomUserManager(BaseUserManager):
         user.is_staff = True
         user.save(using=self._db)
         return user
+
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
@@ -44,6 +47,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
 
 class Broker(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)

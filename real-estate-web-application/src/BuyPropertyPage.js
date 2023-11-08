@@ -2,6 +2,8 @@
 import React from "react";
 import "./css/BuyPropertyPage.css";
 
+
+
 const RealEstateListing = ({ type, address, price, previewPhotos, broker, favorite, features  }) => {
   
     return (
@@ -19,6 +21,7 @@ const RealEstateListing = ({ type, address, price, previewPhotos, broker, favori
           </div>
         </div>
         <div className="actions">
+          <h2>Amenities & Features</h2>
           <button className="contact-broker">Contact Broker</button>
           <button className={`favorite ${favorite ? 'active' : ''}`}>Favorite</button>
         </div>

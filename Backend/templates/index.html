@@ -10,18 +10,39 @@
     <h1>Welcome to My Django App</h1>
     <p>This is the index page.</p>
 
-    <!-- Add a link to the property search results page -->
-
     <ul>
-      <li><a href="{% url 'property_search' %}">Search Properties</a></li>
-      <li><a href="{% url 'signup' %}">Sign Up</a></li>
-      <li><a href="{% url 'login' %}">Login</a></li>
-      <li><a href="{% url 'create_property' %}">Create New Property</a></li>
-      <li><a href="{% url 'user_list' %}">User List</a></li>
-      <li><a href="{% url 'create_user' %}">Create User</a></li>
+      <!-- Add a link to the property search results page -->
       <li>
         <a href="{% url 'search_brokers' %}">Search Brokers (Alternative)</a>
       </li>
+      <li><a href="{% url 'property_search' %}">Search Properties</a></li>
+
+      {% if user.is_authenticated %}
+      <!-- Show sign out if user is logged in -->
+      <li>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Sign Out</button>
+        </form>
+      </li>
+
+      <!-- Add a link to profile page -->
+      <li><a href="{% url 'profile' %}">Profile</a></li>
+
+      {% if user.role == 'admin' %}
+      <!-- Show CRUD operations for admin -->
+      <li><a href="{% url 'user_list' %}">User List</a></li>
+      <li><a href="{% url 'create_user' %}">Create User</a></li>
+      <!-- Add other admin-related links as needed -->
+      {% endif %} {% if user.role == 'broker' %}
+      <!-- Show CRUD operations for broker -->
+      <li><a href="{% url 'create_property' %}">Create New Property</a></li>
+      <!-- Add other broker-related links as needed -->
+      {% endif %} {% else %}
+      <!-- Show login and sign up if user is not logged in -->
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+      {% endif %}
     </ul>
   </body>
 </html>
