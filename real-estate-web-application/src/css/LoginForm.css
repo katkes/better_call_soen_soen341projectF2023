@@ -4,25 +4,35 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
   }
+
+  .loginForm h2 {
+    text-align: center;
+    color: #185c9c;
+    animation: fadeIn;
+    font-size: 40px;
+    font-weight: lighter;
+  }
   
   .loginButton, .cancelLoginButton {
-    border-radius: 5px;
+    width: 30%;
+    padding: 10px;
+    background-color: #185c9c;
+    color: #fff;
     border: none;
-    background-color: #104f55ff;
-    color: white;
-    padding: 15px 30px; 
-    font-size: 20px; 
+    border-radius: 3px;
+    font-size: 16px;
     cursor: pointer;
-    margin: 2em auto;
-    display: block;
+    border-radius: 25px;
   }
   
   .loginButton:hover, .cancelLoginButton:hover {
-    background-color: rgb(7, 56, 59);
+    background-color: white;
+    color: #185c9c;
+    border: 1px solid #185c9c;
   }
   
   .cancelLoginButtonAnchorTag {
