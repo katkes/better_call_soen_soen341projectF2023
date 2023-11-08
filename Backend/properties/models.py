@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 
 from accounts.models import Broker
-
+# from Backend.accounts.models import Broker
 
 class Property(models.Model):
     property_id = models.AutoField(primary_key=True)
@@ -23,8 +23,7 @@ class PropertyAdmin(admin.ModelAdmin):
         if not obj.assigned_user:
             obj.assigned_user = request.user
         obj.save()
-        print(f"Saved property with name '{
-              obj.name}' by user '{request.user}'")
+        print(f"Saved property with name '{obj.name}' by user '{request.user}'")
 
 
 class Offer(models.Model):

@@ -49,8 +49,12 @@ function SignUp({setContentText, setIsSignUpClicked}){
         console.log(response.status)
       }
     }
-    catch (error){
-      console.log("Error: ", error.response.status);
+        catch (error) {
+      if (error.response && error.response.status) {
+        console.log("Error Status: ", error.response.status);
+      } else {
+        console.log("An error occurred:", error);
+      }
     }
   };
     

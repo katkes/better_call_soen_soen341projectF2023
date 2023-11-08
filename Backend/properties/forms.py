@@ -1,6 +1,7 @@
 from django import forms
 from .models import Property, Offer
 
+#offers are stored in properties
 
 class PropertyForm(forms.ModelForm):
     class Meta:

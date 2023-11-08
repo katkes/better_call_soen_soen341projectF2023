@@ -29,9 +29,10 @@ def signup(request):
                 role=role,
                 password=password
             )
-
+            print("Was successful")
             # Redirect to index.html after successful signup
-            return redirect('index')
+            # return redirect('index')
+            return JsonResponse({"message": "User registered successfully"})
         else:
             print(form.errors)  # Print form errors for debugging
     else:
