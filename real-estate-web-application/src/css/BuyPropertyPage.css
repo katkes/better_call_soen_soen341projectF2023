@@ -8,7 +8,13 @@
     justify-content: center; 
     margin: 0 auto; 
   }
-  
+
+  h2 {
+    font-family:'Times New Roman', Times, serif;
+    font-weight: lighter;
+    font-size: 40px;
+    color: #001e41;
+  }
   
   .top {
     display: flex;
