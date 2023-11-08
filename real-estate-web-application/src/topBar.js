@@ -25,7 +25,8 @@ function TopBar({ setContentText }) {
     <div className="topBar">
         <div className="pageLogo">
         <button onClick={handleButtonClick2} id="LogoAnchorHome">  
-          <img src="./Logo.png" alt="Urban Utopia"></img>
+          {/* <img src="./Logo.png" alt="Urban Utopia"></img> */}
+        <h1>Urban Utopia</h1>
         </button>
         </div>
         <div className="filterForm"> {/*This may not even be implemented. Well see*/}

@@ -8,6 +8,15 @@
   background-color: #185c9c;
 }
 
+.topBar h1 {
+  text-align: center;
+  color: white;
+  animation: fadeIn;
+  font-size: 35px;
+  font-weight: lighter;
+  font-family: "Avenir";
+}
+
 .pageLogo {
   display: fixed;
   justify-content: center;
@@ -50,6 +59,7 @@
 #filter::placeholder {
   color: #999; 
   font-family: 'Avenir Next';
+  font-style: italic;
 }
 
 #filter:focus {
