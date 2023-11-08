@@ -30,8 +30,8 @@ function TopBar({ setContentText }) {
         </div>
         <div className="filterForm"> {/*This may not even be implemented. Well see*/}
           <form id="ApiFilterSearch" action="" method="GET"> 
-          <label htmlFor="filter">Filter properties </label>
-          <input type="text" name="filter" id="filter"></input>
+          {/* <label htmlFor="filter">Filter properties </label> */}
+          <input type="text" name="filter" id="filter" placeholder="Filter properties..."></input>
           </form>
         
         </div>
