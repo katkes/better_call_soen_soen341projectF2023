@@ -1,6 +1,20 @@
 .filterFormDiv{
-    display:inline-block;
-   /*  float:left; */
-    color:black;
-    font-size:50px;
+    
+   color: black;
 }
+
+.filterFormApply{
+  background-color: #ffffff;
+  color:#185c9c;
+  border: none;
+  padding: 0.4em 0.7em;
+  border-radius: 25px;
+  width: 5%;
+}
+
+.filterFormApply:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+

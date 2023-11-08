@@ -14,7 +14,9 @@ function PropertySection({setContentText}){
         <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
         <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
         <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
- 
+        <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
+        <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
+        <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
     </section>
     );
 }
