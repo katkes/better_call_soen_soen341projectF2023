@@ -18,7 +18,7 @@ function FilterSelect(){
                 <input type="checkbox" name="StaticFilters" value="numBedrooms" id="numBedrooms"/>
                 <button className="filterFormApply">Apply filter</button>
             </form>
-        </div>     
+        </div>
     );
 }
 

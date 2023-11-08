@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from properties.models import Property
-from .forms import SignUpForm, UserUpdateForm
+from .forms import SignUpForm, UserUpdateForm, LoginForm
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.views.decorators.csrf import csrf_exempt
 from .models import Broker, CustomUser
@@ -77,27 +77,69 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
+# @csrf_exempt
+# def custom_login(request):
+#     if request.method == 'POST':
+#         data = json.loads(request.body)
+#         User = get_user_model()
+#         form = SignUpForm(data)
+#         if form.is_valid():
+#             email = form.cleaned_data['email']
+#             name = form.cleaned_data['name']
+#             phone_number = form.cleaned_data['phone_number']
+#             role = form.cleaned_data['role']
+#             password = form.cleaned_data['password']
+#             password_confirmation = form.cleaned_data['password_confirmation']
+#
+#             if password != password_confirmation:
+#                 return JsonResponse({"error": "Passwords do not match"}, status=400)
+#
+#             try:
+#                 user = User.objects.create_user(
+#                     email=email,
+#                     name=name,
+#                     phone_number=phone_number,
+#                     role=role,
+#                     password=password
+#                 )
+#                 return JsonResponse({"message": "User was registered successfully"})
+#             except ValidationError as e:
+#                 return JsonResponse({"error": str(e)}, status=400)
+#         else:
+#             return JsonResponse({"error": form.errors}, status=400)
+#     else:
+#         form = SignUpForm()
+#     return render(request, 'signup.html', {'form': form})
+
 
 @csrf_exempt
 def custom_login(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        print(f"Email: {email}, Password: {password}")
-        user = authenticate(request, username=email, password=password)
-        print(f"User: {user}")
+        data = json.loads(request.body)
+        print(data)
+        User = get_user_model()
+        form = LoginForm(data)
+        if form.is_valid():
+            print("valid")
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
 
-        if user is not None:
-            login(request, user)
-            return JsonResponse({'message': 'Login successful'})
+            user = authenticate(request, email=email, password=password)  # Use Django's authenticate function
+
+            if user is not None:
+                login(request, user)  # Use Django's login function
+                print(user)
+                return JsonResponse({"message": "User was logged in successfully",
+                                     "id": user.id,
+                                     "name":user.name})
+            else:
+                return JsonResponse({"error": "Invalid email or password"}, status=400)
         else:
-            return JsonResponse({'message': 'Invalid credentials'}, status=401)
-
-    elif request.method == 'GET':
-        # Assuming your login template is named 'login.html'
-        return render(request, 'login.html')
-
-    return JsonResponse({'message': 'Method not allowed'}, status=405)
+            return JsonResponse({"error": form.errors}, status=400)
+    else:
+        print("bad")
+        form = LoginForm()  # Use LoginForm instead of SignUpForm
+    return render(request, 'login.html', {'form': form})  # Render 'login.html' instead of 'signup.html'
 
 
 def user_list(request):

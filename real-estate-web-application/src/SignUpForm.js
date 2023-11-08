@@ -11,7 +11,7 @@ function SignUp({setContentText, setIsSignUpClicked}){
     setContentText(<LoginForm />);
   };
 
-      const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     phone_number: "",
     email: "",
@@ -35,7 +35,7 @@ function SignUp({setContentText, setIsSignUpClicked}){
     if (formData.password !== formData.password_confirmation) {
     console.error("Passwords do not match");
     return;
-    }
+    } //for front-end to make it look nicer
 
     try {
       const response = await fetch("http://localhost:8000/signup/", {
@@ -48,6 +48,7 @@ function SignUp({setContentText, setIsSignUpClicked}){
 
       console.log("response of ", response)
       if (response.ok) {
+
         console.log("User registered successfully");
         const answer = response.json()
         console.log("Message from backend ", answer)

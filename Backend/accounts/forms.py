@@ -13,6 +13,11 @@ class SignUpForm(forms.ModelForm):
                   'password', 'password_confirmation', 'role']
 
 
+class LoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput())
+
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
