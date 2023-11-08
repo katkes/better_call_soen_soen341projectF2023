@@ -15,6 +15,7 @@
     animation: fadeIn;
     font-size: 40px;
     font-weight: lighter;
+    font-family: 'Avenir';
   }
   
   .loginButton, .cancelLoginButton {

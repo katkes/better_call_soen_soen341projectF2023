@@ -76,7 +76,7 @@ body {
   background-color: #ffffff;
   color:#185c9c;
   border: none;
-  padding:0.5%;
+  padding:0.3%;
   border-radius: 25px;
   width: 100px;
 }
@@ -160,6 +160,7 @@ body {
   animation-duration: 2s;
   font-size: 40px;
   font-weight: lighter;
+  font-family: 'Avenir';
 }
 
 .signupformInner {
