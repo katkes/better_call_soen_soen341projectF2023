@@ -31,6 +31,12 @@ function SignUp({setContentText, setIsSignUpClicked}){
     e.preventDefault();
     console.log(formData);
 
+
+    if (formData.password !== formData.password_confirmation) {
+    console.error("Passwords do not match");
+    return;
+    }
+
     try {
       const response = await fetch("http://localhost:8000/signup/", {
         method: "POST",
@@ -43,6 +49,8 @@ function SignUp({setContentText, setIsSignUpClicked}){
       console.log("response of ", response)
       if (response.ok) {
         console.log("User registered successfully");
+        const answer = response.json()
+        console.log("Message from backend ", answer)
         // Redirect or show success message
       } else {
         console.error("Error registering user");

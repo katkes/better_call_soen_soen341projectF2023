@@ -2,42 +2,79 @@ from django.contrib.auth import login
 import json
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.views.decorators.csrf import csrf_exempt
 from properties.models import Property
 from .forms import SignUpForm, UserUpdateForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.views.decorators.csrf import csrf_exempt
 from .models import Broker, CustomUser
+from django.core.exceptions import ValidationError
+
+
+# old
+# @csrf_exempt
+# def signup(request):
+#     if request.method == 'POST':
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             email = form.cleaned_data['email']
+#             name = form.cleaned_data['name']
+#             phone_number = form.cleaned_data['phone_number']
+#             role = form.cleaned_data['role']
+#             password = form.cleaned_data['password']
+#
+#             # Create user with hashed password
+#             user = CustomUser.objects.create_user(
+#                 email=email,
+#                 name=name,
+#                 phone_number=phone_number,
+#                 role=role,
+#                 password=password
+#             )
+#             print("Was successful")
+#             # Redirect to index.html after successful signup
+#             return redirect('index')
+#             # return JsonResponse({"message": "User was registered successfully"})
+#         else:
+#             print(form.errors)  # Print form errors for debugging
+#     else:
+#         form = SignUpForm()
+#         print("hello not valid")
+#     return render(request, 'signup.html', {'form': form})
 
 
 @csrf_exempt
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        data = json.loads(request.body)
+        User = get_user_model()
+        form = SignUpForm(data)
         if form.is_valid():
             email = form.cleaned_data['email']
             name = form.cleaned_data['name']
             phone_number = form.cleaned_data['phone_number']
             role = form.cleaned_data['role']
             password = form.cleaned_data['password']
+            password_confirmation = form.cleaned_data['password_confirmation']
 
-            # Create user with hashed password
-            user = CustomUser.objects.create_user(
-                email=email,
-                name=name,
-                phone_number=phone_number,
-                role=role,
-                password=password
-            )
-            print("Was successful")
-            # Redirect to index.html after successful signup
-            # return redirect('index')
-            return JsonResponse({"message": "User registered successfully"})
+            if password != password_confirmation:
+                return JsonResponse({"error": "Passwords do not match"}, status=400)
+
+            try:
+                user = User.objects.create_user(
+                    email=email,
+                    name=name,
+                    phone_number=phone_number,
+                    role=role,
+                    password=password
+                )
+                return JsonResponse({"message": "User was registered successfully"})
+            except ValidationError as e:
+                return JsonResponse({"error": str(e)}, status=400)
         else:
-            print(form.errors)  # Print form errors for debugging
+            return JsonResponse({"error": form.errors}, status=400)
     else:
         form = SignUpForm()
-        print("hello not valid")
     return render(request, 'signup.html', {'form': form})
 
 
