@@ -3,7 +3,7 @@ import SignUp from "./SignUpForm";
 import "./css/topBar.css";
 //import HomePage from "./home";
 import PropertySection from "./PropertySection";
-// import FilterSelect from "./FilterSelect";
+import FilterSelect from "./FilterSelect";
 
 function TopBar({ setContentText }) {
   const [isSignUpClicked, setIsSignUpClicked] = useState(false);
@@ -20,23 +20,25 @@ function TopBar({ setContentText }) {
     setContentText(<PropertySection setContentText={setContentText}/>);
   };
   
-
+ 
   return (
     <div className="topBar">
+  
         <div className="pageLogo">
         <button onClick={handleButtonClick2} id="LogoAnchorHome">  
           <img src="./Logo.png" alt="Urban Utopia"></img>
         </button>
         </div>
-        <div className="filterForm"> {/*This may not even be implemented. Well see*/}
+        
+        <div className="filterForm"> 
+        <FilterSelect/>
           <form id="ApiFilterSearch" action="" method="GET"> 
           <label htmlFor="filter">Filter properties </label>
           <input type="text" name="filter" id="filter"></input>
           </form>
           
         </div>
-       
-
+        
        
         {isSignUpClicked ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
