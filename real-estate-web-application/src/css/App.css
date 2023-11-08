@@ -170,9 +170,11 @@ body {
 }
 
 .signupformInner label {
+  text-align: left;
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: rgb(73, 73, 73);
   
 }
 
@@ -187,14 +189,14 @@ body {
 .signupformInner input[type="email"],
 .signupformInner input[type="password"],
 .signupformInner select {
-  width: 90%;
+  width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   border: solid 1px #B1B1B1;
   background-color: #FFFFFF;
   border-radius: 3px;
   font-size: 16px;
-
+  font-family: 'Avenir';
 }
 
 

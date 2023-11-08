@@ -71,7 +71,7 @@ return(
     <form className="signUpForm" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
         <div className="signupformInner">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
@@ -79,9 +79,10 @@ return(
             value={formData.name}
             onChange={handleChange}
             required
+            placeholder="Enter your name"
           ></input>
           <br></br>
-          <label htmlFor="phone_number">Phone Number:</label>
+          <label htmlFor="phone_number">Phone Number</label>
           <input
             type="tel"
             id="phone_number"
@@ -89,9 +90,10 @@ return(
             value={formData.phone_number}
             onChange={handleChange}
             required
+            placeholder="Enter your phone number"
           ></input>
           <br></br>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email Address</label>
           <input
             type="email"
             id="email"
@@ -99,9 +101,10 @@ return(
             value={formData.email}
             onChange={handleChange}
             required
+            placeholder="Enter your email address"
           ></input>
           <br></br>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -109,6 +112,7 @@ return(
             value={formData.password}
             onChange={handleChange}
             required
+            placeholder="Enter password"
           ></input>
           <br></br>
           <label htmlFor="password_confirmation">Confirm Password:</label>
@@ -119,6 +123,7 @@ return(
             value={formData.password_confirmation}
             onChange={handleChange}
             required
+            placeholder="Enter password"
           ></input>
 
           <br></br>
