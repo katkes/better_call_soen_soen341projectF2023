@@ -1,6 +1,6 @@
 .filterFormDiv{
     display:inline-block;
-    float:left;
-    color:white;
-    font-size:200px;
+   /*  float:left; */
+    color:black;
+    font-size:50px;
 }
