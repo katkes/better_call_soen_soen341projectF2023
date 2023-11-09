@@ -45,7 +45,7 @@ function TopBar({ setContentText }) {
         </div>
         
         {isLoggedng ? null : (
-        <ProfileButton username={"TempUserName"}/>
+        <ProfileButton username={"TempUserName"} setContentText={setContentText}/>
       )}
       
         {isSignUpClicked ? null : (

@@ -1,12 +1,16 @@
 import "./css/ProfileButton.css";
 
-function ProfileButton({username}){
+function ProfileButton({username, setContentText}){
+
+  const handleButtonClick = () => {
+   
+    setContentText();
+  };
 
     return (
         
-    <div className="profileButton">
-      
-        <i className='fas fa-user-circle'></i>
+    <div onClick='' className="profileButton">
+      {username}Account
      
     </div>
         
