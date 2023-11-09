@@ -30,8 +30,7 @@ class PropertyAdmin(admin.ModelAdmin):
         if not obj.assigned_user:
             obj.assigned_user = request.user
         obj.save()
-        print(f"Saved property with name '{
-              obj.name}' by user '{request.user}'")
+        print(f"Saved property with name '{obj.name}' by user '{request.user}'")
 
 
 class Offer(models.Model):

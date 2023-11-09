@@ -64,6 +64,7 @@ function TopBar({ setContentText }) {
 
   return (
     <div className="topBar">
+      <FilterSelect />
       <div className="pageLogo">
         <button onClick={handleButtonClick2} id="LogoAnchorHome">
           {/* <img src="./Logo.png" alt="Urban Utopia"></img> */}
@@ -73,26 +74,25 @@ function TopBar({ setContentText }) {
 
       <div className="filterForm">
         <form id="ApiFilterSearch" action="" method="GET">
+          {/* <label htmlFor="filter">Filter properties </label> */}
           <input
             type="text"
             name="filter"
             id="filter"
             placeholder="Search properties..."
-            onChange={(e) => handleSearchChange(e.target.value)}
-          />
+          ></input>
         </form>
-        <FilterSelect />
       </div>
+
       {!sessionStorage.getItem("userID") ? null : (
         <ProfileButton
           username={sessionStorage.getItem("userName")}
           setContentText={setContentText}
         />
       )}
+
       {sessionStorage.getItem("userID") ? (
-        <button className="signUpBtn" onClick={handleSignOut}>
-          Sign out
-        </button>
+        <button className="signUpBtn">Sign out</button>
       ) : null}
       {sessionStorage.getItem("userID") ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>
