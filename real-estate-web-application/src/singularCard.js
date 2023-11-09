@@ -1,15 +1,13 @@
-// import RealEstateListing from "./BuyPropertyPage"; 
 import "./css/singularCard.css";
 import React from 'react'
-/*import { useState } from "react";*/
 import GenerateBuyPage from "./GenerateBuyPage.js";
+/*import { useState } from "react";*/
+// import RealEstateListing from "./BuyPropertyPage"; 
 
-
-
-function SingularCard({name,price,country,rating,setContentText}){
+function SingularCard({name,price,country,rating,setContentText, isForSale = true}){
         //{name,price,country,rating},setContentText={setContentText}
         let type= 'Apartment';
-        let address= '123 Main St, City, State';
+         country= '123 Main St, City, State';
         price= '500,000';
         let previewPhotos= [
            'https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CCDDDDDDDDDD2&t=pi&w=640&h=480&sm=c',
@@ -29,7 +27,7 @@ function SingularCard({name,price,country,rating,setContentText}){
      
     const handleClick3 = () => {
 
-        setContentText(<GenerateBuyPage type={type} address={address} price={price} previewPhotos={previewPhotos} broker={broker} favorite={favorite} features={features} />); //type, address, price, previewPhotos, broker, favorite, features
+        setContentText(<GenerateBuyPage type={type} country={country} price={price} previewPhotos={previewPhotos} broker={broker} favorite={favorite} features={features} />); //type, address, price, previewPhotos, broker, favorite, features
       };
 
 
@@ -39,7 +37,7 @@ function SingularCard({name,price,country,rating,setContentText}){
             <div className="cardProperties">
                 <p>Name: {name}</p>
                 <p>Price: ${price}</p>
-                <p>Country/address: {country}</p>
+                <p>Location: {country}</p>
                 <p>Rating: {rating}☆</p>
                 <div className="buttonOptions">
                 <button className="buyButton" onClick={handleClick3}>Buy</button>
