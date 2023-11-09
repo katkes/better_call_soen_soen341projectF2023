@@ -90,9 +90,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: space-between;
   }
   
   .feature-item {
     margin: 5px 0;
+    padding-left: 15px;
   }
   
+  #img1{
+    margin-right: 0px;
+  }
+
+  #img2{
+    margin-left: 20px;
+  }

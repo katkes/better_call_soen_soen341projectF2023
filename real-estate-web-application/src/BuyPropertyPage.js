@@ -16,8 +16,8 @@ const RealEstateListing = ({ type, address, price, previewPhotos, broker, favori
         <div className="photos">
           <img src={previewPhotos[0]} alt="Big Preview" className="big-preview" />
           <div className="small-previews">
-            <img src={previewPhotos[1]} alt="Small Preview 1" />
-            <img src={previewPhotos[2]} alt="Small Preview 2" />
+            <img id="img1" src={previewPhotos[1]} alt="Small Preview 1" />
+            <img id="img2" src={previewPhotos[2]} alt="Small Preview 2" />
           </div>
         </div>
         <div className="actions">

@@ -7,10 +7,9 @@ import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 import React, { useState } from "react";
 
-
 function TopBar({ setContentText }) {
   // Inside your TopBar component
-  
+
   const [searchQuery, setSearchQuery] = useState(""); // Define searchQuery state
   // Define searchQuery state
 
