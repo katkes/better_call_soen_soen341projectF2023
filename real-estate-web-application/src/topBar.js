@@ -5,10 +5,17 @@ import "./css/topBar.css";
 import PropertySection from "./PropertySection";
 import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
+import React, { useState } from "react";
+
 
 function TopBar({ setContentText }) {
   // Inside your TopBar component
+  
+  const [searchQuery, setSearchQuery] = useState(""); // Define searchQuery state
+  // Define searchQuery state
+
   const handleSearchChange = (query) => {
+    setSearchQuery(query); // Update searchQuery state
     fetch(`http://localhost:8000/property_search/?q=${query}`)
       .then((response) => response.json())
       .then((data) => {
@@ -24,7 +31,6 @@ function TopBar({ setContentText }) {
         console.error("Error:", error);
       });
   };
-
   const handleSignOut = async (e) => {
     await fetch("http://localhost:8000/logout/", {
       // Use the correct URL for the logout endpoint in Django
@@ -72,16 +78,19 @@ function TopBar({ setContentText }) {
         </button>
       </div>
 
-      <div className="filterForm">
+      <div className="topBar">
+        {/* ... (your existing code) */}
         <form id="ApiFilterSearch" action="" method="GET">
-          {/* <label htmlFor="filter">Filter properties </label> */}
           <input
             type="text"
             name="filter"
             id="filter"
             placeholder="Search properties..."
-          ></input>
+            value={searchQuery}
+            onChange={(e) => handleSearchChange(e.target.value)}
+          />
         </form>
+        {/* ... (rest of your code) */}
       </div>
 
       {!sessionStorage.getItem("userID") ? null : (
@@ -92,7 +101,9 @@ function TopBar({ setContentText }) {
       )}
 
       {sessionStorage.getItem("userID") ? (
-        <button className="signUpBtn">Sign out</button>
+        <button className="signUpBtn" onClick={handleSignOut}>
+          Sign out
+        </button>
       ) : null}
       {sessionStorage.getItem("userID") ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>
