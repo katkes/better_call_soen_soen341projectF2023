@@ -11,9 +11,20 @@ import Content from './Content';
 
 
 function App() {
-  const [contentText, setContentText] = useState();
+    const [contentText, setContentText] = useState();
 
-  
+    const userID = sessionStorage.getItem('userID');
+    const isRegistered = sessionStorage.getItem('isRegistered');
+
+    if (userID){
+        console.log("User's id: ", userID);
+        console.log("Is user resgistered? ", isRegistered)
+    }
+
+    else {
+        console.log("User has not signed in yet")
+    }
+
   return (
     <div className="App">
       <Content contentText={contentText}/>
