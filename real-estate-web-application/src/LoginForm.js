@@ -1,10 +1,16 @@
 import "./css/LoginForm.css";
+import Home from './home';
 import React, {useState} from "react";
 
-function LoginForm({setContentText, setIsSignUpClicked}){
-
+function LoginForm({setContentText, setIsSignUpClicked, setIsisLoggedng}){
+  
+const[tempSessionId, setTempSessionId]= useState();
     const handleButtonClick = () => {
-        
+        setTempSessionId(true); // this is temperaroy
+        setIsSignUpClicked(true);
+        setIsisLoggedng(false);
+        setContentText(<Home/>);
+
     }
 
     const [formData, setFormData] = useState({
@@ -116,7 +122,7 @@ function LoginForm({setContentText, setIsSignUpClicked}){
             required
             ></input>
             <br></br>
-            <button className="loginButton" onClick={handleButtonClick}>Login</button>
+            <button type="submit" className="loginButton" onClick={handleButtonClick}>Login</button>
             {/* <a href="App.js" className="cancelLoginButtonAnchorTag"><button className="cancelLoginButton">Cancel</button></a> */}
             </div>
             </form>

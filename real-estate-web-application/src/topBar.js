@@ -7,17 +7,20 @@ import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 
 function TopBar({ setContentText }) {
+  const [isLoggedng, setIsisLoggedng] = useState(true);
   const [isSignUpClicked, setIsSignUpClicked] = useState(false);
   const handleButtonClick = () => {
     // Change the content when the button is clicked 
     setIsSignUpClicked(true);
-    setContentText(<SignUp setContentText={setContentText} setIsSignUpClicked={setIsSignUpClicked}/>);
+    setContentText(<SignUp setContentText={setContentText} setIsSignUpClicked={setIsSignUpClicked} setIsisLoggedng={setIsisLoggedng}/> );
   };
 
 
   const handleButtonClick2 = () => {
     // Change the content when the button is clicked 
-    setIsSignUpClicked(false);
+    if(isLoggedng==true){
+    setIsSignUpClicked(false);}
+    else{}
     setContentText(<PropertySection setContentText={setContentText}/>);
   };
   
@@ -41,10 +44,14 @@ function TopBar({ setContentText }) {
           <FilterSelect />
         </div>
         
-       {/* <ProfileButton/> */}
+        {isLoggedng ? null : (
+        <ProfileButton username={"TempUserName"}/>
+      )}
+      
         {isSignUpClicked ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
       )}
+      
     </div>
   );
 }
