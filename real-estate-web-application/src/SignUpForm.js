@@ -116,7 +116,7 @@ return(
             placeholder="Enter password"
           ></input>
           <br></br>
-          <label htmlFor="password_confirmation">Confirm Password:</label>
+          <label htmlFor="password_confirmation">Confirm Password</label>
           <input
             type="password"
             id="confirm-password"
@@ -128,7 +128,7 @@ return(
           ></input>
 
           <br></br>
-          <label htmlFor="role">Role:</label>
+          <label htmlFor="role">Role</label>
           <select
             id="role"
             name="role"
