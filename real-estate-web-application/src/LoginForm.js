@@ -4,11 +4,11 @@ import React, {useState} from "react";
 
 function LoginForm({setContentText, setIsSignUpClicked, setIsisLoggedng}){
   
-const[tempSessionId, setTempSessionId]= useState();
+
     const handleButtonClick = () => {
-        setTempSessionId(true); // this is temperaroy
-        setIsSignUpClicked(true);
-        setIsisLoggedng(false);
+       
+        setIsSignUpClicked((sessionStorage.getItem('userID')));
+       setIsisLoggedng(!(sessionStorage.getItem('userID')))
         setContentText(<Home/>);
 
     }
