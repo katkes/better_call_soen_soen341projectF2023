@@ -15,10 +15,12 @@ function App() {
 
     const userID = sessionStorage.getItem('userID');
     const isRegistered = sessionStorage.getItem('isRegistered');
+    const userName = sessionStorage.getItem('userName');
 
     if (userID){
-        console.log("User's id: ", userID);
         console.log("Is user resgistered? ", isRegistered)
+        console.log("User's name: ", userName)
+        console.log("User's id: ", userID);
     }
 
     else {

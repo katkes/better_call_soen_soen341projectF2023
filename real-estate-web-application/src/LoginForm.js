@@ -71,7 +71,8 @@ function LoginForm({setContentText, setIsSignUpClicked}){
         console.log("Message from backend ", answer)
         console.log("User's id: ", answer.id)  // Log the user's id
           console.log("User name is: ", answer.name)
-          sessionStorage.setItem("userID", answer.id)
+          sessionStorage.setItem("userID", answer.id) // Stores user ID in session
+          sessionStorage.setItem("userName", answer.name)
           sessionStorage.setItem("isRegistered", true)
         // Redirect or show success message
       } else {
