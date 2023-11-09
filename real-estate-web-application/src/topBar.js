@@ -36,10 +36,9 @@ function TopBar({ setContentText }) {
         </div>
         
         <div className="filterForm"> 
-        
           <form id="ApiFilterSearch" action="" method="GET"> 
           {/* <label htmlFor="filter">Filter properties </label> */}
-          <input type="text" name="filter" id="filter" placeholder="Filter properties..."></input>
+          <input type="text" name="filter" id="filter" placeholder="Search properties..."></input>
           </form>
           <FilterSelect />
         </div>
@@ -49,7 +48,7 @@ function TopBar({ setContentText }) {
       )}
       
         {isSignUpClicked ? null : (
-        <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
+        <button className="signUpBtn" onClick={handleButtonClick}>Sign in</button>
       )}
       
     </div>
