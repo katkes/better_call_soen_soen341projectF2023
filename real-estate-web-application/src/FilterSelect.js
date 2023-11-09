@@ -22,7 +22,7 @@ function FilterSelect(){
         <div className="filterFormDiv">
             <form action="###" method="POST" className="filterForm">
 
-                <label className="label">Price: {price}
+                <label className="label">Price: ${price}
                     <input name="StaticFilters" id="Price"  type="range" min="100000" max="800000" step="1000" value={price} onChange={(e) => setPrice(e.target.value)}/>
                     {/* <span class="checkmark"></span> */}
                 </label>
