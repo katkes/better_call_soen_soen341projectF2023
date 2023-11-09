@@ -21,24 +21,24 @@ function FilterSelect(){
     
             <form action="###" method="POST" className="filterForm">
                     <label className="label">Price: ${price}
-                        <input class= "slider-range" name="StaticFilters" id="Price"  type="range" min="100000" max="800000" step="1000" value={price} onChange={(e) => setPrice(e.target.value)}/>
+                        <input className= "slider-range" name="StaticFilters" id="Price"  type="range" min="100000" max="800000" step="1000" value={price} onChange={(e) => setPrice(e.target.value)}/>
                         {/* <span class="checkmark"></span> */}
                         
                     </label>
 
                     <label className="label">Size: {size} ft
-                        <input class= "slider-range" id="Size" name="StaticFilters" type="range" min="100" max="2000" step="50" value={size} onChange={(e) => setSize(e.target.value)}/>
+                        <input className= "slider-range" id="Size" name="StaticFilters" type="range" min="100" max="2000" step="50" value={size} onChange={(e) => setSize(e.target.value)}/>
                         {/* <span class="checkmark"></span> */}
                        
                     </label>
                     <label className="label">Number of Bathrooms: {bathrooms}
-                        <input class= "slider-range" id="numBathrooms" name="StaticFilters" type="range" min="1" max="3" step="1" value={bathrooms} onChange={(e) => setBathrooms(e.target.value)}   />
+                        <input className= "slider-range" id="numBathrooms" name="StaticFilters" type="range" min="1" max="3" step="1" value={bathrooms} onChange={(e) => setBathrooms(e.target.value)}   />
                         {/* <span class="checkmark"></span> */}
                         
                     </label>
     
                     <label className="label">Number of Bedrooms: {bedrooms}
-                        <input class= "slider-range" id="numBedrooms" name="StaticFilters" type="range" min="1" max="10" step="1" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)} />
+                        <input className= "slider-range" id="numBedrooms" name="StaticFilters" type="range" min="1" max="10" step="1" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)} />
                         {/* <span class="checkmark"></span> */}
                         {/* {bedrooms} */}
                     </label>
@@ -46,7 +46,7 @@ function FilterSelect(){
             </form>
         </div>
     );
->>>>>>> f53b5c604efa4dd5468a765d99f200e8d001950f
+
 }
 
 
