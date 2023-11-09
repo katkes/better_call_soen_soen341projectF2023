@@ -11,7 +11,8 @@
       {% for property in properties %}
       <li>
         {{ property.name }} - {{ property.price }} - {{ property.country }} -
-        {{property.rating }}
+        {{property.rating }} -{{ property.for_sale }} -
+        {{property.num_of_bathrooms }} - {{ property.num_of_bedrooms }}
       </li>
       {% endfor %}
     </ul>

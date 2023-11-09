@@ -11,8 +11,12 @@
     <p>Price: {{ property.price }}</p>
     <p>Country: {{ property.country }}</p>
     <p>Rating: {{ property.rating }}</p>
+    <p>For Sale: {% if property.for_sale %}Yes{% else %}No{% endif %}</p>
+    <p>Square Footage: {{ property.square_footage }}</p>
+    <p>Bedrooms: {{ property.num_of_bedrooms }}</p>
+    <p>Bathrooms: {{ property.num_of_bathrooms }}</p>
+    <p>Type of Property: {{ property.type_of_property }}</p>
     <p>Assigned User: {{ property.assigned_user }}</p>
-
     <!-- Link to edit property -->
     <a href="{% url 'property_edit' property.property_id %}">Edit Property</a>
 
