@@ -1,5 +1,5 @@
 import "./css/ProfileButton.css";
-import AccountPage from "./accountPage.js";
+import AccountPage from "./AccountPage.js";
 
 function ProfileButton({username, setContentText}){
 
