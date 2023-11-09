@@ -7,12 +7,7 @@ import React, { useState } from 'react';
 // class="container" for="numBedrooms"
 
 function FilterSelect(){
-  const [price, setPrice] = useState(100000);
-  const [size, setSize] = useState(0);
-  const [bathrooms, setBathrooms] = useState(1);
-  const [bedrooms, setBedrooms] = useState(1);
 
-  // return(
   //     <div className="filterFormDiv">
 
 
