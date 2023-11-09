@@ -26,14 +26,13 @@ function SingularCard({name,price,country,rating,setContentText, isForSale = tru
         ];
      
     const handleClick3 = () => {
-
         setContentText(<GenerateBuyPage type={type} country={country} price={price} previewPhotos={previewPhotos} broker={broker} favorite={favorite} features={features} />); //type, address, price, previewPhotos, broker, favorite, features
       };
 
-
+      //"https://i.pinimg.com/736x/a9/8a/d3/a98ad31b4947ed09d9e3e9918cf3379b.jpg"
     return(
         <div  className="card">
-            <img src="https://i.pinimg.com/736x/a9/8a/d3/a98ad31b4947ed09d9e3e9918cf3379b.jpg" alt="fix BOZO"></img>
+            <img src={previewPhotos[0]} alt="fix BOZO"></img>
             <div className="cardProperties">
                 <p>Name: {name}</p>
                 <p>Price: ${price}</p>
