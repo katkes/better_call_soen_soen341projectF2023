@@ -7,8 +7,20 @@ import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 
 function TopBar({ setContentText }) {
-  const [isLoggedng, setIsisLoggedng] = useState(true);
-  const [isSignUpClicked, setIsSignUpClicked] = useState(false);
+  const [isLoggedng, setIsisLoggedng] = useState();
+  if (isLoggedng===false){
+
+  }
+  else{
+    setIsisLoggedng(true)
+  }
+  const [isSignUpClicked, setIsSignUpClicked] = useState();
+  if (isSignUpClicked===true){
+
+  }
+  else{
+    setIsSignUpClicked(false)
+  }
   const handleButtonClick = () => {
     // Change the content when the button is clicked 
     setIsSignUpClicked(true);
@@ -44,9 +56,13 @@ function TopBar({ setContentText }) {
         </div>
         
         {isLoggedng ? null : (
-        <ProfileButton username={sessionStorage.getItem("Username")} setContentText={setContentText}/>
+        <ProfileButton username={sessionStorage.getItem("userName")} setContentText={setContentText}/>
       )}
       
+      {isSignUpClicked ?  (
+        <button className="signUpBtn" >Sign out</button>
+      ):null
+      }
         {isSignUpClicked ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>Sign in</button>
       )}

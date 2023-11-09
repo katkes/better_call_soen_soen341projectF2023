@@ -10,7 +10,7 @@ function ProfileButton({username, setContentText}){
     return (
         
     <div onClick='' className="profileButton">
-      {username}Account
+      {username}
      
     </div>
         

@@ -38,6 +38,7 @@ function LoginForm({setContentText, setIsSignUpClicked, setIsisLoggedng}) {
                 console.log("User name is: ", answer.name)
                 sessionStorage.setItem("userID", answer.id) // Stores user ID in session
                 sessionStorage.setItem("userName", answer.name)
+                sessionStorage.setItem("role", answer.role)
                 sessionStorage.setItem("isRegistered", true)
                 // Redirect or show success message
                 console.log(sessionStorage.getItem("userID"));
