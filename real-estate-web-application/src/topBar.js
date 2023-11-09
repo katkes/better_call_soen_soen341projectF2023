@@ -77,7 +77,7 @@ function TopBar({ setContentText }) {
         </button>
       </div>
 
-      <div className="topBar">
+      <div className="filterForm">
         {/* ... (your existing code) */}
         <form id="ApiFilterSearch" action="" method="GET">
           <input
