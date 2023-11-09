@@ -60,8 +60,11 @@ function TopBar({ setContentText }) {
         <ProfileButton username={sessionStorage.getItem("Username")} setContentText={setContentText}/>
       )}
       
+      {isSignUpClicked ?  (
+        <button className="signUpBtn" >Sign out</button>
+      ):null}
         {isSignUpClicked ? null : (
-        <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
+        <button className="signUpBtn" onClick={handleButtonClick}>Sign in</button>
       )}
       
     </div>
