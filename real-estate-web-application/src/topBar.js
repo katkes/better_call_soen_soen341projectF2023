@@ -62,7 +62,8 @@ function TopBar({ setContentText }) {
       
       {isSignUpClicked ?  (
         <button className="signUpBtn" >Sign out</button>
-      ):null}
+      ):null
+      }
         {isSignUpClicked ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>Sign in</button>
       )}
