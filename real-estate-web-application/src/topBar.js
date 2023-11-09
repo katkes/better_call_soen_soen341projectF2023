@@ -7,8 +7,20 @@ import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 
 function TopBar({ setContentText }) {
-  const [isLoggedng, setIsisLoggedng] = useState(true);
-  const [isSignUpClicked, setIsSignUpClicked] = useState(false);
+  const [isLoggedng, setIsisLoggedng] = useState();
+  if (isLoggedng===false){
+
+  }
+  else{
+    setIsisLoggedng(true)
+  }
+  const [isSignUpClicked, setIsSignUpClicked] = useState();
+  if (isSignUpClicked===true){
+
+  }
+  else{
+    setIsSignUpClicked(false)
+  }
   const handleButtonClick = () => {
     // Change the content when the button is clicked 
     setIsSignUpClicked(true);
