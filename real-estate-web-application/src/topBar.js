@@ -4,6 +4,7 @@ import "./css/topBar.css";
 //import HomePage from "./home";
 import PropertySection from "./PropertySection";
 import FilterSelect from "./FilterSelect";
+import ProfileButton from "./ProfileButton.js";
 
 function TopBar({ setContentText }) {
   const [isSignUpClicked, setIsSignUpClicked] = useState(false);
@@ -40,7 +41,7 @@ function TopBar({ setContentText }) {
           <FilterSelect />
         </div>
         
-       
+       {/* <ProfileButton/> */}
         {isSignUpClicked ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>Sign up</button>
       )}
