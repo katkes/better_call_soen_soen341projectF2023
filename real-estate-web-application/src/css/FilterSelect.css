@@ -7,7 +7,7 @@
 .filterFormApply{
   background-color: #ffffff;
   color:#185c9c;
-  border: none;
+  border: 1px solid black;
   padding: 0.5%;
   border-radius: 25px;
   width: 8%;
@@ -89,4 +89,8 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.label{
+  display:block;
 }
