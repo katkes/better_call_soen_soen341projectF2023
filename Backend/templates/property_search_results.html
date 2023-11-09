@@ -3,18 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Property Search - My Django App</title>
+    <title>Search Results</title>
   </head>
-
   <body>
-    <h1>Property Search</h1>
-
-    <form action="{% url 'property_search' %}" method="get">
-      <input type="text" name="q" placeholder="Search properties" />
-      <button type="submit">Search</button>
-    </form>
-
-    <h2>Search Results</h2>
+    <h1>Search Results for "{{ query }}"</h1>
 
     {% if properties %}
     <ul>
@@ -23,7 +15,13 @@
         <strong>Name:</strong> {{ property.name }}<br />
         <strong>Price:</strong> {{ property.price }}<br />
         <strong>Country:</strong> {{ property.country }}<br />
-        <strong>Rating:</strong> {{ property.rating }}
+        <strong>Rating:</strong> {{ property.rating }}<br />
+        <strong>For Sale:</strong>
+        {% if property.for_sale %}Yes{% else %}No{%endif %}<br />
+        <strong>Square Footage:</strong> {{ property.square_footage }}<br />
+        <strong>Bedrooms:</strong> {{ property.num_of_bedrooms }}<br />
+        <strong>Bathrooms:</strong> {{ property.num_of_bathrooms }}<br />
+        <strong>Type of Property:</strong> {{ property.type_of_property }}
       </li>
       {% endfor %}
     </ul>

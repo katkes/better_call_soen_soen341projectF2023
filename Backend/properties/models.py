@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from accounts.models import Broker
 # from Backend.accounts.models import Broker
 
+
 class Property(models.Model):
     property_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
@@ -14,6 +15,12 @@ class Property(models.Model):
     image = models.ImageField(upload_to='property_images/')
     assigned_user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
+    for_sale = models.BooleanField(default=True)
+    square_footage = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0)
+    num_of_bedrooms = models.PositiveIntegerField(default=0)
+    num_of_bathrooms = models.PositiveIntegerField(default=0)
+    type_of_property = models.CharField(max_length=50, default="House")
 
 
 class PropertyAdmin(admin.ModelAdmin):
@@ -23,7 +30,8 @@ class PropertyAdmin(admin.ModelAdmin):
         if not obj.assigned_user:
             obj.assigned_user = request.user
         obj.save()
-        print(f"Saved property with name '{obj.name}' by user '{request.user}'")
+        print(f"Saved property with name '{
+              obj.name}' by user '{request.user}'")
 
 
 class Offer(models.Model):

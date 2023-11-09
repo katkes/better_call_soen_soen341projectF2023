@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ... -->
     <title>Property List - My Django App</title>
   </head>
   <body>
@@ -16,7 +15,13 @@
           <strong>Name:</strong> {{ property.name }}<br />
           <strong>Price:</strong> {{ property.price }}<br />
           <strong>Country:</strong> {{ property.country }}<br />
-          <strong>Rating:</strong> {{ property.rating }}
+          <strong>Rating:</strong> {{ property.rating }}<br />
+          <strong>For Sale:</strong> {% if property.for_sale %}Yes{% else %}No{%
+          endif %}<br />
+          <strong>Square Footage:</strong> {{ property.square_footage }}<br />
+          <strong>Bedrooms:</strong> {{ property.num_of_bedrooms }}<br />
+          <strong>Bathrooms:</strong> {{ property.num_of_bathrooms }}<br />
+          <strong>Type of Property:</strong> {{ property.type_of_property }}
         </a>
       </li>
       {% endfor %}
