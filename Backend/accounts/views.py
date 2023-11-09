@@ -221,6 +221,10 @@ def index(request):
     return render(request, 'index.html')
 
 
+@csrf_exempt
 def custom_logout(request):
-    logout(request)
-    return redirect('index')
+    if request.method == 'POST':
+        logout(request)
+        return JsonResponse({'message': 'Logged out successfully'}, status=200)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
