@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Property</title>
+    <!-- ... -->
+    <title>Create Property - My Django App</title>
   </head>
   <body>
-    <h1>Create a New Property</h1>
+    <h1>Create Property</h1>
 
-    <form method="post" enctype="multipart/form-data">
+    <form
+      action="{% url 'create_property' %}"
+      method="post"
+      enctype="multipart/form-data"
+    >
       {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Submit</button>
+      <button type="submit">Save Property</button>
     </form>
   </body>
 </html>
