@@ -131,7 +131,8 @@ def custom_login(request):
                 print(user)
                 return JsonResponse({"message": "User was logged in successfully",
                                      "id": user.id,
-                                     "name":user.name})
+                                     "name":user.name,
+                                     "role":user.role})
             else:
                 return JsonResponse({"error": "Invalid email or password"}, status=400)
         else:
