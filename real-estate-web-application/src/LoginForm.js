@@ -4,7 +4,7 @@ import React, {useState} from "react";
 function LoginForm({setContentText, setIsSignUpClicked}){
 
     const handleButtonClick = () => {
-        // for frontend
+        
     }
 
     const [formData, setFormData] = useState({
