@@ -45,7 +45,7 @@ function TopBar({ setContentText }) {
         </div>
         
         {isLoggedng ? null : (
-        <ProfileButton username={sessionStorage.getItem("Username")} setContentText={setContentText}/>
+        <ProfileButton username={sessionStorage.getItem("userName")} setContentText={setContentText}/>
       )}
       
         {isSignUpClicked ? null : (
