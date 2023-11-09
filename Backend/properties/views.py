@@ -30,6 +30,7 @@ def property_search(request):
     return render(request, 'property_search_results.html', {'properties': properties})
 
 
+@login_required
 def create_property(request):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)

@@ -1,6 +1,5 @@
 import SingularCard from "./singularCard.js";
 
-
 function AccountPage({phoneNumber, username, email, favoriteProperties, setContentText}){
 //phone number username email, favorite properties
 

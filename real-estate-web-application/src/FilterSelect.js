@@ -1,11 +1,20 @@
 import "./css/FilterSelect.css";
 import React, { useState } from 'react';
 
-//class="container" for="Price"
-//class="container" for="Size"
-//class="container" for="numBathrooms"
-//class="container" for="numBedrooms"
+// class="container" for="Price"
+// class="container" for="Size"
+// class="container" for="numBathrooms"
+// class="container" for="numBedrooms"
+
 function FilterSelect(){
+  const [price, setPrice] = useState(100000);
+  const [size, setSize] = useState(0);
+  const [bathrooms, setBathrooms] = useState(1);
+  const [bedrooms, setBedrooms] = useState(1);
+
+  // return(
+  //     <div className="filterFormDiv">
+
 
     const [price,setPrice] = useState(100000);
     const [size,setSize] = useState(0);
@@ -17,11 +26,14 @@ function FilterSelect(){
         setIsDropped(!isDropped);
     }
 
+
+
     return(
         <div className="filterFormDiv">
             <button className="filter-button" onClick={handleClick}>Filters &#9660;
             </button>
             <form action="###" method="POST" className="filterForm">
+
                 <div className={isDropped?"undropdown-content":"dropdown-content"}>
                         <label className="label">Price<br></br></label>
                             <input class= "slider-range" name="StaticFilters" id="Price"  type="range" min="100000" max="800000" step="1000" value={price} onChange={(e) => setPrice(e.target.value)}/>
@@ -41,9 +53,11 @@ function FilterSelect(){
                             {bedrooms}
                     <button type="submit" className="filterFormApply">Apply filters</button>
                     </div>
+
             </form>
         </div>
     );
+
 }
 
 

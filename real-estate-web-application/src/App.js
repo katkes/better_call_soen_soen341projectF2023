@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <Content contentText={contentText}/>
-      <SideBar/>
+      <SideBar setContentText={setContentText}/>
       <TopBar setContentText={setContentText}/>
       {/* <PropertySection/> */}
       {/*<PropertySection setContentText={setContentText}/>*/}

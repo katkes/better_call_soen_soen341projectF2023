@@ -8,12 +8,34 @@ import ProfileButton from "./ProfileButton.js";
 
 function TopBar({ setContentText }) {
 
-  const handleButtonClick = () => {
-    // Change the content when the button is clicked 
-    
-    setContentText(<SignUp setContentText={setContentText} /> );
+  const handleSignOut = async (e) => {
+    await fetch("http://localhost:8000/logout/", {
+      // Use the correct URL for the logout endpoint in Django
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message);
+        // Clear the userID from sessionStorage
+        sessionStorage.removeItem("userID");
+        sessionStorage.removeItem("userName");
+        sessionStorage.removeItem("role");
+        sessionStorage.removeItem("isRegistered");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
+  const handleButtonClick = () => {
+    // Change the content when the button is clicked
+
+    setContentText(<SignUp setContentText={setContentText} />);
+  };
 
   const handleButtonClick2 = () => {
     // Change the content when the button is clicked 
