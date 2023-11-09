@@ -1,5 +1,5 @@
 .filterFormDiv{
-  text-align: left;
+  text-align: center;
   color: black;
   padding-left: 10px;
   width:15%;
@@ -93,9 +93,14 @@
 }
 
 .label{
+  text-align: left;
   display:block;
+  font-weight: bold;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 
 #Price, #Size, #numBathrooms, #numBedrooms {
-  float:right;
+  float: right;
 }
