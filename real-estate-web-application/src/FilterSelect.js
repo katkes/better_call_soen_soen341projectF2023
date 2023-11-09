@@ -32,7 +32,7 @@ function FilterSelect(){
                     {/* <span class="checkmark"></span> */}
                 </label>
 
-                <label className="label">Number of Bathrooms: {bathrooms}  
+                <label className="label">Number of Bathrooms: {bathrooms}
                     <input id="numBathrooms" name="StaticFilters" type="range" min="1" max="3" step="1" value={bathrooms} onChange={(e) => setBathrooms(e.target.value)}   />
                     {/* <span class="checkmark"></span> */}
                 </label>
