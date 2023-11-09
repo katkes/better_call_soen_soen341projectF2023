@@ -7,6 +7,23 @@ import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 
 function TopBar({ setContentText }) {
+  // Inside your TopBar component
+  const handleSearchChange = (query) => {
+    fetch(`http://localhost:8000/property_search/?q=${query}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Received data:", data);
+        setContentText(
+          <PropertySection
+            setContentText={setContentText}
+            filteredProperties={data}
+          />
+        );
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   const handleSignOut = async (e) => {
     await fetch("http://localhost:8000/logout/", {
@@ -56,24 +73,22 @@ function TopBar({ setContentText }) {
 
       <div className="filterForm">
         <form id="ApiFilterSearch" action="" method="GET">
-          {/* <label htmlFor="filter">Filter properties </label> */}
           <input
             type="text"
             name="filter"
             id="filter"
             placeholder="Search properties..."
-          ></input>
+            onChange={(e) => handleSearchChange(e.target.value)}
+          />
         </form>
         <FilterSelect />
       </div>
-
       {!sessionStorage.getItem("userID") ? null : (
         <ProfileButton
           username={sessionStorage.getItem("userName")}
           setContentText={setContentText}
         />
       )}
-
       {sessionStorage.getItem("userID") ? (
         <button className="signUpBtn" onClick={handleSignOut}>
           Sign out

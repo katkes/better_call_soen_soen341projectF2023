@@ -1,3 +1,4 @@
+from accounts.models import CustomUser
 from .forms import PropertyForm, OfferForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -23,11 +24,32 @@ def property_list(request):
 
 def property_search(request):
     query = request.GET.get('q')
+    print("Received query:", query)
     if query is not None:
-        properties = Property.objects.filter(name__icontains=query)
+        properties = Property.objects.filter(
+            name__icontains=query, for_sale=True)
     else:
         properties = Property.objects.all()
-    return render(request, 'property_search_results.html', {'properties': properties})
+
+    serialized_properties = []
+    for p in properties:
+        broker_name = None
+        if p.assigned_user_id:  # Check if there's an assigned user ID
+            assigned_user = CustomUser.objects.get(pk=p.assigned_user_id)
+            if hasattr(assigned_user, 'broker'):
+                broker_name = assigned_user.name
+
+        serialized_property = {
+            'name': p.name,
+            'price': p.price,
+            'country': p.country,
+            'rating': p.rating,
+            'broker_name': broker_name
+        }
+        serialized_properties.append(serialized_property)
+
+    return JsonResponse(serialized_properties, safe=False)
+
 
 
 @login_required
