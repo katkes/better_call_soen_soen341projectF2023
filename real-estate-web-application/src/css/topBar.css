@@ -4,6 +4,7 @@
   left: 0;
   top: 0;
   height: 15vh;
+  min-height: 120px;
   width: 100%; 
   background-color: #185c9c;
 }
