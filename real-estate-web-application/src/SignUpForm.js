@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import App from "./App";
 import LoginForm from "./LoginForm";
 
-function SignUp({setContentText, setIsSignUpClicked, setIsisLoggedng}){
+function SignUp({setContentText}){
 
 
   const handleButtonClick4 = () => {
-    setIsSignUpClicked(false);
+  
    
-    setContentText(<LoginForm setContentText={setContentText} setIsSignUpClicked={setIsSignUpClicked} setIsisLoggedng={setIsisLoggedng}/>);
+    setContentText(<LoginForm setContentText={setContentText} />);
   };
 
   const [formData, setFormData] = useState({

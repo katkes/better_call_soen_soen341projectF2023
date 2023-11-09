@@ -7,31 +7,18 @@ import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 
 function TopBar({ setContentText }) {
-  const [isLoggedng, setIsisLoggedng] = useState();
-  if (isLoggedng===false){
 
-  }
-  else{
-    setIsisLoggedng(true)
-  }
-  const [isSignUpClicked, setIsSignUpClicked] = useState();
-  if (isSignUpClicked===true){
-
-  }
-  else{
-    setIsSignUpClicked(false)
-  }
   const handleButtonClick = () => {
     // Change the content when the button is clicked 
-    setIsSignUpClicked(true);
-    setContentText(<SignUp setContentText={setContentText} setIsSignUpClicked={setIsSignUpClicked} setIsisLoggedng={setIsisLoggedng}/> );
+    
+    setContentText(<SignUp setContentText={setContentText} /> );
   };
 
 
   const handleButtonClick2 = () => {
     // Change the content when the button is clicked 
-    if(isLoggedng==true){
-    setIsSignUpClicked(false);}
+    if(!(sessionStorage.getItem('userID'))==true){
+    }
     else{}
     setContentText(<PropertySection setContentText={setContentText}/>);
   };
@@ -56,15 +43,15 @@ function TopBar({ setContentText }) {
           <FilterSelect />
         </div>
         
-        {isLoggedng ? null : (
+        {!(sessionStorage.getItem('userID')) ? null : (
         <ProfileButton username={sessionStorage.getItem("userName")} setContentText={setContentText}/>
       )}
       
-      {isSignUpClicked ?  (
+      {(sessionStorage.getItem('userID')) ?  (
         <button className="signUpBtn" >Sign out</button>
       ):null
       }
-        {isSignUpClicked ? null : (
+        {(sessionStorage.getItem('userID')) ? null : (
         <button className="signUpBtn" onClick={handleButtonClick}>Sign in</button>
       )}
       

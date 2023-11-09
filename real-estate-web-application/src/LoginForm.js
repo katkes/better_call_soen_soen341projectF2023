@@ -2,7 +2,7 @@ import "./css/LoginForm.css";
 import Home from './home';
 import React, {useState} from "react";
 
-function LoginForm({setContentText, setIsSignUpClicked, setIsisLoggedng}) {
+function LoginForm({setContentText}) {
 
 
     const [formData, setFormData] = useState({
@@ -42,8 +42,7 @@ function LoginForm({setContentText, setIsSignUpClicked, setIsisLoggedng}) {
                 sessionStorage.setItem("isRegistered", true)
                 // Redirect or show success message
                 console.log(sessionStorage.getItem("userID"));
-                setIsSignUpClicked((sessionStorage.getItem('userID')));
-                setIsisLoggedng(!(sessionStorage.getItem('userID')));
+           
                 setContentText(<Home/>);
             } else {
                 console.error("Error logging in user");
