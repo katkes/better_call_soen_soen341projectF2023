@@ -26,7 +26,7 @@ function TopBar({ setContentText }) {
  
   return (
     <div className="topBar">
-  
+   <FilterSelect/>
         <div className="pageLogo">
         <button onClick={handleButtonClick2} id="LogoAnchorHome">  
           {/* <img src="./Logo.png" alt="Urban Utopia"></img> */}
@@ -35,11 +35,11 @@ function TopBar({ setContentText }) {
         </div>
         
         <div className="filterForm"> 
+         
           <form id="ApiFilterSearch" action="" method="GET"> 
           {/* <label htmlFor="filter">Filter properties </label> */}
           <input type="text" name="filter" id="filter" placeholder="Search properties..."></input>
           </form>
-          <FilterSelect />
         </div>
         
         {!(sessionStorage.getItem('userID')) ? null : (
