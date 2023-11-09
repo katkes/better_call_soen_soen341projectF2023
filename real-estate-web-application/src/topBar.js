@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import SignUp from "./SignUpForm";
 import "./css/topBar.css";
 //import HomePage from "./home";
@@ -17,7 +17,7 @@ function TopBar({ setContentText }) {
 
   const handleButtonClick2 = () => {
     // Change the content when the button is clicked 
-    if(!(sessionStorage.getItem('userID'))==true){
+    if(!(sessionStorage.getItem('userID'))===true){
     }
     else{}
     setContentText(<PropertySection setContentText={setContentText}/>);

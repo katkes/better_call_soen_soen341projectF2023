@@ -8,7 +8,7 @@ function ProfileButton({username, setContentText}){
   };
     return (
         
-    <div onClick='' className="profileButton">
+    <div onClick={handleButtonClick} className="profileButton">
       {username}
      
     </div>
