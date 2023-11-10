@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django-cors-headers = "*"
 django-rest-framework = "*"
+django = "==3.2.0"
 
 [dev-packages]
 
