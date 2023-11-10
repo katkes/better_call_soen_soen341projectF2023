@@ -10,16 +10,11 @@ function AccountPage({phoneNumber, username, email, favoriteProperties, setConte
             <h3>{email}</h3>
             <h3>{phoneNumber}</h3>
 
-
-
-        <div className="favoriteProperties">
-        <h3>Favorites</h3>
-        
-
-
-        <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
-        <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
-        </div>
+            <div className="favoriteProperties">
+            <h3>Favorites</h3>
+            <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
+            <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
+            </div>
         </div>
     );
 }
