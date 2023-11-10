@@ -1,30 +1,5 @@
-name: CI-CD pipeline
+name: Django Migration Check
 
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  check-urls:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11
-
-      - name: Check urlpatterns in urls.py
-        run: |
-          file_path="Backend/accounts/urls.py"
-          if grep -qE 'urlpatterns = \[' $file_path; then
-            echo "urlpatterns found in $file_path"
-            exit 0  # Success
-          else
-            echo "No urlpatterns found in $file_path"
-            exit 1  # Failure
+with:
+  app-path: Backend/app
 
