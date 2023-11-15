@@ -240,24 +240,3 @@ body {
 /*.submitSignUp:active {
   background-color: rgb(3, 23, 24);
 }*/
-
-.App .p1{
-font-size: 60px;
-text-align: center;
-padding-top:10%;
-font-family: 'Pacifico', cursive;
-}
-
-.App .p2{
-  word-wrap: break-word;
-  text-align: center;
-  padding-left: 15%;
-  padding-right: 15%;
-  font-size: 20px;
-}
-
-@font-face {
-  font-family: 'Pacifico';
-  font-style: normal;
-  src: local('Pacifico'), local('Pacifico-Regular'), url(https://fonts.gstatic.com/s/pacifico/v16/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2) format('woff2');
-}
