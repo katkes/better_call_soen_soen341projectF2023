@@ -69,7 +69,7 @@ function TopBar({ setContentText }) {
 
   return (
     <div className="topBar">
-   <FilterSelect/>
+    <FilterSelect/>
         <div className="pageLogo">
         <button onClick={handleButtonClick2} id="LogoAnchorHome">  
           {/* <img src="./Logo.png" alt="Urban Utopia"></img> */}

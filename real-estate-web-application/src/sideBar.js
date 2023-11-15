@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./css/SideBar.css";
 import SignUp from "./SignUpForm";
+import GenerateBrokers from "./GenerateBrokers";
+
 function SideBar({setContentText}) {
  
     const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +14,7 @@ function SideBar({setContentText}) {
     const handleClick=()=>{
 
      if(sessionStorage.getItem("isRegistered")){
-        
+        <GenerateBrokers/>
      }
      else{
       setContentText(<SignUp setContentText={setContentText} /> );
