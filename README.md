@@ -27,7 +27,7 @@ For the front end of the project, the team decided to use the React framework. T
 ## Languages
 - React.js
 - Django
-- MySQL
+- SQLite3
 - HTML
 - CSS
 - JavaScript

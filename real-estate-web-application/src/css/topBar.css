@@ -10,7 +10,6 @@
 }
 
 .topBar h1 {
-  text-align: center;
   color: white;
   animation: fadeIn;
   font-size: 35px;
@@ -45,10 +44,10 @@
 
 #filter {
   
-  width: 300px; 
-  height: 5px; 
-  border-radius: 20px; 
-  border: 2px solid #ccc; 
+  width: 350px; 
+  height: 8px; 
+  border-radius: 10px; 
+  border: 1px solid #ccc; 
   margin-top: 7px;
   padding: 10px; 
   font-size: 16px; 

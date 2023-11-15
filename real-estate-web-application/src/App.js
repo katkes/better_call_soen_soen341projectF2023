@@ -34,7 +34,6 @@ function App() {
       <TopBar setContentText={setContentText}/>
       {/* <PropertySection/> */}
       {/*<PropertySection setContentText={setContentText}/>*/}
-      
     </div>
   );
 }
