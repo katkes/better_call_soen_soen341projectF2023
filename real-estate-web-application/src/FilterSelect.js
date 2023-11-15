@@ -46,6 +46,7 @@ function FilterSelect(){
                             <input class= "slider-range" id="numBedrooms" name="StaticFilters" type="range" min="1" max="10" step="1" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)} />
                             {/* <span class="checkmark"></span> */}
                             {bedrooms}
+                            <br></br><br></br>
                     <button type="submit" className="filterFormApply">Apply filters</button>
                     </div>
 
