@@ -1,6 +1,7 @@
 import './css/home.css';
 
 function HomePage(){
+    <p>hello</p>
     return(
         <div className="homePage">
             <img className='frontPanel' src="./HomePageFrontPanel2.jpg" alt="hell"></img>

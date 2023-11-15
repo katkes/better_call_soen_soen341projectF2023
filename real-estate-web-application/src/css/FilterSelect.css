@@ -57,17 +57,17 @@
 }
 
 .filter-button{
-  background-color: white;
-  color:#185c9c;
+  background-color: #001e41;
+  color:white;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid white;
-  border-radius: 18px;
+  border: 1px solid #D4A437;
+  border-radius: 15px;
 }
 
 .filter-button:hover{
-  background-color: black;
-  color: white;
+  background-color: #D4A437;
+  color: black;
   cursor: pointer;
 }
 .undropdown-content{
@@ -81,4 +81,5 @@
   z-index: 1;
   padding-bottom: 10px;
   padding: 10px;
+  border-radius: 4px;
 }

@@ -62,9 +62,9 @@ function LoginForm({setContentText}) {
         <div className="slide-in">
             <div className="loginForm">
                 <form className="login" onSubmit={handleSubmit}>
-                    <h2>Login</h2>
                     <div className="loginFormElement">
-                        <label htmlFor="email">email address:</label>
+                    <h2>Login</h2>
+                        <label htmlFor="email">Email address</label>
                         <input
                             type="email"
                             id="email"
@@ -72,9 +72,10 @@ function LoginForm({setContentText}) {
                             value={formData.email}
                             onChange={handleChange}
                             required
+                            placeholder="Enter your email address"
                         ></input>
                         <br></br>
-                        <label htmlFor="Password">Password:</label>
+                        <label htmlFor="Password">Password</label>
                         <input
                             type="password"
                             id="password"
@@ -82,6 +83,7 @@ function LoginForm({setContentText}) {
                             value={formData.password}
                             onChange={handleChange}
                             required
+                            placeholder="Enter password"
                         ></input>
                         <br></br>
                         <button type="submit" className="loginButton">Login</button>

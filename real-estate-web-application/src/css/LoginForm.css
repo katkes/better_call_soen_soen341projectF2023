@@ -11,7 +11,7 @@
 
   .loginForm h2 {
     text-align: center;
-    color: #185c9c;
+    color: #001e41;
     animation: fadeIn;
     font-size: 40px;
     font-weight: lighter;
@@ -21,7 +21,7 @@
   .loginButton, .cancelLoginButton {
     width: 30%;
     padding: 10px;
-    background-color: #185c9c;
+    background-color: #001e41;
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -32,8 +32,8 @@
   
   .loginButton:hover, .cancelLoginButton:hover {
     background-color: white;
-    color: #185c9c;
-    border: 1px solid #185c9c;
+    color: #001e41;
+    border: 1px solid #001e41;
   }
   
   .cancelLoginButtonAnchorTag {
@@ -42,10 +42,63 @@
   
   .loginForm input[type="email"],
   .loginForm input[type="password"] {
-    width: 90%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: solid 1px #B1B1B1;
+    background-color: #FFFFFF;
     border-radius: 3px;
     font-size: 16px;
+    font-family: 'Avenir';
+  }
+
+  .slide-in {
+    position:relative;
+    animation-name: slideIn;
+    animation-duration: 1s;
+  }
+  
+  @media (max-width: 767px) {
+    .signUpForm {
+      max-width: 260px;
+     
+    }
+    .slide-in {
+      animation-name: slideInSmallerScreen;
+      animation-duration: 1s;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      left: -100%; 
+    }
+  
+    to {
+      left: 0;
+    }
+  }
+  
+  @keyframes slideInSmallerScreen {
+    from {
+      left: -100vw; 
+    }
+  
+    to {
+      left: 0;
+    }
+  }
+
+  .loginFormElement{
+    margin: 30px;
+    animation: fadeIn;
+    animation-duration: 2s;
+  }
+
+  .loginFormElement label{
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: rgb(73, 73, 73);
   }
