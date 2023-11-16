@@ -14,8 +14,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 def get_properties(request):
     properties = Property.objects.all()
-    serialized_properties = [{'name': p.name, 'price': p.price,
-                              'country': p.country, 'rating': p.rating} for p in properties]
+    serialized_properties = [{'price': p.price, 'size': p.size, 'num_of_bedrooms': p.num_of_bathrooms,
+                              'num_of_bathrooms': p.num_of_bathrooms,
+                              'city': p.city, 'rating': p.rating} for p in properties]
     return JsonResponse(serialized_properties, safe=False)
 
 
@@ -24,40 +25,44 @@ def property_list(request):
     context = {'properties': properties}
     return render(request, 'property_list.html', context)
 
+
 # old property search
-# def property_search(request):
-#     query = request.GET.get('q')
-#     print("Received query:", query)
-#     if query is not None:
-#         properties = Property.objects.filter(
-#             name__icontains=query, for_sale=True)
-#     else:
-#         properties = Property.objects.all()
-#
-#     serialized_properties = []
-#     for p in properties:
-#         broker_name = None
-#         if p.assigned_user_id:  # Check if there's an assigned user ID
-#             assigned_user = CustomUser.objects.get(pk=p.assigned_user_id)
-#             if hasattr(assigned_user, 'broker'):
-#                 broker_name = assigned_user.name
-#
-#         serialized_property = {
-#             'name': p.name,
-#             'price': p.price,
-#             'country': p.country,
-#             'rating': p.rating,
-#             'broker_name': broker_name
-#         }
-#         serialized_properties.append(serialized_property)
-#
-#     return JsonResponse(serialized_properties, safe=False)
+def property_search(request):
+    query = request.GET.get('q')
+    print("Received query:", query)
+    if query is not None:
+        properties = Property.objects.filter(
+            name__icontains=query, for_sale=True)
+    else:
+        properties = Property.objects.all()
+
+    serialized_properties = []
+    for p in properties:
+        broker_name = None
+        if p.assigned_user_id:  # Check if there's an assigned user ID
+            assigned_user = CustomUser.objects.get(pk=p.assigned_user_id)
+            if hasattr(assigned_user, 'broker'):
+                broker_name = assigned_user.name
+
+        serialized_property = {
+            'price': p.price,
+            'size': p.size,
+            'num_of_bedrooms': p.num_of_bathrooms,
+            'num_of_bathrooms': p.num_of_bathrooms,
+            'city': p.city,
+            'rating': p.rating,
+            'broker_name': broker_name
+        }
+        serialized_properties.append(serialized_property)
+
+    return JsonResponse(serialized_properties, safe=False)
+
 
 @csrf_exempt
-def property_search(request):
+def property_filter(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        priceUpperBound = int(data.get('Price',800000))
+        priceUpperBound = int(data.get('Price', 800000))
         sizeUpperBound = int(data.get('Size', 2000))
         bathroomsUpperBound = int(data.get('numBathrooms', 3))
         bedroomsUpperBound = int(data.get('numBedrooms', 10))
@@ -81,11 +86,13 @@ def property_search(request):
                     # brokerID =
 
             serializedProperty = {
-                'name': p.name,
                 'price': p.price,
-                'country': p.country,
+                'city': p.city,
                 'rating': p.rating,
-                'brokerName': brokerName
+                'brokerName': brokerName,
+                'num_of_bedrooms': p.num_of_bathrooms,
+                'num_of_bathrooms': p.num_of_bathrooms,
+                'size': p.size
             }
             serializedProperties.append(serializedProperty)
 
@@ -93,7 +100,6 @@ def property_search(request):
 
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
-
 
 
 @login_required
@@ -141,11 +147,12 @@ def request_visit(request, property_id):
 
     # Send the visit request email
     subject = 'Visit Request for Property'
-    message = f'Hello,\n\nI would like to request a visit for the property: {property.name}.'
+    message = f'Hello,\n\nI would like to request a visit for your property.'
     sender_email = 'sender@example.com'
     send_mail(subject, message, sender_email, [assigned_user_email])
 
     return redirect('property_detail', property_id=property_id)
+
 
 # views.py
 

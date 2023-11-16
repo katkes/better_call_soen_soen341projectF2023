@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('api/properties/', views.get_properties, name='get_properties'),
     path('property_search/', views.property_search, name='property_search'),
+    path('property_filter/', views.property_filter, name='property_filter'),
     path('property/create/', views.create_property, name='create_property'),
     path('properties/', views.property_list, name='property_list'),
     path('property/<int:property_id>/',

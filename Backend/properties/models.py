@@ -3,34 +3,37 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 
 from accounts.models import Broker
+
+
 # from Backend.accounts.models import Broker
 
 
 class Property(models.Model):
     property_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)
+    # name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    country = models.CharField(max_length=50)
+    city = models.CharField(max_length=50, default="Dorval")
     rating = models.DecimalField(max_digits=3, decimal_places=1)
     image = models.ImageField(upload_to='property_images/')
     assigned_user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
     for_sale = models.BooleanField(default=True)
-    square_footage = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0)
+    size = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0) #changed from square_footage
     num_of_bedrooms = models.PositiveIntegerField(default=0)
     num_of_bathrooms = models.PositiveIntegerField(default=0)
     type_of_property = models.CharField(max_length=50, default="House")
-    size = models.PositiveIntegerField()
+    # size = models.PositiveIntegerField()
+
 
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ('property_id', 'name', 'price', 'country', 'rating')
+    list_display = ('property_id', 'price','size', 'num_of_bedrooms', 'num_of_bathrooms', 'city','type_of_property')
 
     def save_model(self, request, obj, form, change):
         if not obj.assigned_user:
             obj.assigned_user = request.user
         obj.save()
-        print(f"Saved property with name '{obj.name}' by user '{request.user}'")
+        print(f"Saved property with id '{obj.property_id}' by user '{request.user}'")
 
 
 class Offer(models.Model):
