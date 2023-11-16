@@ -162,7 +162,7 @@ function FilterSelect() {
                     {num_of_bedrooms}
                     {/* <span class="checkmark"></span> */}
                     
-                    <br></br>
+                    <br></br><br></br>
                     <button type="submit" className="filterFormApply">Apply filters</button>
                 </div>
 
