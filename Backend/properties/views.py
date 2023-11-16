@@ -1,3 +1,5 @@
+import json
+
 from accounts.models import CustomUser
 from .forms import PropertyForm, OfferForm
 from django.shortcuts import render, redirect
@@ -7,6 +9,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.core.mail import send_mail
 from django.http import HttpResponseBadRequest, JsonResponse
 from .models import Property
+from django.views.decorators.csrf import csrf_exempt
 
 
 def get_properties(request):
@@ -21,34 +24,75 @@ def property_list(request):
     context = {'properties': properties}
     return render(request, 'property_list.html', context)
 
+# old property search
+# def property_search(request):
+#     query = request.GET.get('q')
+#     print("Received query:", query)
+#     if query is not None:
+#         properties = Property.objects.filter(
+#             name__icontains=query, for_sale=True)
+#     else:
+#         properties = Property.objects.all()
+#
+#     serialized_properties = []
+#     for p in properties:
+#         broker_name = None
+#         if p.assigned_user_id:  # Check if there's an assigned user ID
+#             assigned_user = CustomUser.objects.get(pk=p.assigned_user_id)
+#             if hasattr(assigned_user, 'broker'):
+#                 broker_name = assigned_user.name
+#
+#         serialized_property = {
+#             'name': p.name,
+#             'price': p.price,
+#             'country': p.country,
+#             'rating': p.rating,
+#             'broker_name': broker_name
+#         }
+#         serialized_properties.append(serialized_property)
+#
+#     return JsonResponse(serialized_properties, safe=False)
 
+@csrf_exempt
 def property_search(request):
-    query = request.GET.get('q')
-    print("Received query:", query)
-    if query is not None:
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        priceUpperBound = int(data.get('Price',800000))
+        sizeUpperBound = int(data.get('Size', 2000))
+        bathroomsUpperBound = int(data.get('numBathrooms', 3))
+        bedroomsUpperBound = int(data.get('numBedrooms', 10))
+
         properties = Property.objects.filter(
-            name__icontains=query, for_sale=True)
+            price__lte=priceUpperBound,
+            size__lte=sizeUpperBound,
+            num_of_bathrooms__lte=bathroomsUpperBound,
+            num_of_bedrooms__lte=bedroomsUpperBound,
+            for_sale=True
+        )
+
+        serializedProperties = []
+
+        for p in properties:
+            brokerName = None
+            if p.assigned_user_id:
+                assignedUser = CustomUser.objects.get(pk=p.assigned_user_id)
+                if hasattr(assignedUser, 'broker'):
+                    brokerName = assignedUser.name
+                    # brokerID =
+
+            serializedProperty = {
+                'name': p.name,
+                'price': p.price,
+                'country': p.country,
+                'rating': p.rating,
+                'brokerName': brokerName
+            }
+            serializedProperties.append(serializedProperty)
+
+        return JsonResponse(serializedProperties, safe=False)
+
     else:
-        properties = Property.objects.all()
-
-    serialized_properties = []
-    for p in properties:
-        broker_name = None
-        if p.assigned_user_id:  # Check if there's an assigned user ID
-            assigned_user = CustomUser.objects.get(pk=p.assigned_user_id)
-            if hasattr(assigned_user, 'broker'):
-                broker_name = assigned_user.name
-
-        serialized_property = {
-            'name': p.name,
-            'price': p.price,
-            'country': p.country,
-            'rating': p.rating,
-            'broker_name': broker_name
-        }
-        serialized_properties.append(serialized_property)
-
-    return JsonResponse(serialized_properties, safe=False)
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
 

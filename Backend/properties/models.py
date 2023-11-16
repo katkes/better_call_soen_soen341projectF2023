@@ -21,7 +21,7 @@ class Property(models.Model):
     num_of_bedrooms = models.PositiveIntegerField(default=0)
     num_of_bathrooms = models.PositiveIntegerField(default=0)
     type_of_property = models.CharField(max_length=50, default="House")
-
+    size = models.PositiveIntegerField()
 
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ('property_id', 'name', 'price', 'country', 'rating')
