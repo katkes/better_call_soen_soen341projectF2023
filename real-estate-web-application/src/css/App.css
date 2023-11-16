@@ -90,9 +90,9 @@ body {
   cursor: pointer;
 }
 
-.signUpBtn:active {
+/* .signUpBtn:active {
   background-color: rgb(3, 23, 24);
-}
+} */
 
 .content {
   position: absolute;
@@ -117,6 +117,12 @@ body {
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+@media (max-width: 767px) {
+  .signUpForm {
+    margin-top: 40px;
+    
+  }
 }
 
 .slide-in {

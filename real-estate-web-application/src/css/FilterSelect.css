@@ -1,15 +1,23 @@
 
 .filterFormDiv{
- z-index: 1000;
+  z-index: 1000;
   position:absolute;
-  top:50px;
-  left: 25%;
+  top:9.8vh;
+  left: 25vw;
   text-align: center;
   color: black;
   padding-left: 10px;
   width: 15%;;
 
 }
+@media (max-width: 767px) {
+  .filterFormDiv {
+    left: 10px;
+    top: 65px;
+    
+  }
+}
+
 
 .filterFormApply{
   background-color: #ffffff;
@@ -44,6 +52,7 @@
 }
 
 .label{
+  align-content: left;
   text-align: left;
   display:block;
   font-family:'Times New Roman', Times, serif;
@@ -52,8 +61,14 @@
   padding-top: 10px;
 }
 
-#Price, #Size, #numBathrooms, #numBedrooms {
+.slider-range{
+  display:block;
+  align-content: right;
   float: right;
+}
+
+#Price, #Size, #numBathrooms, #numBedrooms {
+  position: relative;
 }
 
 .filter-button{
@@ -74,7 +89,9 @@
   display:none;
 }
 .dropdown-content {
-  left: 100%;
+  position:absolute;
+  top:-2vw;
+  left:12.5vw;
   background-color: #ffffff;
   width: 150%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);

@@ -57,7 +57,7 @@ function FilterSelect() {
         setBedrooms(formData.num_of_bedrooms || num_of_bedrooms);
 
         try {
-            const response = await fetch("http://localhost:8000/property_search/", {
+            const response = await fetch("http://localhost:8000/property_filter/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -131,6 +131,7 @@ function FilterSelect() {
                     {/* <span class="checkmark"></span> */}
                     {size} ft
                     <label className="label" htmlFor="num_of_bathrooms">Number of Bathrooms<br></br></label>
+                    
                     <input class="slider-range"
                            id="num_of_bathrooms"
                            name="num_of_bathrooms"
@@ -142,9 +143,11 @@ function FilterSelect() {
                            onChange={handleChange}
                         // onChange={(e) => setBathrooms(e.target.value)}
                     />
-                    {/* <span class="checkmark"></span> */}
                     {num_of_bathrooms}
+                    {/* <span class="checkmark"></span> */}
+                    
                     <label className="label" htmlFor="num_of_bedrooms">Number of Bedrooms<br></br></label>
+                    
                     <input class="slider-range"
                            id="num_of_bedrooms"
                            name="num_of_bedrooms"
@@ -156,8 +159,10 @@ function FilterSelect() {
                            onChange={handleChange}
                         // onChange={(e) => setBedrooms(e.target.value)}
                     />
-                    {/* <span class="checkmark"></span> */}
                     {num_of_bedrooms}
+                    {/* <span class="checkmark"></span> */}
+                    
+                    <br></br>
                     <button type="submit" className="filterFormApply">Apply filters</button>
                 </div>
 
