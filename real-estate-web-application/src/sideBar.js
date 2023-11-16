@@ -14,7 +14,7 @@ function SideBar({setContentText}) {
     const handleClick=()=>{
 
      if(sessionStorage.getItem("isRegistered")){
-        <GenerateBrokers/>
+        setContentText(<GenerateBrokers/>);
      }
      else{
       setContentText(<SignUp setContentText={setContentText} /> );
