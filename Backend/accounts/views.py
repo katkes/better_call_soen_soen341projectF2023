@@ -187,15 +187,45 @@ def delete_user(request, user_id):
 
 # views.py
 
+#old search brokers
+# def search_brokers(request):
+#     query = request.GET.get('query')
+#     brokers = CustomUser.objects.filter(role='broker')
+#
+#     if query:
+#         brokers = brokers.filter(name__icontains=query)
+#
+#     # Get active property listings for each broker
+#     return render(request, 'search_brokers.html', {'brokers': brokers})
+
+@csrf_exempt
 def search_brokers(request):
-    query = request.GET.get('query')
-    brokers = CustomUser.objects.filter(role='broker')
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
 
-    if query:
-        brokers = brokers.filter(name__icontains=query)
+        brokers = CustomUser.objects.filter(role="broker")
 
-    # Get active property listings for each broker
-    return render(request, 'search_brokers.html', {'brokers': brokers})
+        if data:
+            brokers = brokers.filter(name=data)
+
+
+        serializedBrokers = []
+
+        for broker in brokers:
+            serializedBroker = {
+                "name" : broker.name,
+                "email": broker.email,
+                "phone_number": broker.phone_number
+            }
+
+            serializedBrokers.append(serializedBroker)
+
+
+        return JsonResponse(serializedBrokers, safe=False)
+
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
 def request_info(request, broker_id):
