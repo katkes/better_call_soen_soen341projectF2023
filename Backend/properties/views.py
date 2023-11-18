@@ -27,35 +27,72 @@ def property_list(request):
 
 
 # old property search
+# def property_search(request):
+#     query = request.GET.get('q')
+#     print("Received query:", query)
+#     if query is not None:
+#         properties = Property.objects.filter(
+#             name__icontains=query, for_sale=True)
+#     else:
+#         properties = Property.objects.all()
+#
+#     serialized_properties = []
+#     for p in properties:
+#         broker_name = None
+#         if p.assigned_user_id:  # Check if there's an assigned user ID
+#             assigned_user = CustomUser.objects.get(pk=p.assigned_user_id)
+#             if hasattr(assigned_user, 'broker'):
+#                 broker_name = assigned_user.name
+#
+#         serialized_property = {
+#             'price': p.price,
+#             'size': p.size,
+#             'num_of_bedrooms': p.num_of_bathrooms,
+#             'num_of_bathrooms': p.num_of_bathrooms,
+#             'city': p.city,
+#             'rating': p.rating,
+#             'broker_name': broker_name
+#         }
+#         serialized_properties.append(serialized_property)
+#
+#     return JsonResponse(serialized_properties, safe=False)
+
+@csrf_exempt
 def property_search(request):
-    query = request.GET.get('q')
-    print("Received query:", query)
-    if query is not None:
-        properties = Property.objects.filter(
-            name__icontains=query, for_sale=True)
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
+
+        if not data:
+            properties = Property.objects.all()
+            print("nothing")
+        else:
+            properties = Property.objects.filter(city=data)
+
+        serializedProperties = []
+
+        for p in properties:
+            brokerName = None
+            if p.assigned_user_id:
+                assignedUser = CustomUser.objects.get(pk=p.assigned_user_id)
+                if hasattr(assignedUser, 'broker'):
+                    brokerName = assignedUser.name
+
+            serializedProperty = {
+                'price': p.price,
+                'city': p.city,
+                'rating': p.rating,
+                'brokerName': brokerName,
+                'num_of_bedrooms': p.num_of_bathrooms,
+                'num_of_bathrooms': p.num_of_bathrooms,
+                'size': p.size
+            }
+            serializedProperties.append(serializedProperty)
+
+        return JsonResponse(serializedProperties, safe=False)
+
     else:
-        properties = Property.objects.all()
-
-    serialized_properties = []
-    for p in properties:
-        broker_name = None
-        if p.assigned_user_id:  # Check if there's an assigned user ID
-            assigned_user = CustomUser.objects.get(pk=p.assigned_user_id)
-            if hasattr(assigned_user, 'broker'):
-                broker_name = assigned_user.name
-
-        serialized_property = {
-            'price': p.price,
-            'size': p.size,
-            'num_of_bedrooms': p.num_of_bathrooms,
-            'num_of_bathrooms': p.num_of_bathrooms,
-            'city': p.city,
-            'rating': p.rating,
-            'broker_name': broker_name
-        }
-        serialized_properties.append(serialized_property)
-
-    return JsonResponse(serialized_properties, safe=False)
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
 @csrf_exempt
