@@ -31,9 +31,9 @@ function App() {
 
   return (
     <div className="App">
-      <Content contentText={contentText}/>
-      <SideBar setContentText={setContentText} setbrokering={setbrokering}/>
-      <TopBar setContentText={setContentText} Brokering={Brokering}/>
+      <Content contentText={contentText} setbrokering={setbrokering}/>
+      <SideBar setContentText={setContentText} setbrokering={setbrokering} Brokering={Brokering}/>
+      <TopBar setContentText={setContentText} Brokering={Brokering} setbrokering={setbrokering}/>
       {/* <PropertySection/> */}
       {/*<PropertySection setContentText={setContentText}/>*/}
     </div>

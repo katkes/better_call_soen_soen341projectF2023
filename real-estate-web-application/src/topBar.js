@@ -7,9 +7,9 @@ import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 import React, { useState } from "react";
 
-function TopBar({ setContentText, Brokering}) {
+function TopBar({ setContentText, Brokering, setbrokering}) {
   // Inside your TopBar component
-
+  
   const [searchQuery, setSearchQuery] = useState(""); // Define searchQuery state
   // Define searchQuery state
 
@@ -54,20 +54,20 @@ function TopBar({ setContentText, Brokering}) {
       .catch((error) => {
         console.error("Error:", error);
       });
+      setbrokering(false);
   };
 
   const handleButtonClick = () => {
     // Change the content when the button is clicked
 
     setContentText(<SignUp setContentText={setContentText} />);
+    setbrokering(false);
   };
 
   const handleButtonClick2 = () => {
     // Change the content when the button is clicked
-    if (!sessionStorage.getItem("userID") === true) {
-    } else {
-    }
-    setContentText(<PropertySection setContentText={setContentText} />);
+ 
+    setbrokering(false);
   };
 
   return (
@@ -87,7 +87,7 @@ function TopBar({ setContentText, Brokering}) {
             type="text"
             name="filter"
             id="filter"
-            placeholder={`${Brokering ? "Search Brokers By Name.." : "'Search properties by city...'"}`}
+            placeholder={`${Brokering ? "Search Brokers By Name.." : "Search properties by city..."}`}
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
