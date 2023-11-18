@@ -51,14 +51,14 @@ function SingularCard({
         <p>Name: {name}</p>
         <p>Price: ${price}</p>
         <p>Location: {country}</p>
-        <p>Rating: {rating}☆</p>
+        <p>Rating: {rating}<span className="star-rating">&#9733; &#9733; &#9733; &#9733; &#9733;</span></p>
         {brokerName && <p>Broker: {brokerName}</p>}{" "}
         {/* Display broker name if available */}
         <div className="buttonOptions">
           <button className="buyButton" onClick={handleClick3}>
-            Buy
+            BUY
           </button>
-          <button className="visitButton" /*onClick={wantLogIn}*/>visit</button>
+          <button className="visitButton" /*onClick={wantLogIn}*/>VISIT</button>
         </div>
       </div>
     </div>

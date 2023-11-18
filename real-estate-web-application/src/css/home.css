@@ -4,13 +4,15 @@
 }
 
 .homePage .p1{
+    color: gainsboro;
     font-size: 60px;
     text-align: center;
-    padding-top:10%;
+    padding-top:5%;
     font-family: 'Pacifico', cursive;
     }
 
 .homePage .p2{
+      color: gainsboro;
       word-wrap: break-word;
       text-align: center;
       padding-left: 15%;
@@ -23,3 +25,17 @@
       font-style: normal;
       src: local('Pacifico'), local('Pacifico-Regular'), url(https://fonts.gstatic.com/s/pacifico/v16/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2) format('woff2');
     }
+
+
+    body {
+      /* Set background image using the relative path */
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/public/HomePageFrontPanel2.jpg') no-repeat center top 50px;
+      /* Set background size to cover the entire page */
+      background-size: cover;
+      /* Ensure the linear-gradient is placed below the image */
+      z-index: 1;
+    }
+    
+      
+    
+    
