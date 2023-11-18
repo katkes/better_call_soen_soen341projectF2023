@@ -11,6 +11,10 @@ body {
   background-color: #EFF5FF;
 }
 
+.none{
+  display: none;
+}
+
 .sidebar {
   width: 0;
   position: fixed;

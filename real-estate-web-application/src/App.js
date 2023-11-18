@@ -3,6 +3,7 @@ import './css/App.css';
 import SideBar from './sideBar';
 import TopBar from './topBar';
 import Content from './Content';
+import HomePage from "./home";
 // import PropertySection from "./PropertySection.js";
 // import HomePage from "./home";
 // import LoginForm from "./LoginForm";
@@ -11,9 +12,10 @@ import Content from './Content';
 
 
 function App() {
-    const [contentText, setContentText] = useState();
+    const [contentText, setContentText] = useState(<HomePage/>);
 
     const userID = sessionStorage.getItem('userID');
+    const [Brokering, setbrokering] = useState(false);
     const isRegistered = sessionStorage.getItem('isRegistered');
     const userName = sessionStorage.getItem('userName');
 
@@ -30,8 +32,8 @@ function App() {
   return (
     <div className="App">
       <Content contentText={contentText}/>
-      <SideBar setContentText={setContentText}/>
-      <TopBar setContentText={setContentText}/>
+      <SideBar setContentText={setContentText} setbrokering={setbrokering}/>
+      <TopBar setContentText={setContentText} Brokering={Brokering}/>
       {/* <PropertySection/> */}
       {/*<PropertySection setContentText={setContentText}/>*/}
     </div>

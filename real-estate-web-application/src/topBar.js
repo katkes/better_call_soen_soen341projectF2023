@@ -7,14 +7,14 @@ import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 import React, { useState } from "react";
 
-function TopBar({ setContentText }) {
+function TopBar({ setContentText, Brokering}) {
   // Inside your TopBar component
 
   const [searchQuery, setSearchQuery] = useState(""); // Define searchQuery state
   // Define searchQuery state
 
   const handleSearchChange = (query) => {
-    setSearchQuery(query); // Update searchQuery state
+   if(!Brokering){ setSearchQuery(query); // Update searchQuery state
     fetch(`http://localhost:8000/property_search/?q=${query}`)
       .then((response) => response.json())
       .then((data) => {
@@ -28,7 +28,10 @@ function TopBar({ setContentText }) {
       })
       .catch((error) => {
         console.error("Error:", error);
-      });
+      });}
+      else{
+
+      }
   };
   const handleSignOut = async (e) => {
     await fetch("http://localhost:8000/logout/", {
@@ -84,7 +87,7 @@ function TopBar({ setContentText }) {
             type="text"
             name="filter"
             id="filter"
-            placeholder="Search properties..."
+            placeholder={`${Brokering ? "Search Brokers By Name.." : "'Search properties by city...'"}`}
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
