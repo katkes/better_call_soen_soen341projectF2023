@@ -9,6 +9,8 @@
     border-radius: 5px;
   }
 
+  @import url('https://fonts.googleapis.com/css2?family=Avenir&display=swap');
+
   .loginForm h2 {
     text-align: center;
     color: #001e41;

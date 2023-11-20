@@ -3,6 +3,8 @@
   font-family: "Avenir", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Avenir&display=swap');
+
 @media screen and (max-height: 450px) {
   .sideBar a {font-size: 18px;}
 }
@@ -77,12 +79,12 @@ body {
 
 .signUpBtn{
   position: absolute;
-  top: 8px;
-  right: 10px;
+  top: 15px;
+  right: 20px;
   background-color: #001e41;
   color:white;
   border: 1px solid #D4A437;
-  padding:0.5%;
+  padding: 8px;
   border-radius: 15px;
   width: 100px;
   font-size: 15px;
