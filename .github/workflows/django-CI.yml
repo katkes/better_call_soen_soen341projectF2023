@@ -18,24 +18,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-    - name: Set PIPENV_PYTHON
-      run: |
-        export PIPENV_PYTHON=/path/to/your/virtualenv/python3.12
-
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-        env:
-          PIPENV_PYTHON: /path/to/your/virtualenv/python3.12
-
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install pipenv
         pipenv install --dev
-        pipenv run pip install django
 
     - name: Run Tests
       run: |
-        /path/to/your/virtualenv/python3.12 Backend/manage.py test
+        pipenv run python Backend/manage.py test
