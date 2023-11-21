@@ -32,4 +32,4 @@ jobs:
 
     - name: Run Tests
       run: |
-        pipenv run python Backend/manage.py test
+        pipenv run python3.12 Backend/manage.py test
