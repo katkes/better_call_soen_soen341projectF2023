@@ -15,7 +15,8 @@ jobs:
         python-version: [3.7, 3.8, 3.9]
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
@@ -28,10 +29,6 @@ jobs:
         python -m pip install pipenv
         pipenv install --dev
         pipenv run pip install django
-
-    - name: Activate virtual environment
-      run: |
-        pipenv shell
 
     - name: Run Tests
       run: |
