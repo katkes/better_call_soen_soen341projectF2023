@@ -174,3 +174,6 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'your_email@example.com'
 EMAIL_HOST_PASSWORD = 'your_email_password'
 DEFAULT_FROM_EMAIL = 'webmaster@example.com'
+
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
