@@ -26,6 +26,8 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+        env:
+          PIPENV_PYTHON: /path/to/your/virtualenv/python3.12
 
     - name: Install Dependencies
       run: |
