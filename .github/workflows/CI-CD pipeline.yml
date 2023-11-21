@@ -1,5 +1,0 @@
-name: Django Migration Check
-
-with:
-  app-path: Backend/app
-
