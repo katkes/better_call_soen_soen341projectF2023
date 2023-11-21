@@ -17,6 +17,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
+    - name: Cache Python
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: python-${{ matrix.python-version }}-${{ runner.os }}
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
