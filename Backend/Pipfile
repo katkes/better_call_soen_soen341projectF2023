@@ -11,4 +11,4 @@ django = "==3.2.0"
 [dev-packages]
 
 [requires]
-python_version = "*"
+python_version = "3.12"
