@@ -1,5 +1,5 @@
 asgiref==3.7.2
-Django==3.2.10  # Adjust the version accordingly
+Django>=3.2.10  # Adjust the version accordingly
 django-cors-headers==3.7.0  # Use a valid version
 django-rest-framework==0.1.0
 djangorestframework==3.14.0

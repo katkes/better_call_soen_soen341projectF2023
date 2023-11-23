@@ -7,8 +7,7 @@ This module contains tests for the models, forms, and views in the accounts app.
 import json
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-
+from utils.__init__ import create_test_user,create_test_broker
 from .models import Broker, CustomUser
 from .forms import SignUpForm, LoginForm, UserUpdateForm
 
@@ -147,13 +146,7 @@ class UserUpdateFormTests(TestCase):
         """
         Test invalid data for the user update form.
         """
-        user = get_user_model().objects.create_user(
-            email='test@example.com',
-            name='Test User',
-            phone_number='1234567890',
-            role='user',
-            password='password123'
-        )
+        user = create_test_user()
         form_data = {
             'email': 'updated@example.com',  # Updated email
             'name': 'Updated User',
@@ -217,13 +210,8 @@ class AuthViewsTests(TestCase):
         """
         Test the search brokers view.
         """
-        CustomUser.objects.create_user(
-            email='broker@example.com',
-            name='Broker User',
-            phone_number='1234567890',
-            role='broker',
-            password='password123'
-        )
+        create_test_broker()
+        
         response = self.client.post(reverse('search_brokers'), data=json.dumps({
             'query': 'Broker',
         }), content_type='application/json')

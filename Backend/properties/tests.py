@@ -6,9 +6,9 @@ This module contains tests for the models, forms, and views in the accounts app.
 
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from utils.__init__ import create_test_user,create_test_broker
 from .models import Property
 from .forms import PropertyForm, OfferForm
-
 class PropertyFormTests(TestCase):
     """
     Test case for the PropertyForm.
@@ -17,13 +17,7 @@ class PropertyFormTests(TestCase):
         """
         Test the PropertyForm with valid data.
         """
-        user = get_user_model().objects.create_user(
-            email='test@example.com',
-            name='Test User',
-            phone_number='1234567890',
-            role='user',
-            password='password123'
-        )
+        user = create_test_user()
         self.client.force_login(user)
 
         form_data = {
@@ -58,16 +52,10 @@ class OfferFormTests(TestCase):
         """
         Test the OfferForm with valid data.
         """
-        user = get_user_model().objects.create_user(
-            email='broker@example.com',
-            name='Broker User',
-            phone_number='1234567890',
-            role='broker',
-            password='password123'
-        )
+        user = create_test_broker()
         self.client.force_login(user)
 
-        property_object = Property.objects.create(
+        Property.objects.create(
             price=150000.00,
             size=2000,
             num_of_bathrooms=2,

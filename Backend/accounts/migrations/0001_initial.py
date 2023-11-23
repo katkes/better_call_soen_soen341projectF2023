@@ -5,7 +5,7 @@ This module contains the initial migration for creating the CustomUser model.
 """
 
 from django.db import migrations, models
-from .utils import big_auto_field
+from utils.__init__ import big_auto_field
 class Migration(migrations.Migration):
     """
     Represents the initial migration for the accounts app.
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CustomUser',
             fields=[
-                ('id', big_auto_field),
+                ('id', big_auto_field()),
                 ('password', models.CharField(
                     max_length=128,
                     verbose_name='password'

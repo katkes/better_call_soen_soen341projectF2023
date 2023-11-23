@@ -8,7 +8,7 @@ and establishing a one-to-one relationship with the CustomUser model.
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-from .utils import big_auto_field
+from utils.__init__ import big_auto_field
 class Migration(migrations.Migration):
     """
     Represents the migration for adding the Broker model.
