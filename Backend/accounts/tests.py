@@ -205,7 +205,6 @@ class AuthViewsTests(TestCase):
         Test the search brokers view.
         """
         create_test_broker()
-        
         response = self.client.post(reverse('search_brokers'), data=json.dumps({
             'query': 'Broker',
         }), content_type='application/json')

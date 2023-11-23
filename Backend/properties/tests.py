@@ -5,7 +5,6 @@ This module contains tests for the models, forms, and views in the accounts app.
 """
 
 from django.test import TestCase
-from django.contrib.auth import get_user_model
 from utils.__init__ import create_test_user,create_test_broker
 from .models import Property
 from .forms import PropertyForm, OfferForm

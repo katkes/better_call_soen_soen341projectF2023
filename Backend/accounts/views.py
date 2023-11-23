@@ -74,13 +74,13 @@ def custom_login(request):
                                      "id": user.id,
                                      "name": user.name,
                                      "role": user.role})
-            else:
-                return JsonResponse({"error": "Invalid email or password"}, status=400)
-        else:
-            return JsonResponse({"error": form.errors}, status=400)
-    else:
-        form = LoginForm()
+            return JsonResponse({"error": "Invalid email or password"}, status=400)
+
+        return JsonResponse({"error": form.errors}, status=400)
+
+    form = LoginForm()
     return render(request, 'login.html', {'form': form})
+
 
 
 def user_list(request):
