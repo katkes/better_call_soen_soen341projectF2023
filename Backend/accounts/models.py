@@ -78,4 +78,4 @@ class Broker(models.Model):
     agency = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.user.name} - {self.agency}"
+        return f'Broker User {self.user.email}'

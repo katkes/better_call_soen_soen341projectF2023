@@ -10,7 +10,7 @@ class AccountsConfig(AppConfig):
     """
     AppConfig for the 'accounts' app.
 
-    This class provides the configuration for the 'accounts' app,
+    This class provides the configuration for the 'accounts' app,pyt
     including the default auto field and the app name.
     """
     default_auto_field = 'django.db.models.BigAutoField'

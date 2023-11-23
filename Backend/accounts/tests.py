@@ -1,3 +1,9 @@
+"""
+Module Docstring: Define tests for the accounts app.
+
+This module contains tests for the models, forms, and views in the accounts app.
+"""
+
 import json
 from django.test import TestCase
 from django.urls import reverse
@@ -9,7 +15,13 @@ from .views import signup, custom_login, search_brokers
 
 
 class CustomUserModelTests(TestCase):
+    """
+    Test cases for the CustomUser model.
+    """
     def test_create_user(self):
+        """
+        Test creating a regular user.
+        """
         user = CustomUser.objects.create_user(
             email='test@example.com',
             name='Test User',
@@ -24,6 +36,9 @@ class CustomUserModelTests(TestCase):
         self.assertTrue(user.check_password('password123'))
 
     def test_create_superuser(self):
+        """
+        Test creating a superuser.
+        """
         admin_user = CustomUser.objects.create_superuser(
             email='admin@example.com',
             password='adminpassword'
@@ -34,7 +49,13 @@ class CustomUserModelTests(TestCase):
 
 
 class SignUpFormTests(TestCase):
+    """
+    Test cases for the SignUpForm.
+    """
     def test_signup_form_valid_data(self):
+        """
+        Test valid data for the signup form.
+        """
         form_data = {
             'name': 'Test User',
             'phone_number': '1234567890',
@@ -47,6 +68,9 @@ class SignUpFormTests(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_signup_form_invalid_data(self):
+        """
+        Test invalid data for the signup form.
+        """
         form_data = {
             'name': 'Test User',
             'phone_number': '1234567890',
@@ -60,7 +84,13 @@ class SignUpFormTests(TestCase):
 
 
 class LoginFormTests(TestCase):
+    """
+    Test cases for the LoginForm.
+    """
     def test_login_form_valid_data(self):
+        """
+        Test valid data for the login form.
+        """
         form_data = {
             'email': 'test@example.com',
             'password': 'password123',
@@ -69,6 +99,9 @@ class LoginFormTests(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_login_form_invalid_data(self):
+        """
+        Test invalid data for the login form.
+        """
         form_data = {
             'email': 'invalid_email',
             'password': 'password123',
@@ -78,7 +111,13 @@ class LoginFormTests(TestCase):
 
 
 class UserUpdateFormTests(TestCase):
+    """
+    Test cases for the UserUpdateForm.
+    """
     def test_user_update_form_valid_data(self):
+        """
+        Test valid data for the user update form.
+        """
         user = CustomUser.objects.create_user(
             email='test@example.com',
             name='Test User',
@@ -95,9 +134,10 @@ class UserUpdateFormTests(TestCase):
         form = UserUpdateForm(data=form_data, instance=user)
         self.assertTrue(form.is_valid())
 
-
-class UserUpdateFormTests(TestCase):
     def test_phone_number_validation(self):
+        """
+        Test phone number validation in the user update form.
+        """
         form_data = {'phone_number': 'invalid_phone'}
         form = UserUpdateForm(data=form_data)
 
@@ -106,6 +146,9 @@ class UserUpdateFormTests(TestCase):
         self.assertIn('phone_number', form.errors)
 
     def test_user_update_form_invalid_data(self):
+        """
+        Test invalid data for the user update form.
+        """
         user = get_user_model().objects.create_user(
             email='test@example.com',
             name='Test User',
@@ -131,7 +174,13 @@ class UserUpdateFormTests(TestCase):
 
 
 class AuthViewsTests(TestCase):
+    """
+    Test cases for authentication views.
+    """
     def test_signup_view(self):
+        """
+        Test the signup view.
+        """
         response = self.client.post(reverse('signup'), data=json.dumps({
             'name': 'Test User',
             'phone_number': '1234567890',
@@ -145,6 +194,9 @@ class AuthViewsTests(TestCase):
         # Add more assertions based on your view's behavior
 
     def test_login_view(self):
+        """
+        Test the login view.
+        """
         user = CustomUser.objects.create_user(
             email='test@example.com',
             name='Test User',
@@ -161,6 +213,9 @@ class AuthViewsTests(TestCase):
         # Add more assertions based on your view's behavior
 
     def test_search_brokers_view(self):
+        """
+        Test the search brokers view.
+        """
         user = CustomUser.objects.create_user(
             email='broker@example.com',
             name='Broker User',
@@ -177,7 +232,13 @@ class AuthViewsTests(TestCase):
 
 
 class BrokerModelTests(TestCase):
+    """
+    Test cases for the Broker model.
+    """
     def test_broker_model_str(self):
+        """
+        Test the string representation of the Broker model.
+        """
         user = CustomUser.objects.create_user(
             email='broker@example.com',
             name='Broker User',
