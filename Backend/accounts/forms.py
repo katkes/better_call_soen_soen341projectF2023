@@ -1,9 +1,17 @@
+"""
+Module Docstring: Define forms for the accounts app.
+
+This module contains forms for user authentication and profile update.
+"""
+
 from django.core.exceptions import ValidationError
 from django import forms
 from .models import CustomUser
 
-
 class SignUpForm(forms.ModelForm):
+    """
+    Form for user registration.
+    """
     password = forms.CharField(widget=forms.PasswordInput())
     password_confirmation = forms.CharField(
         widget=forms.PasswordInput(), label="Confirm Password")
@@ -15,11 +23,17 @@ class SignUpForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
+    """
+    Form for user login.
+    """
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput())
 
 
 class UserUpdateForm(forms.ModelForm):
+    """
+    Form for updating user profile.
+    """
     phone_number = forms.CharField(max_length=15)  # Assuming your phone numbers are 15 characters or less
 
     class Meta:
@@ -31,8 +45,11 @@ class UserUpdateForm(forms.ModelForm):
         self.fields['email'].disabled = True  # Prevent updating email
 
     def clean_phone_number(self):
+        """
+        Custom validation for phone number.
+        """
         phone_number = self.cleaned_data['phone_number']
-        
+
         # Add your custom phone number validation logic here
         # For example, you might check if the phone number contains only digits
         if not phone_number.isdigit():
@@ -41,6 +58,9 @@ class UserUpdateForm(forms.ModelForm):
         return phone_number
 
     def clean(self):
+        """
+        Custom validation for the entire form.
+        """
         cleaned_data = super().clean()
         new_email = cleaned_data.get('email')
         current_email = self.instance.email

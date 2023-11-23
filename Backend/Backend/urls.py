@@ -1,3 +1,9 @@
+"""
+Backend URL Configuration
+
+This module defines the URL patterns for the Backend application.
+"""
+
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
