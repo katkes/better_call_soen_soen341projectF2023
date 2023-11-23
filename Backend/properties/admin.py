@@ -1,7 +1,8 @@
-from django.contrib import admin
+"""
+Admin configuration for the properties app.
+"""
 
-# Register your models here.
-# admin.py
+from django.contrib import admin
 from .models import Property, PropertyAdmin
 
 admin.site.register(Property, PropertyAdmin)

@@ -1,17 +1,27 @@
+"""
+Module Docstring: Define tests for the accounts app.
+
+This module contains tests for the models, forms, and views in the accounts app.
+"""
+
 from django.test import TestCase
-from django.urls import reverse
 from django.contrib.auth import get_user_model
-from .models import Property, Offer
+from .models import Property
 from .forms import PropertyForm, OfferForm
 
-
 class PropertyFormTests(TestCase):
+    """
+    Test case for the PropertyForm.
+    """
     def test_property_form_valid_data(self):
+        """
+        Test the PropertyForm with valid data.
+        """
         user = get_user_model().objects.create_user(
             email='test@example.com',
             name='Test User',
-            phone_number='1234567890',  # Provide a phone number
-            role='user',  # Provide a role
+            phone_number='1234567890',
+            role='user',
             password='password123'
         )
         self.client.force_login(user)
@@ -27,6 +37,9 @@ class PropertyFormTests(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_property_form_invalid_data(self):
+        """
+        Test the PropertyForm with invalid data.
+        """
         form_data = {
             'price': 'invalid_price',
             'size': -500,
@@ -37,19 +50,24 @@ class PropertyFormTests(TestCase):
         form = PropertyForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-
 class OfferFormTests(TestCase):
+    """
+    Test case for the OfferForm.
+    """
     def test_offer_form_valid_data(self):
+        """
+        Test the OfferForm with valid data.
+        """
         user = get_user_model().objects.create_user(
             email='broker@example.com',
             name='Broker User',
-            phone_number='1234567890',  # Provide a phone number
-            role='broker',  # Provide a role
+            phone_number='1234567890',
+            role='broker',
             password='password123'
         )
         self.client.force_login(user)
 
-        property = Property.objects.create(
+        property_object = Property.objects.create(
             price=150000.00,
             size=2000,
             num_of_bathrooms=2,
@@ -70,6 +88,9 @@ class OfferFormTests(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_offer_form_invalid_data(self):
+        """
+        Test the OfferForm with invalid data.
+        """
         form_data = {
             'buyer_name': '',
             'buyer_address': 'Buyer Address',
