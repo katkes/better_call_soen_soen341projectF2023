@@ -29,4 +29,4 @@ jobs:
     - name: Run Pylint
       run: |
         cd Backend  # Change to the Backend directory
-        pylint Backend accounts properties
+        pylint Backend accounts properties utils
