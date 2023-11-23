@@ -22,7 +22,7 @@ def signup(request):
     """
     if request.method == 'POST':
         data = json.loads(request.body)
-        User = get_user_model()
+        user_obj = get_user_model()
         form = SignUpForm(data)
         if form.is_valid():
             email = form.cleaned_data['email']
@@ -36,7 +36,7 @@ def signup(request):
                 return JsonResponse({"error": "Passwords do not match"}, status=400)
 
             try:
-                user = User.objects.create_user(
+                user_obj.objects.create_user(
                     email=email,
                     name=name,
                     phone_number=phone_number,
@@ -60,7 +60,7 @@ def custom_login(request):
     """
     if request.method == 'POST':
         data = json.loads(request.body)
-        User = get_user_model()
+        user = get_user_model()
         form = LoginForm(data)
         if form.is_valid():
             email = form.cleaned_data['email']
@@ -161,9 +161,8 @@ def search_brokers(request):
             serialized_brokers.append(serialized_broker)
 
         return JsonResponse(serialized_brokers, safe=False)
-    else:
-        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 def request_info(request, broker_id):
     """
@@ -181,7 +180,11 @@ def broker_property_listings(request, broker_id):
     """
     broker = get_object_or_404(CustomUser, id=broker_id)
     properties = Property.objects.filter(assigned_user=broker)
-    return render(request, 'broker_property_listings.html', {'broker': broker, 'properties': properties})
+    return render(request,
+                  'broker_property_listings.html',
+                  {'broker': broker,
+                   'properties': properties}
+                  )
 
 
 def profile_view(request):
@@ -207,5 +210,5 @@ def custom_logout(request):
     if request.method == 'POST':
         logout(request)
         return JsonResponse({'message': 'Logged out successfully'}, status=200)
-    else:
-        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=400)

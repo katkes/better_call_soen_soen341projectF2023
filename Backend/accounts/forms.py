@@ -40,16 +40,17 @@ class UserUpdateForm(forms.ModelForm):
     """
     # Assuming your phone numbers are 15 characters or less
     phone_number = forms.CharField(max_length=15)
+
     class Meta:
         """
-        Meta class for UserUpdateForm
-        Specifies the Model and fields to be included in the form
+        Meta class for UserUpdateForm.
+        Specifies the Model and fields to be included in the form.
         """
         model = CustomUser
         fields = ['email', 'name', 'phone_number', 'role']
 
     def __init__(self, *args, **kwargs):
-        super(UserUpdateForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['email'].disabled = True  # Prevent updating email
 
     def clean_phone_number(self):

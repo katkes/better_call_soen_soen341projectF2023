@@ -11,8 +11,6 @@ from django.contrib.auth import get_user_model
 
 from .models import Broker, CustomUser
 from .forms import SignUpForm, LoginForm, UserUpdateForm
-from .views import signup, custom_login, search_brokers
-
 
 class CustomUserModelTests(TestCase):
     """
@@ -170,7 +168,8 @@ class UserUpdateFormTests(TestCase):
 
         # Assert specific validation errors
         self.assertDictEqual(form.errors, {'phone_number': [
-                             'Enter a valid phone number.']}, "Phone number field should have validation error")
+                             'Enter a valid phone number.']},
+                             "Phone number field should have validation error")
 
 
 class AuthViewsTests(TestCase):
@@ -197,7 +196,7 @@ class AuthViewsTests(TestCase):
         """
         Test the login view.
         """
-        user = CustomUser.objects.create_user(
+        CustomUser.objects.create_user(
             email='test@example.com',
             name='Test User',
             phone_number='1234567890',
@@ -207,16 +206,18 @@ class AuthViewsTests(TestCase):
         response = self.client.post(reverse('login'), data=json.dumps({
             'email': 'test@example.com',
             'password': 'password123',
-        }), content_type='application/json')
+            }), content_type='application/json')
 
         self.assertEqual(response.status_code, 200)
-        # Add more assertions based on your view's behavior
+    # Add more assertions based on your view's behavior
+
+
 
     def test_search_brokers_view(self):
         """
         Test the search brokers view.
         """
-        user = CustomUser.objects.create_user(
+        CustomUser.objects.create_user(
             email='broker@example.com',
             name='Broker User',
             phone_number='1234567890',

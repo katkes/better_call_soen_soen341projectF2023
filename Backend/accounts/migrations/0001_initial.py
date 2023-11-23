@@ -5,8 +5,7 @@ This module contains the initial migration for creating the CustomUser model.
 """
 
 from django.db import migrations, models
-
-
+from .utils import big_auto_field
 class Migration(migrations.Migration):
     """
     Represents the initial migration for the accounts app.
@@ -22,12 +21,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CustomUser',
             fields=[
-                ('id', models.BigAutoField(
-                    auto_created=True,
-                    primary_key=True,
-                    serialize=False,
-                    verbose_name='ID'
-                )),
+                ('id', big_auto_field),
                 ('password', models.CharField(
                     max_length=128,
                     verbose_name='password'
@@ -39,7 +33,9 @@ class Migration(migrations.Migration):
                 )),
                 ('is_superuser', models.BooleanField(
                     default=False,
-                    help_text=('Designates that this user has all permissions without explicitly assigning them.'),
+                    help_text=
+                    ('Designates that this user has all permissions'
+                     'without explicitly assigning them.'),
                     verbose_name='superuser status'
                 )),
                 ('email', models.EmailField(
@@ -63,7 +59,9 @@ class Migration(migrations.Migration):
                 )),
                 ('groups', models.ManyToManyField(
                     blank=True,
-                    help_text=('The groups this user belongs to. A user will get all permissions granted to each of their groups.'),
+                    help_text=
+                    ('The groups this user belongs to. A user will get all permissions granted '
+                    'to each of their groups.'),
                     related_name='user_set',
                     related_query_name='user',
                     to='auth.group',
