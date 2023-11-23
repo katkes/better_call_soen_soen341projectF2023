@@ -64,7 +64,7 @@ def create_test_broker(email='broker@example.com',
     Returns:
         User: The created broker instance.
     """
-    return get_user_model().objects.create_user(
+    return create_test_user(
         email=email,
         name=name,
         phone_number=phone_number,
