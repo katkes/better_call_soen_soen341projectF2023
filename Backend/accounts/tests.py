@@ -7,10 +7,24 @@ This module contains tests for the models, forms, and views in the accounts app.
 import json
 from django.test import TestCase
 from django.urls import reverse
-from utils.__init__ import create_test_user,create_test_broker
+from utils.__init__ import create_test_user, create_test_broker
 from .models import Broker, CustomUser
 from .forms import SignUpForm, LoginForm, UserUpdateForm
 
+# Static variables
+TEST_USER_EMAIL = 'test@example.com'
+TEST_USER_NAME = 'Test User'
+TEST_USER_PHONE_NUMBER = '1234567890'
+TEST_USER_PASSWORD = 'password123'
+TEST_USER_ROLE = 'user'
+
+TEST_BROKER_EMAIL = 'broker@example.com'
+TEST_BROKER_NAME = 'Broker User'
+TEST_BROKER_PHONE_NUMBER = '1234567890'
+TEST_BROKER_PASSWORD = 'password123'
+
+TEST_ADMIN_EMAIL = 'admin@example.com'
+TEST_ADMIN_PASSWORD = 'adminpassword'
 class CustomUserModelTests(TestCase):
     """
     Test cases for the CustomUser model.
@@ -19,26 +33,20 @@ class CustomUserModelTests(TestCase):
         """
         Test creating a regular user.
         """
-        user = CustomUser.objects.create_user(
-            email='test@example.com',
-            name='Test User',
-            phone_number='1234567890',
-            role='user',
-            password='password123'
-        )
-        self.assertEqual(user.email, 'test@example.com')
-        self.assertEqual(user.name, 'Test User')
-        self.assertEqual(user.phone_number, '1234567890')
-        self.assertEqual(user.role, 'user')
-        self.assertTrue(user.check_password('password123'))
+        user = create_test_user()
+        self.assertEqual(user.email, TEST_USER_EMAIL)
+        self.assertEqual(user.name, TEST_USER_NAME)
+        self.assertEqual(user.phone_number, TEST_USER_PHONE_NUMBER)
+        self.assertEqual(user.role, TEST_USER_ROLE)
+        self.assertTrue(user.check_password(TEST_USER_PASSWORD))
 
     def test_create_superuser(self):
         """
         Test creating a superuser.
         """
         admin_user = CustomUser.objects.create_superuser(
-            email='admin@example.com',
-            password='adminpassword'
+            email=TEST_ADMIN_EMAIL,
+            password=TEST_ADMIN_PASSWORD
         )
         self.assertTrue(admin_user.is_superuser)
         self.assertTrue(admin_user.is_staff)
@@ -54,12 +62,12 @@ class SignUpFormTests(TestCase):
         Test valid data for the signup form.
         """
         form_data = {
-            'name': 'Test User',
-            'phone_number': '1234567890',
-            'email': 'test@example.com',
-            'password': 'password123',
-            'password_confirmation': 'password123',
-            'role': 'user',
+            'name': TEST_USER_NAME,
+            'phone_number': TEST_USER_PHONE_NUMBER,
+            'email': TEST_USER_EMAIL,
+            'password': TEST_USER_PASSWORD,
+            'password_confirmation': TEST_USER_PASSWORD,
+            'role': TEST_USER_ROLE,
         }
         form = SignUpForm(data=form_data)
         self.assertTrue(form.is_valid())
@@ -69,12 +77,12 @@ class SignUpFormTests(TestCase):
         Test invalid data for the signup form.
         """
         form_data = {
-            'name': 'Test User',
-            'phone_number': '1234567890',
+            'name': TEST_USER_NAME,
+            'phone_number': TEST_USER_PHONE_NUMBER,
             'email': 'invalid_email',
-            'password': 'password123',
-            'password_confirmation': 'password123',
-            'role': 'user',
+            'password': TEST_USER_PASSWORD,
+            'password_confirmation': TEST_USER_PASSWORD,
+            'role': TEST_USER_ROLE,
         }
         form = SignUpForm(data=form_data)
         self.assertFalse(form.is_valid())
@@ -89,8 +97,8 @@ class LoginFormTests(TestCase):
         Test valid data for the login form.
         """
         form_data = {
-            'email': 'test@example.com',
-            'password': 'password123',
+            'email': TEST_USER_EMAIL,
+            'password': TEST_USER_PASSWORD,
         }
         form = LoginForm(data=form_data)
         self.assertTrue(form.is_valid())
@@ -101,7 +109,7 @@ class LoginFormTests(TestCase):
         """
         form_data = {
             'email': 'invalid_email',
-            'password': 'password123',
+            'password': TEST_USER_PASSWORD,
         }
         form = LoginForm(data=form_data)
         self.assertFalse(form.is_valid())
@@ -115,15 +123,9 @@ class UserUpdateFormTests(TestCase):
         """
         Test valid data for the user update form.
         """
-        user = CustomUser.objects.create_user(
-            email='test@example.com',
-            name='Test User',
-            phone_number='1234567890',
-            role='user',
-            password='password123'
-        )
+        user = create_test_user()
         form_data = {
-            'email': 'test@example.com',
+            'email': TEST_USER_EMAIL,
             'name': 'Updated User',
             'phone_number': '9876543210',
             'role': 'updated_role',
@@ -174,12 +176,12 @@ class AuthViewsTests(TestCase):
         Test the signup view.
         """
         response = self.client.post(reverse('signup'), data=json.dumps({
-            'name': 'Test User',
-            'phone_number': '1234567890',
-            'email': 'test@example.com',
-            'password': 'password123',
-            'password_confirmation': 'password123',
-            'role': 'user',
+            'name': TEST_USER_NAME,
+            'phone_number': TEST_USER_PHONE_NUMBER,
+            'email': TEST_USER_EMAIL,
+            'password': TEST_USER_PASSWORD,
+            'password_confirmation': TEST_USER_PASSWORD,
+            'role': TEST_USER_ROLE,
         }), content_type='application/json')
 
         self.assertEqual(response.status_code, 200)
@@ -189,22 +191,14 @@ class AuthViewsTests(TestCase):
         """
         Test the login view.
         """
-        CustomUser.objects.create_user(
-            email='test@example.com',
-            name='Test User',
-            phone_number='1234567890',
-            role='user',
-            password='password123'
-        )
+        create_test_user()
         response = self.client.post(reverse('login'), data=json.dumps({
-            'email': 'test@example.com',
-            'password': 'password123',
+            'email': TEST_USER_EMAIL,
+            'password': TEST_USER_PASSWORD,
             }), content_type='application/json')
 
         self.assertEqual(response.status_code, 200)
-    # Add more assertions based on your view's behavior
-
-
+        # Add more assertions based on your view's behavior
 
     def test_search_brokers_view(self):
         """
@@ -228,13 +222,7 @@ class BrokerModelTests(TestCase):
         """
         Test the string representation of the Broker model.
         """
-        user = CustomUser.objects.create_user(
-            email='broker@example.com',
-            name='Broker User',
-            phone_number='1234567890',
-            role='broker',
-            password='password123'
-        )
+        user = create_test_broker()
         broker = Broker.objects.create(
             user=user, license_number='123ABC', agency='Test Agency')
         self.assertEqual(str(broker), 'Broker User broker@example.com')
