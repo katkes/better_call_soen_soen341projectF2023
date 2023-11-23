@@ -17,6 +17,10 @@ class SignUpForm(forms.ModelForm):
         widget=forms.PasswordInput(), label="Confirm Password")
 
     class Meta:
+        """
+        Meta Class for SignUpForm
+        Specifies the Model and fields to be included in the form
+        """
         model = CustomUser
         fields = ['name', 'phone_number', 'email',
                   'password', 'password_confirmation', 'role']
@@ -34,9 +38,13 @@ class UserUpdateForm(forms.ModelForm):
     """
     Form for updating user profile.
     """
-    phone_number = forms.CharField(max_length=15)  # Assuming your phone numbers are 15 characters or less
-
+    # Assuming your phone numbers are 15 characters or less
+    phone_number = forms.CharField(max_length=15)
     class Meta:
+        """
+        Meta class for UserUpdateForm
+        Specifies the Model and fields to be included in the form
+        """
         model = CustomUser
         fields = ['email', 'name', 'phone_number', 'role']
 

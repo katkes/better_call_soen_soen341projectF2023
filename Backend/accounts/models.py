@@ -1,9 +1,23 @@
+"""
+Module Docstring: Define models for the accounts app.
+
+This module contains the CustomUser model and related models for the accounts app.
+"""
+
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
-
 class CustomUserManager(BaseUserManager):
+    """
+    Custom manager for the CustomUser model.
+    """
     def create_user(self, email, name, phone_number, role, password=None):
+        """
+        Create a new user.
+
+        Creates and returns a new user with the given email, name, phone_number,
+        role, and password.
+        """
         if not email:
             raise ValueError('Users must have an email address')
         user = self.model(
@@ -18,6 +32,11 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password):
+        """
+        Create a new superuser.
+
+        Creates and returns a new superuser with the given email and password.
+        """
         user = self.create_user(
             email=self.normalize_email(email),
             password=password,
@@ -30,8 +49,10 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    """
+    Custom user model for the application.
+    """
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=15)
@@ -48,11 +69,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-
 class Broker(models.Model):
+    """
+    Broker model related to CustomUser.
+    """
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     license_number = models.CharField(max_length=20)
     agency = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.user.name} {self.user.email}"
+        return f"{self.user.name} - {self.agency}"
