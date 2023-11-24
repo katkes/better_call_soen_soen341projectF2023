@@ -68,7 +68,22 @@ function FilterSelect() {
             console.log("response of ", response)
             if (response.ok) {
                 const answer = await response.json();
-                console.log("Filter results:", answer);
+                console.log("Filter results: ", answer)
+                localStorage.setItem('props', JSON.stringify(answer));
+                const storedProps = localStorage.getItem('props');
+                // retrieve
+                if (storedProps) {
+                    const parsedProps = JSON.parse(storedProps);
+                    console.log("Retrieved props: ", parsedProps);
+                }
+                // sessionStorage.setItem("props", answer);
+                // localStorage.setItem("props", answer)
+                // // console.log(localStorage.getItem("props"))
+                // let temp = localStorage.getItem("props");
+                // for (let i = 0; i < localStorage.getItem("props").length; i++){
+                //     console.log("Elem number : ", i);
+                //     console.log(temp[i]);
+                // }
                 // this Promise should be given in a 2-D array or dictionary to be honest
                 // console.log("Message from backend ", answer)
                 // console.log("User's id: ", answer.id)  // Log the user's id

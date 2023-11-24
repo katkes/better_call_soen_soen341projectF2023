@@ -66,9 +66,8 @@ function TopBar({setContentText, Brokering, setbrokering}) {
                 }
             }
 
-        }
-        else {
-            try{
+        } else {
+            try {
                 const response = await fetch("http://localhost:8000/search_brokers/", {
                     method: "POST",
                     headers: {
@@ -82,12 +81,18 @@ function TopBar({setContentText, Brokering, setbrokering}) {
                 if (response.ok) {
                     const answer = await response.json()
                     console.log("Search results: ", answer)
+                    localStorage.setItem('props', JSON.stringify(answer));
+                    const storedProps = localStorage.getItem('props');
+                    // retrieve
+                    if (storedProps) {
+                        const parsedProps = JSON.parse(storedProps);
+                        console.log("Retrieved props: ", parsedProps);
+                    }
                 } else {
                     console.error("Error searching properties:", response.statusText);
                     console.log(response.status);
                 }
-            }
-            catch (error) {
+            } catch (error) {
                 console.error("An error occurred while searching for brokers:", error);
                 if (error.response && error.response.status) {
                     console.log("Error Status: ", error.response.status);
@@ -95,7 +100,8 @@ function TopBar({setContentText, Brokering, setbrokering}) {
                     console.log("An error occurred:", error);
                 }
             }
-        }; //code to search for a broker
+        }
+        ; //code to search for a broker
 
     }
 
