@@ -6,6 +6,7 @@ import PropertySection from "./PropertySection";
 import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 import React, {useState} from "react";
+import HomePage from "./home.js";
 
 function TopBar({setContentText, Brokering, setbrokering}) {
     // Inside your TopBar component
@@ -145,7 +146,7 @@ function TopBar({setContentText, Brokering, setbrokering}) {
 
     const handleButtonClick2 = () => {
         // Change the content when the button is clicked
-
+        setContentText(<HomePage/>)
         setbrokering(false);
     };
 

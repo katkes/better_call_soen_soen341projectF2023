@@ -14,7 +14,7 @@ function SideBar({setContentText, setbrokering, Brokering}) {
 
     const handleClick=()=>{
       setbrokering(!Brokering);
-     if(sessionStorage.getItem("isRegistered")){
+     if(sessionStorage.getItem("isRegistered")&&(sessionStorage.getItem('role')==="broker")){
         
         setContentText(<GenerateBrokers/>);
      }
@@ -25,7 +25,10 @@ function SideBar({setContentText, setbrokering, Brokering}) {
     }
 
     const handleClick12=()=>{
-      setbrokering(!Brokering);
+      if(sessionStorage.getItem("isRegistered")){}
+      else{
+      setContentText(<SignUp setContentText={setContentText} /> )
+      }
     }
   
    
@@ -36,7 +39,7 @@ function SideBar({setContentText, setbrokering, Brokering}) {
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         
         {<div className="sideBar">
-        <a id="classElement1" onClick={handleClick12}>Buy</a>
+        <a id="classElement1" >Buy</a>
         <a id="classElement2" className={`${(sessionStorage.getItem('role')==="broker") ? "" : "none"}`}>Sell</a>
         <a id="classElement3" className={`${(sessionStorage.getItem('role')==="broker") ? "none" : ""}`} onClick={handleClick}>My Broker</a>
         <a id="classElement4" onClick={handleClick12}>Profile</a>
