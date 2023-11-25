@@ -170,7 +170,7 @@ function TopBar({setContentText, Brokering, setbrokering}) {
 
             <div className="filterForm">
                 {/* ... (your existing code) */}
-                <form id="ApiFilterSearch" action="" onClick={handleSearchChange} method="POST">
+                <form id="ApiFilterSearch" action="" onClick={handleSearchChange} >
                     <input
                         type="text"
                         name="filter"

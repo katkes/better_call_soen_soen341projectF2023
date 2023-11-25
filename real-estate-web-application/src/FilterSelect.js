@@ -132,7 +132,7 @@ function FilterSelect() {
                     {/* <span class="checkmark"></span> */}
                     ${formData.Price || price}
                     <label className="label" htmlFor="Size">Size<br></br></label>
-                    <input class="slider-range"
+                    <input className="slider-range"
                            id="Size"
                            name="Size"
                            type="range"
@@ -147,7 +147,7 @@ function FilterSelect() {
                     {size} ft
                     <label className="label" htmlFor="num_of_bathrooms">Number of Bathrooms<br></br></label>
                     
-                    <input class="slider-range"
+                    <input className="slider-range"
                            id="num_of_bathrooms"
                            name="num_of_bathrooms"
                            type="range"
@@ -163,7 +163,7 @@ function FilterSelect() {
                     
                     <label className="label" htmlFor="num_of_bedrooms">Number of Bedrooms<br></br></label>
                     
-                    <input class="slider-range"
+                    <input className="slider-range"
                            id="num_of_bedrooms"
                            name="num_of_bedrooms"
                            type="range"
