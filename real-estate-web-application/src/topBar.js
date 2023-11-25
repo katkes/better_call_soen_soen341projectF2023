@@ -88,7 +88,7 @@ function TopBar({setContentText, Brokering, setbrokering}) {
                         const parsedProps = JSON.parse(storedProps);
                         console.log("Retrieved props: ", parsedProps);
 
-                        setContentText(<Gene/>);
+                        // setContentText(<Gene/>);
                     }
                 } else {
                     console.error("Error searching properties:", response.statusText);

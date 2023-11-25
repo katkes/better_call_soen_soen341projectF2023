@@ -120,7 +120,7 @@ function FilterSelect() {
                 <div className={isDropped ? "undropdown-content" : "dropdown-content"}>
                     <label className="label" htmlFor="Price">Price<br></br></label>
                     <input
-                        class="slider-range"
+                        className="slider-range"
                         name="Price"
                         id="Price"
                         type="range"
