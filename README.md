@@ -65,7 +65,7 @@ To set up the project locally, follow these steps:
 1. Accessing Different Features: Once the application is running, open your web browser and navigate to 'http://localhost:3000' to access the Real Estate Web Application.
 2. Property Search: Use the search bar to filter properties based on your criteria, such as location, price range, and more.
 3. Scheduling Property Visits: Click on a property listing to view details, then use the scheduling feature to set up property visits.
-4. Mortage Calculator: Find teh mortage calculator tool in the "Tools" section to estimate monthly payments based on your preferred loan amount and interest rate.
+4. Mortage Calculator: Find the mortage calculator tool in the "Tools" section to estimate monthly payments based on your preferred loan amount and interest rate.
 
 ## Reference to Wiki
 For additional information about meeting minutes, planning, team rules, and management guidelines, please refer to our Wiki section (https://github.com/katkes/better_call_soen_soen341projectF2023/wiki).
