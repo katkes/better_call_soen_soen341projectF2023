@@ -9,7 +9,8 @@ import {useState} from "react"
     const [monthlyPayment, setMonthlyPayment] = useState(0)
      
     function calculate(){
-      loanLifeTime = loanLifeTime * 12;
+      loanLifeTime = loanLifeTime * 12; //to get total number of payments due
+      interestRate = interestRate/1200; // to get monthly interest rate after converting it from percentage to decimal value 
       let block = Math.pow((1+interestRate),loanLifeTime);
       monthlyPayment = loanAmount * (interestRate * block)/(block - 1);
       setMonthlyPayment(monthlyPayment);
