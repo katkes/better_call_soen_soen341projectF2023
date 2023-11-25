@@ -5,12 +5,12 @@ Real estate web application made for SOEN 341 class assignment
 Comprehensive Real Estate Web Application designed to help people buy, sell, and rent properties. Our platform offers an intuitive, user-friendly interface that simplifies complex real estate transactions.
 
 ## Key Features 
-Effortless Property Search: This application helps homebuyers and renters easily find their dream properties. Users can search for properties based on a wide range of criteria, including location, price range, number of rooms, number of floors, whether there is a backyard or not, and more.
-Interactive Property Listings: Property listings come to life with high-quality images, detailed descriptions, and virtual tours, giving users an immersive experience.
-Request Property Visits: Interested users can seamlessly schedule property visits directly through the platform.
-Professional Broker Network: Our application connects users with experienced real estate brokers who provide valuable insights, submit purchase offers, and facilitate smooth transactions.
-Favourite Properties: Users can create lists of their favourite properties, making it convenient to compare and revisit their top choices.
-Mortgage Calculator: We offer a built-in mortgage calculator to help homebuyers estimate monthly payments based on loan amount and interest rate.
+- Effortless Property Search: This application helps homebuyers and renters easily find their dream properties. Users can search for properties based on a wide range of criteria, including location, price range, number of rooms, number of floors, whether there is a backyard or not, and more.
+- Interactive Property Listings: Property listings come to life with high-quality images, detailed descriptions, and virtual tours, giving users an immersive experience.
+- Request Property Visits: Interested users can seamlessly schedule property visits directly through the platform.
+- Professional Broker Network: Our application connects users with experienced real estate brokers who provide valuable insights, submit purchase offers, and facilitate smooth transactions.
+- Favourite Properties: Users can create lists of their favourite properties, making it convenient to compare and revisit their top choices.
+- Mortgage Calculator: We offer a built-in mortgage calculator to help homebuyers estimate monthly payments based on loan amount and interest rate.
 
 ## Roles
 
