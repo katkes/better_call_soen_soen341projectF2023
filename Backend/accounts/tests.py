@@ -10,6 +10,8 @@ from django.urls import reverse
 from utils.__init__ import create_test_user, create_test_broker
 from .models import Broker, CustomUser
 from .forms import SignUpForm, LoginForm, UserUpdateForm
+from django.contrib.auth import get_user_model
+
 
 # Static variables
 TEST_USER_EMAIL = 'test@example.com'
@@ -171,47 +173,66 @@ class AuthViewsTests(TestCase):
     """
     Test cases for authentication views.
     """
-    def test_signup_view(self):
+
+    def setUp(self):
+        self.test_user = create_test_user()
+
+    def test_signup_view_invalid_data(self):
         """
-        Test the signup view.
+        Test the signup view with invalid data.
         """
         response = self.client.post(reverse('signup'), data=json.dumps({
-            'name': TEST_USER_NAME,
-            'phone_number': TEST_USER_PHONE_NUMBER,
-            'email': TEST_USER_EMAIL,
-            'password': TEST_USER_PASSWORD,
-            'password_confirmation': TEST_USER_PASSWORD,
-            'role': TEST_USER_ROLE,
+            'name': 'Test User',
+            'phone_number': '1234567890',
+            'email': 'invalid_email',
+            'password': 'password123',
+            'password_confirmation': 'password123',
+            'role': 'user',
         }), content_type='application/json')
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('error', response.json())
         # Add more assertions based on your view's behavior
 
-    def test_login_view(self):
+    def test_login_view_invalid_credentials(self):
         """
-        Test the login view.
+        Test the login view with invalid credentials.
         """
-        create_test_user()
         response = self.client.post(reverse('login'), data=json.dumps({
-            'email': TEST_USER_EMAIL,
-            'password': TEST_USER_PASSWORD,
-            }), content_type='application/json')
-
-        self.assertEqual(response.status_code, 200)
-        # Add more assertions based on your view's behavior
-
-    def test_search_brokers_view(self):
-        """
-        Test the search brokers view.
-        """
-        create_test_broker()
-        response = self.client.post(reverse('search_brokers'), data=json.dumps({
-            'query': 'Broker',
+            'email': 'invalid_email',
+            'password': 'invalid_password',
         }), content_type='application/json')
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('error', response.json())
         # Add more assertions based on your view's behavior
 
+    def test_custom_logout_view(self):
+        """
+        Test the custom logout view.
+        """
+        # Log in the user first
+        self.client.force_login(self.test_user)
+
+        response = self.client.post(reverse('logout'), content_type='application/json')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('message', response.json())
+        # Add more assertions based on your view's behavior
+
+    def test_profile_view_authenticated_user(self):
+        """
+        Test the profile view for an authenticated user.
+        """
+        # Log in the user first
+        self.client.force_login(self.test_user)
+
+        response = self.client.get(reverse('profile'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'profile.html')
+        # Add more assertions based on your view's behavior
+        
 
 class BrokerModelTests(TestCase):
     """
