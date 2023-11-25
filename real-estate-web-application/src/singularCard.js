@@ -11,24 +11,24 @@ function SingularCard({
   brokerName,
   isForSale = true,
 }) {
-  // const type = "Apartment"; // Assuming this is a default value
-  // const address = "123 Main St, City, State"; // Assuming this is a default value
-  // const previewPhotos = [
-  //   /* Assuming this is a default value */
-  //   "https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CCDDDDDDDDDD2&t=pi&w=640&h=480&sm=c",
-  //   "https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CEDDDDDDDDDDC&t=pi&w=320&h=240&sm=c",
-  //   "https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CEDDDDDDDDDDC&t=pi&w=320&h=240&sm=c",
-  // ];
-  // const broker = "John Doe"; // Assuming this is a default value
-  // let favorite = false; // Assuming this is a default value
-  // const features = [
-  //   /* Assuming this is a default value */ "3 Bedrooms",
-  //   "2 Bathrooms",
-  //   "1,200 sq. ft.",
-  //   "Swimming Pool",
-  //   "Garage",
-  //   "Near Schools",
-  // ];
+  const type = "Apartment"; // Assuming this is a default value
+  const address = "123 Main St, City, State"; // Assuming this is a default value
+  const previewPhotos = [
+    /* Assuming this is a default value */
+    "https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CCDDDDDDDDDD2&t=pi&w=640&h=480&sm=c",
+    "https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CEDDDDDDDDDDC&t=pi&w=320&h=240&sm=c",
+    "https://mspublic.centris.ca/media.ashx?id=ADDD250DC71A4CEDDDDDDDDDDC&t=pi&w=320&h=240&sm=c",
+  ];
+  const broker = "John Doe"; // Assuming this is a default value
+  let favorite = false; // Assuming this is a default value
+  const features = [
+    /* Assuming this is a default value */ "3 Bedrooms",
+    "2 Bathrooms",
+    "1,200 sq. ft.",
+    "Swimming Pool",
+    "Garage",
+    "Near Schools",
+  ];
 
   const handleClick3 = () => {
     setContentText(
@@ -48,7 +48,7 @@ function SingularCard({
     <div className="card">
       <img src={previewPhotos[0]} alt="fix BOZO"></img>
       <div className="cardProperties">
-        <p>Name: {name}</p>
+        <p>{type} for sale</p>
         <p>Price: ${price}</p>
         <p>Location: {country}</p>
         <p>Rating: {rating}<span className="star-rating">&#9733; &#9733; &#9733; &#9733; &#9733;</span></p>
