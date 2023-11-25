@@ -52,6 +52,7 @@ function TopBar({setContentText, Brokering, setbrokering}) {
                 if (response.ok) {
                     const answer = await response.json()
                     console.log("Search results: ", answer)
+                    
                 } else {
                     console.error("Error searching properties:", response.statusText);
                     console.log(response.status);
@@ -88,7 +89,7 @@ function TopBar({setContentText, Brokering, setbrokering}) {
                         const parsedProps = JSON.parse(storedProps);
                         console.log("Retrieved props: ", parsedProps);
 
-                        // setContentText(<Gene/>);
+                        setContentText(<PropertySection setContentText={setContentText} filteredProperties={ localStorage.getItem('props', JSON.stringify(answer))}/>);
                     }
                 } else {
                     console.error("Error searching properties:", response.statusText);

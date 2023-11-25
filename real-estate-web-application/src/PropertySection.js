@@ -13,7 +13,6 @@ function PropertySection({ setContentText, filteredProperties }) {
       {filteredProperties.map((property, index) => (
         <SingularCard
           key={index}
-          name={property.name}
           price={property.price}
           country={property.country}
           rating={property.rating}
