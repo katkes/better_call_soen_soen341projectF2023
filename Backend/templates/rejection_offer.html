@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reject Offer</title>
+  </head>
+  <body>
+    <h2>Reject Offer</h2>
+
+    <p>
+      Are you sure you want to reject the offer from {{ offer.buyer_name }} for
+      the property {{ offer.property }}?
+    </p>
+
+    <form method="post" action="{% url 'reject_offer' offer_id=offer.id %}">
+      {% csrf_token %}
+      <button type="submit">Reject Offer</button>
+    </form>
+
+    <a href="{% url 'property_detail' property_id=offer.property.property_id %}"
+      >Cancel</a
+    >
+  </body>
+</html>
