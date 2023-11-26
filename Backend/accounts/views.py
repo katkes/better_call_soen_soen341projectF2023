@@ -13,6 +13,7 @@ from django.core.exceptions import ValidationError
 from properties.models import Property
 from .forms import SignUpForm, UserUpdateForm, LoginForm
 from .models import Broker, CustomUser
+from django.core.mail import send_mail
 
 
 @csrf_exempt
@@ -172,6 +173,37 @@ def request_info(request, broker_id):
     # Handle the request (send email, save to database, etc.)
     # Add your logic here...
     return render(request, 'request_info.html', {'broker': broker})
+
+@csrf_exempt
+def request_visit(request, broker_id):
+    """
+    Handle a request to visit a property and send an email to the broker.
+    """
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        broker_id_from_payload = data.get('brokerId')
+        user_id = data.get('userId')  # Retrieve user ID from the request body
+
+        if broker_id_from_payload == broker_id and user_id:
+            broker = get_object_or_404(CustomUser, id=broker_id)
+
+            # Get the currently logged-in user using the user ID
+            user_log = get_object_or_404(CustomUser, id=user_id)
+            print(user_log.id)
+
+            # Send an email to the broker
+            subject = 'Visit Request for Property'
+            message = f'Dear {broker.name},\n\n{user_log.name} has requested a visit for a property. Please contact them to arrange the visit.'
+            from_email = user_log.email  # Set your email address
+            to_email = [broker.email]  # Use the broker's email address
+
+            send_mail(subject, message, from_email, to_email, fail_silently=False)
+
+            return JsonResponse({'message': 'Visit request sent successfully'})
+        else:
+            return JsonResponse({'error': 'Broker ID or user ID mismatch'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
 def broker_property_listings(request, broker_id):

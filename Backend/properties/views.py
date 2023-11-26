@@ -86,9 +86,11 @@ def property_search(request):
                 'city': p.city,
                 'rating': p.rating,
                 'broker_name': broker_name,
+                'broker_id' : p.assigned_user_id,
                 'num_of_bedrooms': p.num_of_bedrooms,
                 'num_of_bathrooms': p.num_of_bathrooms,
-                'size': p.size
+                'size': p.size,
+                'type_of_property' : p.type_of_property
             }
             serialized_properties.append(serialized_property)
 

@@ -29,14 +29,14 @@ DEBUG = True
 
 
 CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1",
-    "http://localhost:3000",
-    "http://localhost"
+    "127.0.0.1:3000",
+    "127.0.0.1",
+    "localhost:3000",
+    "localhost"
 ]
 ALLOWED_HOSTS = [
     "*",
-    "http://127.0.0.1:8000",
+    #"http://127.0.0.1:8000",
     "http://127.0.0.1",
     "http://localhost:3000",
     "http://localhost",
@@ -61,6 +61,11 @@ INSTALLED_APPS = [
     'accounts',
     'properties',
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    # ...
+]
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,7 +85,10 @@ REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES':
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'http://localhost',
+    'http://127.0.0.1',
 ]
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 
