@@ -14,7 +14,7 @@ function PropertySection({ setContentText, filteredProperties }) {
         <SingularCard
           key={index}
           price={property.price}
-          country={property.country}
+          country={property.city}
           rating={property.rating}
           setContentText={setContentText}
           brokerName={property.broker_name}

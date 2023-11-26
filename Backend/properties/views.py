@@ -12,7 +12,9 @@ from django.http import HttpResponseBadRequest, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from accounts.models import CustomUser
 from .forms import PropertyForm, OfferForm
-from .models import Property
+from .models import Offer, Property
+from django.db.models import Q
+
 
 # Use constants for magic numbers
 DEFAULT_PRICE_UPPER_BOUND = 800000
@@ -60,15 +62,18 @@ def property_search(request):
     """
     Search for properties based on the provided data and return the results in a JSON response.
     """
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        print(data)
+    if request.method == 'POST' or request.method == 'GET':
+        if request.method == 'POST':
+            data = json.loads(request.body)
+        else:
+            data = request.GET.dict()
 
         if not data:
             properties = Property.objects.all()
             print("nothing")
         else:
-            properties = Property.objects.filter(city=data)
+            # Use Q objects to perform case-insensitive search
+            properties = Property.objects.filter(Q(city__icontains=data))
 
         serialized_properties = []
 
@@ -81,7 +86,7 @@ def property_search(request):
                 'city': p.city,
                 'rating': p.rating,
                 'broker_name': broker_name,
-                'num_of_bedrooms': p.num_of_bathrooms,
+                'num_of_bedrooms': p.num_of_bedrooms,
                 'num_of_bathrooms': p.num_of_bathrooms,
                 'size': p.size
             }
@@ -251,8 +256,81 @@ def submit_offer(request, property_id):
             offer.buyer_broker = request.user.broker
             offer.property = property_obj
             offer.save()
+
+            send_mail(
+                subject="Property Offer",
+                message=f"{offer.buyer_name} made an offer on the property.",
+                from_email=offer.buyer_email,
+                recipient_list=[property_obj.assigned_user.email]
+            )
+
+            # Redirect to the property detail page after a successful offer submission
             return redirect('property_detail', property_id=property_obj.property_id)
+
     else:
         form = OfferForm()
 
     return render(request, 'offer_submission.html', {'form': form, 'property': property_obj})
+
+def reject_offer(request, offer_id):
+    """
+    Reject an offer and send an email to the broker. The offer is deleted from the database.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        offer_id (int): The ID of the offer to be rejected.
+
+    Returns:
+        HttpResponse: Redirects to the property detail page after rejecting the offer.
+    """
+    offer = get_object_or_404(Offer, pk=offer_id)
+
+    if request.method == 'POST':
+        # Perform actions to reject the offer
+        offer.delete()
+
+        # Send email to the broker
+        broker_email = offer.property.assigned_user.email
+        send_mail(
+            subject="Offer Rejected",
+            message=f"The offer from {offer.buyer_name} has been rejected for property {offer.property}.",
+            from_email= broker_email,  # Update with your email
+            recipient_list=[offer.buyer_email],
+        )
+
+        return redirect('property_detail', property_id=offer.property.property_id)
+
+    return render(request, 'reject_offer.html', {'offer': offer})
+
+def accept_offer(request, offer_id):
+    """
+    Accept an offer, update the on_sale value, and send an email to the buyer.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        offer_id (int): The ID of the offer to be accepted.
+
+    Returns:
+        HttpResponse: Redirects to the property detail page after accepting the offer.
+    """
+    offer = get_object_or_404(Offer, pk=offer_id)
+
+    if request.method == 'POST':
+        # Perform actions to accept the offer
+        offer.property.for_sale = False  # Set the property's on_sale value to False
+        offer.property.save()
+
+        # Send email to the buyer
+        send_mail(
+            subject="Offer Accepted",
+            message=f"Congratulations! Your offer for property {offer.property} has been accepted.",
+            from_email="your@email.com",  # Update with your email
+            recipient_list=[offer.buyer_email],
+        )
+
+        # Delete the offer from the database
+        offer.delete()
+
+        return redirect('property_detail', property_id=offer.property.property_id)
+
+    return render(request, 'accept_offer.html', {'offer': offer})

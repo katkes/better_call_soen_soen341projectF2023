@@ -243,6 +243,5 @@ class BrokerModelTests(TestCase):
         Test the string representation of the Broker model.
         """
         user = create_test_broker()
-        broker = Broker.objects.create(
-            user=user, license_number='123ABC', agency='Test Agency')
+        broker = user[1]
         self.assertEqual(str(broker), 'Broker User broker@example.com')

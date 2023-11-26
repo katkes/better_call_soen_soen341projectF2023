@@ -3,6 +3,7 @@ Module Docstring: for shared function amongst files
 """
 from django.db import models
 from django.contrib.auth import get_user_model
+import uuid
 
 def big_auto_field():
     """
@@ -39,6 +40,11 @@ def create_test_user(email='test@example.com',
     Returns:
         User: The created user instance.
     """
+    email_prefix = "test"
+    existing_user = get_user_model().objects.filter(email=email).first()
+    if existing_user:
+            email = f'{email_prefix}_{uuid.uuid4()}@example.com' 
+
     return get_user_model().objects.create_user(
         email=email,
         name=name,
@@ -64,10 +70,44 @@ def create_test_broker(email='broker@example.com',
     Returns:
         User: The created broker instance.
     """
-    return create_test_user(
+    from accounts.models import Broker  # Move the import here to avoid circular import issue
+
+    broker_user = create_test_user(
         email=email,
         name=name,
         phone_number=phone_number,
         role='broker',
         password=password
     )
+    broker = Broker.objects.create(user=broker_user,
+        license_number='123ABC',
+        agency='ABC Realty')
+    return broker_user,broker
+
+def create_test_property():
+    from properties.models import Property
+
+    # Create a test broker user
+    broker_user = create_test_broker()
+    
+    # Create a test broker profile
+    broker = broker_user[0]
+
+    # Create a test property
+    test_property = Property.objects.create(
+        price=300000.00,
+        city='Test City',
+        rating=4.0,
+        image='path/to/test_image.jpg',  # Replace with your actual image path
+        assigned_user=broker,
+        for_sale=True,
+        size=1500,
+        num_of_bedrooms=3,
+        num_of_bathrooms=2,
+        type_of_property='House'
+    )
+
+    return test_property
+
+    
+    
