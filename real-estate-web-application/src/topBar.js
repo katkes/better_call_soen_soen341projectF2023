@@ -7,6 +7,7 @@ import FilterSelect from "./FilterSelect";
 import ProfileButton from "./ProfileButton.js";
 import React, {useState} from "react";
 import HomePage from "./home.js";
+import LoginForm from "./LoginForm.js";
 
 function TopBar({setContentText, Brokering, setbrokering}) {
     // Inside your TopBar component
@@ -37,6 +38,7 @@ function TopBar({setContentText, Brokering, setbrokering}) {
     //     }
     // };
     const handleSearchChange = async (e) => {
+
         if (!Brokering) { //code to search for a property by name
             try {
                 const response = await fetch("http://localhost:8000/property_search/", {
@@ -47,11 +49,13 @@ function TopBar({setContentText, Brokering, setbrokering}) {
                     body: JSON.stringify(searchQuery),
                 });
 
-                console.log("response of ", response)
+                console.log("response of ", response);
 
                 if (response.ok) {
-                    const answer = await response.json()
-                    console.log("Search results: ", answer)
+                    const answer = await response.json();
+                    console.log("Search results: ", answer);
+                    setContentText(<PropertySection setContentText={setContentText} filteredProperties={ answer}/>);
+
                     
                 } else {
                     console.error("Error searching properties:", response.statusText);
@@ -77,19 +81,20 @@ function TopBar({setContentText, Brokering, setbrokering}) {
                     body: JSON.stringify(searchQuery),
                 });
 
-                console.log("response of ", response)
+                console.log("response of ", response);
 
                 if (response.ok) {
-                    const answer = await response.json()
-                    console.log("Search results: ", answer)
+                    const answer = await response.json();
+
+                    console.log("Search results: ", answer);
                     localStorage.setItem('props', JSON.stringify(answer));
                     const storedProps = localStorage.getItem('props');
                     // retrieve
                     if (storedProps) {
                         const parsedProps = JSON.parse(storedProps);
                         console.log("Retrieved props: ", parsedProps);
-
-                        setContentText(<PropertySection setContentText={setContentText} filteredProperties={ localStorage.getItem('props', JSON.stringify(answer))}/>);
+                       
+                        
                     }
                 } else {
                     console.error("Error searching properties:", response.statusText);
