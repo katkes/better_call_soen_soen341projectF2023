@@ -4,6 +4,7 @@
 }
 
 .homePage .p1{
+  animation: fadeIn 3s;
     color: gainsboro;
     font-size: 60px;
     text-align: center;
@@ -12,6 +13,7 @@
     }
 
 .homePage .p2{
+  animation: fadeIn 4s;
       color: gainsboro;
       word-wrap: break-word;
       text-align: center;
@@ -27,12 +29,19 @@
     }
 
 
-  body {
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/public/HomePageFrontPanel2.jpg') no-repeat center top 50px;
-      background-size: cover;
-      z-index: 1;
+ .frontPanel {
+  animation: fadeIn 1.5s;
+  filter:brightness(0.45);
+  left:0vw;
+  top: -10vh;
+  width: 100vw;
+  height: auto;
+  z-index:-15;
+  position: absolute;
+  
     }
-    
+ 
+
       
     
     
