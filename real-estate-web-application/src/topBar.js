@@ -166,7 +166,7 @@ function TopBar({setContentText, Brokering, setbrokering}) {
 
     return (
         <div className="topBar">
-            <FilterSelect/>
+            <FilterSelect setContentText={setContentText}/>
             <div className="pageLogo">
                 <button onClick={handleButtonClick2} id="LogoAnchorHome">
                     {/* <img src="./Logo.png" alt="Urban Utopia"></img> */}
@@ -176,7 +176,7 @@ function TopBar({setContentText, Brokering, setbrokering}) {
 
             <div className="filterForm">
                 {/* ... (your existing code) */}
-                <form id="ApiFilterSearch" action="" onClick={handleSearchChange} >
+                <form id="ApiFilterSearch" action="" onClick={handleSearchChange} method="POST">
                     <input
                         type="text"
                         name="filter"

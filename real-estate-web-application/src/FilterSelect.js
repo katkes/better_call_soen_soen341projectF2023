@@ -1,13 +1,14 @@
 import "./css/FilterSelect.css";
 import React, {useState} from 'react';
 import Home from "./home";
+import PropertySection from "./PropertySection";
 
 // class="container" for="Price"
 // class="container" for="Size"
 // class="container" for="numBathrooms"
 // class="container" for="numBedrooms"
 
-function FilterSelect() {
+function FilterSelect({setContentText}) {
 
     //     <div className="filterFormDiv">
 
@@ -75,6 +76,8 @@ function FilterSelect() {
                 if (storedProps) {
                     const parsedProps = JSON.parse(storedProps);
                     console.log("Retrieved props: ", parsedProps);
+                    setContentText(<PropertySection setContentText={setContentText} filteredProperties={ parsedProps}/>);
+
                 }
                 // sessionStorage.setItem("props", answer);
                 // localStorage.setItem("props", answer)
