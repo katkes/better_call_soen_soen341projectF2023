@@ -24,24 +24,42 @@ function MortgageCalculator() {
 
   return (
     <div className="App">
-      <h2>Loan Amount:</h2>
-      <input
-        type="number"
-        id="totalAmount"
-        onChange={(e) => setLoanAmount(parseFloat(e.target.value))}
-      />
-      <h2>Interest Rate:</h2>
-      <input
-        type="number"
-        onChange={(e) => setInterestRate(parseFloat(e.target.value))}
-      />
-      <h2>Loan Lifetime:</h2>
-      <input
-        type="number"
-        onChange={(e) => setLoanLifeTime(parseFloat(e.target.value) * 12)}
-      />
-      <button onClick={calculate}>Calculate</button>
-      <h1>Your monthly payment is: ${monthlyPayment}</h1>
+      <br></br>
+      <hr></hr>
+      <h2>Calculate your monthly payment</h2>
+      <p>
+        Enter the <i>loan amount</i>, <i>interest rate</i>, and{' '}
+        <i>loan lifetime</i>.
+      </p>
+      <div className="input-container">
+        <div className="input-group">
+          <label htmlFor="loan-amount">Loan Amount</label>
+          <input
+            type="number"
+            id="totalAmount"
+            onChange={(e) => setLoanAmount(parseFloat(e.target.value))}
+          />
+        </div>
+
+        <div className="input-group">
+          <label htmlFor="interest">Interest Rate</label>
+          <input
+            type="number"
+            onChange={(e) => setInterestRate(parseFloat(e.target.value))}
+          />
+        </div>
+
+        <div className="input-group">
+          <label htmlFor="years">Loan Lifetime</label>
+          <input
+            type="number"
+            onChange={(e) => setLoanLifeTime(parseFloat(e.target.value) * 12)}
+          />
+        </div>
+      </div>
+      <br></br>
+      <button className="calculate-button" onClick={calculate}>Calculate</button>
+      <h2>Your monthly payment is: ${monthlyPayment}</h2>
     </div>
   );
 }

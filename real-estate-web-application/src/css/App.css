@@ -257,3 +257,44 @@ body {
 /*.submitSignUp:active {
   background-color: rgb(3, 23, 24);
 }*/
+
+.input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.input-container label {
+  font-weight: bold;
+  text-align: left;
+  color: rgb(73, 73, 73);
+
+}
+
+.input-container input{
+  height: 20px;
+  width: 250px;
+  padding: 5px;
+  /* margin-bottom: 15px; */
+  border: solid 1px #B1B1B1;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.input-group{
+  display: inline-flex; 
+  flex-direction: column;
+  margin-right: 20px; 
+}
+
+.calculate-button{
+  width: 250px;
+  padding: 10px;
+  background-color: #001e41;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+}
