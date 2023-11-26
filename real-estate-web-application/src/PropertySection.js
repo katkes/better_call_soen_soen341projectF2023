@@ -16,9 +16,7 @@ function PropertySection({ setContentText, filteredProperties }) {
           city={property.city}
           //image
           price={property.price}
-          assigned_user={property.assigned_user}
-          country={property.country}
-          for_sale={property.for_sale}
+          country={property.city}
           rating={property.rating}
           size={property.size}
           num_of_bedrooms={property.num_of_bedrooms}

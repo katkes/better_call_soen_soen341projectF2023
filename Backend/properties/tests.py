@@ -4,10 +4,75 @@ Module Docstring: Define tests for the accounts app.
 This module contains tests for the models, forms, and views in the accounts app.
 """
 
-from django.test import TestCase
-from utils.__init__ import create_test_user,create_test_broker
-from .models import Property
+from django.test import Client, TestCase
+from django.urls import reverse
+from utils.__init__ import create_test_user, create_test_broker, create_test_property
+from django.contrib.auth import get_user_model
+from .models import Property, Offer
+from accounts.models import Broker
 from .forms import PropertyForm, OfferForm
+
+class PropertyViewsTests(TestCase):
+    def setUp(self):
+        self.user = create_test_user()
+        self.client = Client()
+
+    def test_property_list_view(self):
+        response = self.client.get(reverse('property_list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'property_list.html')
+
+    def test_create_property_view(self):
+        self.client.force_login(self.user)
+        response = self.client.post(reverse('create_property'), {
+            'price': 100000.00,
+            'size': 1500,
+            'num_of_bathrooms': 2,
+            'num_of_bedrooms': 3,
+        })
+        self.assertEqual(response.status_code, 302)  # Redirects after successful POST
+        self.assertTrue(Property.objects.exists())
+
+    def test_property_detail_view(self):
+        property_obj = create_test_property()
+        response = self.client.get(reverse('property_detail', args=[property_obj.property_id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'property_detail.html')
+
+class OfferViewsTests(TestCase):
+    def setUp(self):
+        self.broker_user = create_test_broker()
+        self.client = Client()
+
+    def test_submit_offer_view(self):
+        property_obj = create_test_property()
+        self.client.force_login(self.broker_user[0])
+        response = self.client.post(reverse('submit_offer', args=[property_obj.property_id]), {
+            'buyer_name': 'Buyer Name',
+            'buyer_address': 'Buyer Address',
+            'buyer_email': 'buyer@example.com',
+            'price_offered': 120000.00,
+            'deed_of_sale_date': '2023-12-01',
+            'occupancy_date': '2024-01-01',
+        })
+        self.assertEqual(response.status_code, 302)  # Redirects after successful POST
+        self.assertTrue(Offer.objects.exists())
+
+    def test_reject_offer_view(self):
+        offer = Offer.objects.create(
+            buyer_broker=self.broker_user[1],
+            buyer_name='Buyer Name',
+            buyer_address='Buyer Address',
+            buyer_email='buyer@example.com',
+            property=create_test_property(),
+            price_offered=120000.00,
+            deed_of_sale_date='2023-12-01',
+            occupancy_date='2024-01-01',
+        )
+        response = self.client.post(reverse('reject_offer', args=[offer.offer_id]))
+        self.assertEqual(response.status_code, 302)  # Redirects after successful POST
+        self.assertFalse(Offer.objects.exists())
+
 class PropertyFormTests(TestCase):
     """
     Test case for the PropertyForm.
@@ -52,15 +117,10 @@ class OfferFormTests(TestCase):
         Test the OfferForm with valid data.
         """
         user = create_test_broker()
+        user = user[0]
         self.client.force_login(user)
 
-        Property.objects.create(
-            price=150000.00,
-            size=2000,
-            num_of_bathrooms=2,
-            num_of_bedrooms=3,
-            rating=4.5
-        )
+        property_obj = create_test_property()
 
         form_data = {
             'buyer_name': 'Buyer Name',

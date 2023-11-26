@@ -142,12 +142,12 @@ def search_brokers(request):
     """
     Search for brokers based on the provided query.
     """
-    if request.method == 'POST':
-        data = json.loads(request.body)
+    if request.method == 'POST' or request.method == 'GET':
+        data = json.loads(request.body) if request.method == 'POST' else request.GET.dict()
         brokers = CustomUser.objects.filter(role="broker")
 
         if data:
-            brokers = brokers.filter(name=data)
+            brokers = brokers.filter(name=data.get('name'))
 
         serialized_brokers = []
 

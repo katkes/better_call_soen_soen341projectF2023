@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
+    #'app',
     'rest_framework',
     'corsheaders',
     'accounts',
@@ -167,14 +167,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # settings.py
-
-EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
-EMAIL_HOST = 'your_smtp_server.com'
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'your_email@example.com'
-EMAIL_HOST_PASSWORD = 'your_email_password'
-DEFAULT_FROM_EMAIL = 'webmaster@example.com'
-
-
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '89b61483e2977f'
+EMAIL_HOST_PASSWORD = 'bbc912398cbf14'
+EMAIL_PORT = '2525'

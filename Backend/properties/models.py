@@ -33,7 +33,7 @@ class Property(models.Model):
     property_id = models.AutoField(primary_key=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     city = models.CharField(max_length=50, default="Dorval")
-    rating = models.DecimalField(max_digits=3, decimal_places=1)
+    rating = models.DecimalField(max_digits=3, decimal_places=1, default=0)
     image = models.ImageField(upload_to='property_images/')
     assigned_user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
@@ -88,6 +88,7 @@ class Offer(models.Model):
     Methods:
         None
     """
+    offer_id = models.AutoField(primary_key=True, default= 0)
     buyer_broker = models.ForeignKey(Broker, on_delete=models.CASCADE)
     buyer_name = models.CharField(max_length=100)
     buyer_address = models.TextField()
