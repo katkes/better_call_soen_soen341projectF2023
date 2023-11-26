@@ -17,6 +17,9 @@ function MortgageCalculator() {
 
     // Set the monthly payment state, rounded to 2 decimal places
     setMonthlyPayment(Math.round(calculatedMonthlyPayment * 100) / 100);
+    if(monthlyPayment >9999999999){
+      setMonthlyPayment("Please enter valid numbers")
+    }
   }
 
   return (
