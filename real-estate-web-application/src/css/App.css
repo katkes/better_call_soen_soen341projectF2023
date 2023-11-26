@@ -1,4 +1,5 @@
 .App{
+  
   text-align:center;
   font-family: "Avenir", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 }
@@ -102,6 +103,7 @@ body {
 } */
 
 .content {
+  
   position: absolute;
   top: 20%;
   width: 100%;
