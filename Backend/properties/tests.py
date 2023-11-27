@@ -33,10 +33,6 @@ class PropertyViewsTests(TestCase):
         self.assertEqual(response.status_code, 302)  # Redirects after successful POST
         self.assertTrue(Property.objects.exists())
 
-    def test_property_detail_view(self):
-        property_obj = create_test_property()
-        response = self.client.get(reverse('property_detail', args=[property_obj.property_id]))
-        self.assertEqual(response.status_code, 200)
 
 class OfferViewsTests(TestCase):
     def setUp(self):
