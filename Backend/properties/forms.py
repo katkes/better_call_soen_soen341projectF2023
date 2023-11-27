@@ -38,5 +38,5 @@ class OfferForm(forms.ModelForm):
         Specifies the Model and fields to be included in the form
         """
         model = Offer
-        fields = ['buyer_name', 'buyer_address', 'buyer_email',
-                  'price_offered', 'deed_of_sale_date', 'occupancy_date']
+        fields = ['buyer_name', 'buyer_email','buyer_broker_id',
+                  'price_offered','property_id', 'deed_of_sale_date', 'occupancy_date']
