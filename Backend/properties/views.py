@@ -249,6 +249,14 @@ def email_success(request):
 
 
 def submit_offer(request):
+    """
+    Submits a property offer from a JSON payload.
+    Parameters: 
+    - request (HttpRequest): The HTTP request object.
+
+    Returns: 
+    - JsonResponse: Result of the offer submission.
+    """
     if request.method == "POST":
         data = json.loads(request.body)
         form_data = {
@@ -271,6 +279,16 @@ def submit_offer(request):
 
 
 def offer_list(request, user_id):
+    """
+    Retrieves a list of offers associated with properties assigned to a user.
+
+    Parameters:
+    - request (HttpRequest): The HTTP request object.
+    - user_id (int): ID of the user whose assigned properties are considered.
+
+    Returns:
+    - JsonResponse: JSON response containing a list of offers associated with the user's properties.
+    """
     matching_properties = Property.objects.filter(assigned_user=user_id)
 
     # Initialize a list to store offers data

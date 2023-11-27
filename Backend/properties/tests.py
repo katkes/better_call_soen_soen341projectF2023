@@ -13,16 +13,28 @@ from accounts.models import Broker
 from .forms import PropertyForm, OfferForm
 
 class PropertyViewsTests(TestCase):
+    """
+    Test cases for property views.
+    """
     def setUp(self):
+        """
+        Set up test data and client.
+        """
         self.user = create_test_user()
         self.client = Client()
 
     def test_property_list_view(self):
+        """
+        Test the property list view.
+        """
         response = self.client.get(reverse('property_list'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'property_list.html')
 
     def test_create_property_view(self):
+        """
+        Test the create property view.
+        """
         self.client.force_login(self.user)
         response = self.client.post(reverse('create_property'), {
             'price': 100000.00,
@@ -35,11 +47,20 @@ class PropertyViewsTests(TestCase):
 
 
 class OfferViewsTests(TestCase):
+    """
+    Test cases for offer views.
+    """
     def setUp(self):
+        """
+        Set up test data and client.
+        """
         self.broker_user = create_test_broker()
         self.client = Client()
 
     def test_submit_offer_view(self):
+        """
+        Test the submit offer view.
+        """
         property_obj = create_test_property()
         self.client.force_login(self.broker_user[0])
         response = self.client.post(reverse('submit_offer', args=[property_obj.property_id]), {
@@ -54,6 +75,9 @@ class OfferViewsTests(TestCase):
         self.assertTrue(Offer.objects.exists())
 
     def test_reject_offer_view(self):
+        """
+        Test the reject offer view.
+        """
         offer = Offer.objects.create(
             buyer_broker=self.broker_user[1],
             buyer_name='Buyer Name',
