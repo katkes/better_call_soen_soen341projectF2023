@@ -44,7 +44,7 @@ class OfferViewsTests(TestCase):
         self.client.force_login(self.broker_user[0])
         response = self.client.post(reverse('submit_offer', args=[property_obj.property_id]), {
             'buyer_name': 'Buyer Name',
-            'buyer_address': 'Buyer Address',
+            #'buyer_address': 'Buyer Address',
             'buyer_email': 'buyer@example.com',
             'price_offered': 120000.00,
             'deed_of_sale_date': '2023-12-01',
@@ -55,11 +55,11 @@ class OfferViewsTests(TestCase):
 
     def test_reject_offer_view(self):
         offer = Offer.objects.create(
-            buyer_broker=self.broker_user[1],
+            buyer_broker_id=self.broker_user[1],
             buyer_name='Buyer Name',
-            buyer_address='Buyer Address',
+            #buyer_address='Buyer Address',
             buyer_email='buyer@example.com',
-            property=create_test_property(),
+            property_id=create_test_property(),
             price_offered=120000.00,
             deed_of_sale_date='2023-12-01',
             occupancy_date='2024-01-01',
@@ -103,6 +103,7 @@ class PropertyFormTests(TestCase):
         form = PropertyForm(data=form_data)
         self.assertFalse(form.is_valid())
 
+# Corrected OfferFormTests
 class OfferFormTests(TestCase):
     """
     Test case for the OfferForm.
@@ -119,9 +120,10 @@ class OfferFormTests(TestCase):
 
         form_data = {
             'buyer_name': 'Buyer Name',
-            'buyer_address': 'Buyer Address',
             'buyer_email': 'buyer@example.com',
+            'buyer_broker_id': user.user_id,
             'price_offered': 120000.00,
+            'property_id': property_obj.property_id,
             'deed_of_sale_date': '2023-12-01',
             'occupancy_date': '2024-01-01',
         }
@@ -135,9 +137,10 @@ class OfferFormTests(TestCase):
         """
         form_data = {
             'buyer_name': '',
-            'buyer_address': 'Buyer Address',
             'buyer_email': 'invalid_email',
+            'buyer_broker_id': 'invalid_broker_id',
             'price_offered': 'invalid_price',
+            'property_id': 'invalid_property_id',
             'deed_of_sale_date': 'invalid_date',
             'occupancy_date': 'invalid_date',
         }

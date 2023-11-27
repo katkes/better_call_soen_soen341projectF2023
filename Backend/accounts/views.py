@@ -5,6 +5,7 @@ This module contains views for user authentication, profile, and related functio
 """
 
 import json
+from django.forms import model_to_dict
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout, get_user_model
@@ -94,48 +95,55 @@ def user_list(request):
 
 def user_detail(request, user_id):
     """
-    Display details of a specific user.
+    Display details of a specific user and return a JSON response.
     """
     user = get_object_or_404(CustomUser, id=user_id)
-    return render(request, 'user_detail.html', {'user': user})
-
+    user_data = model_to_dict(user)
+    return JsonResponse({'user': user_data})
 
 def create_user(request):
     """
-    Create a new user.
+    Create a new user and return a JSON response.
     """
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('user_list')
-    else:
-        form = SignUpForm()
-    return render(request, 'create_user.html', {'form': form})
+            user = form.save()
 
+            # Convert the user object to a dictionary for the JSON response
+            user_data = model_to_dict(user)
+            return JsonResponse({'message': 'User created successfully', 'user': user_data})
+        else:
+            return JsonResponse({'error': 'Invalid form data'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 def update_user(request, user_id):
     """
-    Update an existing user.
+    Update an existing user and return a JSON response.
     """
     user = get_object_or_404(CustomUser, id=user_id)
+    
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('user_list')
-    else:
-        form = UserUpdateForm(instance=user)
-    return render(request, 'update_user.html', {'form': form})
 
+            # Convert the updated user object to a dictionary for the JSON response
+            updated_user_data = model_to_dict(CustomUser.objects.get(id=user_id))
+            return JsonResponse({'message': 'User updated successfully', 'user': updated_user_data})
+        else:
+            return JsonResponse({'error': 'Invalid form data'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 def delete_user(request, user_id):
     """
-    Delete an existing user.
+    Delete an existing user and return a JSON response.
     """
     user = get_object_or_404(CustomUser, id=user_id)
     user.delete()
-    return redirect('user_list')
+    return JsonResponse({'message': 'User deleted successfully'})
 
 
 @csrf_exempt

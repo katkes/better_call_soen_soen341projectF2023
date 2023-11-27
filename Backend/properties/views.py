@@ -5,6 +5,7 @@ This module contains views for property CRUD, display, and related functionaliti
 """
 
 import json
+from django.forms import model_to_dict
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -141,10 +142,9 @@ def property_filter(request):
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
-@login_required
 def create_property(request):
     """
-    Create a new property and redirect to the property detail page.
+    Create a new property and return a JSON response.
     """
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)
@@ -152,45 +152,49 @@ def create_property(request):
             property_obj = form.save(commit=False)
             property_obj.assigned_user = request.user
             property_obj.save()
-            return redirect('property_detail', property_id=property_obj.property_id)
-    else:
-        form = PropertyForm()
-    return render(request, 'property_create.html', {'form': form})
 
+            # Convert the property object to a dictionary for the JSON response
+            property_data = model_to_dict(property_obj)
+            return JsonResponse({'message': 'Property created successfully', 'property': property_data})
+        else:
+            return JsonResponse({'error': 'Invalid form data'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 def property_detail(request, property_id):
     """
-    Render the property detail page for the specified property.
+    Retrieve the details of a property and return a JSON response.
     """
-    property_obj = Property.objects.get(property_id=property_id)
-    return render(request, 'property_detail.html', {'property': property_obj})
-
+    property_obj = get_object_or_404(Property, property_id=property_id)
+    property_data = model_to_dict(property_obj)
+    return JsonResponse({'property': property_data})
 
 def property_edit(request, property_id):
     """
-    Edit an existing property and redirect to the property list page.
+    Edit an existing property and return a JSON response.
     """
-    property_obj = Property.objects.get(property_id=property_id)
+    property_obj = get_object_or_404(Property, property_id=property_id)
 
     if request.method == 'POST':
         form = PropertyForm(request.POST, instance=property_obj)
         if form.is_valid():
             form.save()
-            return redirect('property_list')  # Redirect to property_list view
+
+            # Convert the updated property object to a dictionary for the JSON response
+            updated_property_data = model_to_dict(Property.objects.get(property_id=property_id))
+            return JsonResponse({'message': 'Property updated successfully', 'property': updated_property_data})
+        else:
+            return JsonResponse({'error': 'Invalid form data'}, status=400)
     else:
-        form = PropertyForm(instance=property_obj)
-
-    return render(request, 'property_edit.html', {'form': form, 'property': property_obj})
-
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 def property_delete(request, property_id):
     """
-    Delete an existing property and redirect to the property list page.
+    Delete an existing property and return a JSON response.
     """
-    property_obj = Property.objects.get(property_id=property_id)
+    property_obj = get_object_or_404(Property, property_id=property_id)
     property_obj.delete()
-    return redirect('property_list')
-
+    return JsonResponse({'message': 'Property deleted successfully'})
 
 def request_visit(request, property_id):
     """
@@ -332,7 +336,7 @@ def reject_offer(request, offer_id):
         offer_id (int): The ID of the offer to be rejected.
 
     Returns:
-        HttpResponse: Redirects to the property detail page after rejecting the offer.
+        JsonResponse: JSON response indicating the rejection of the offer.
     """
     offer = get_object_or_404(Offer, pk=offer_id)
 
@@ -349,9 +353,9 @@ def reject_offer(request, offer_id):
             recipient_list=[offer.buyer_email],
         )
 
-        return redirect('property_detail', property_id=offer.property.property_id)
+        return JsonResponse({'message': 'Offer rejected successfully'})
 
-    return render(request, 'reject_offer.html', {'offer': offer})
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 def accept_offer(request, offer_id):
     """
@@ -362,7 +366,7 @@ def accept_offer(request, offer_id):
         offer_id (int): The ID of the offer to be accepted.
 
     Returns:
-        HttpResponse: Redirects to the property detail page after accepting the offer.
+        JsonResponse: JSON response indicating the acceptance of the offer.
     """
     offer = get_object_or_404(Offer, pk=offer_id)
 
@@ -382,6 +386,6 @@ def accept_offer(request, offer_id):
         # Delete the offer from the database
         offer.delete()
 
-        return redirect('property_detail', property_id=offer.property.property_id)
+        return JsonResponse({'message': 'Offer accepted successfully'})
 
-    return render(request, 'accept_offer.html', {'offer': offer})
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
