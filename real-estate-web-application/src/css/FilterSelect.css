@@ -2,21 +2,19 @@
 .filterFormDiv{
   z-index: 1000;
   position:absolute;
-  top:9.8vh;
-  left: 25vw;
-  text-align: center;
+  margin-top: 75px;
   color: black;
-  padding-left: 10px;
   width: 15%;;
-
+  margin-left:50%;
+  left:-350px; 
 }
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .filterFormDiv {
     left: 10px;
     top: 65px;
     
   }
-}
+} */
 
 
 .filterFormApply{
