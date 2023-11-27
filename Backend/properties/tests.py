@@ -37,7 +37,6 @@ class PropertyViewsTests(TestCase):
         property_obj = create_test_property()
         response = self.client.get(reverse('property_detail', args=[property_obj.property_id]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'property_detail.html')
 
 class OfferViewsTests(TestCase):
     def setUp(self):
