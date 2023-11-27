@@ -244,35 +244,84 @@ def email_success(request):
     return render(request, 'email_success.html')
 
 
-def submit_offer(request, property_id):
-    """
-    Submit an offer for the specified property and redirect to the property detail page.
-    """
-    property_obj = get_object_or_404(Property, property_id=property_id)
-
-    if request.method == 'POST':
-        form = OfferForm(request.POST)
+def submit_offer(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        form_data = {
+            'buyer_name': str(data.get("buyerName")),
+            'buyer_email': str(data.get("buyerEmail")),
+            'buyer_broker_id': int(data.get("buyerBrokerID")),
+            'price_offered': int(data.get("priceOffered")),
+            'property_id': int(data.get("propertyID")),
+            'deed_of_sale_date': str(data.get("deedOfSaleDate")),
+            'occupancy_date': str(data.get("occupancyDate")),
+        }
+        form = OfferForm(form_data)
         if form.is_valid():
-            offer = form.save(commit=False)
-            # Assuming request.user is authenticated and has a broker profile
-            offer.buyer_broker = request.user.broker
-            offer.property = property_obj
-            offer.save()
-
-            send_mail(
-                subject="Property Offer",
-                message=f"{offer.buyer_name} made an offer on the property.",
-                from_email=offer.buyer_email,
-                recipient_list=[property_obj.assigned_user.email]
-            )
-
-            # Redirect to the property detail page after a successful offer submission
-            return redirect('property_detail', property_id=property_obj.property_id)
-
+            form.save()
+            return JsonResponse({"message": "Offer submitted successfully."}, status=201)
+        else:
+            return JsonResponse({"errors": form.errors}, status=400)
     else:
-        form = OfferForm()
+        return JsonResponse({"error": "Invalid request method."}, status=405)
 
-    return render(request, 'offer_submission.html', {'form': form, 'property': property_obj})
+
+def offer_list(request, user_id):
+    matching_properties = Property.objects.filter(assigned_user=user_id)
+
+    # Initialize a list to store offers data
+    offers_data = []
+
+    # Loop through the matching properties
+    for property_instance in matching_properties:
+        # Query for offers associated with the property and assigned_user
+        matching_offers = Offer.objects.filter(property=property_instance)
+
+        # Optionally, you can use the matching_offers queryset as needed
+        for offer in matching_offers:
+            # Collect offer data as needed (modify this based on your Offer model structure)
+            offer_data = {
+                'offer_id': offer.id,
+                'amount': offer.amount,
+                'property_id': property_instance.id,
+                # Add more fields as needed
+            }
+            offers_data.append(offer_data)
+
+    # Optionally, you can return the offers data as JSON response
+    return JsonResponse({'offers_data': offers_data})
+
+
+
+# def submit_offer(request, property_id):
+#     """
+#     Submit an offer for the specified property and redirect to the property detail page.
+#     """
+#     property_obj = get_object_or_404(Property, property_id=property_id)
+#
+#     if request.method == 'POST':
+#         form = OfferForm(request.POST)
+#         if form.is_valid():
+#             offer = form.save(commit=False)
+#             # Assuming request.user is authenticated and has a broker profile
+#             offer.buyer_broker = request.user.broker
+#             offer.property = property_obj
+#             offer.save()
+#
+#             send_mail(
+#                 subject="Property Offer",
+#                 message=f"{offer.buyer_name} made an offer on the property.",
+#                 from_email=offer.buyer_email,
+#                 recipient_list=[property_obj.assigned_user.email]
+#             )
+#
+#             # Redirect to the property detail page after a successful offer submission
+#             return redirect('property_detail', property_id=property_obj.property_id)
+#
+#     else:
+#         form = OfferForm()
+#
+#     return render(request, 'offer_submission.html', {'form': form, 'property': property_obj})
 
 def reject_offer(request, offer_id):
     """
