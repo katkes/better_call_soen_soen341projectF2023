@@ -89,11 +89,11 @@ class Offer(models.Model):
         None
     """
     offer_id = models.AutoField(primary_key=True, default= 0)
-    buyer_broker = models.ForeignKey(Broker, on_delete=models.CASCADE)
+    buyer_broker_id = models.ForeignKey(Broker, on_delete=models.CASCADE)
     buyer_name = models.CharField(max_length=100)
     buyer_address = models.TextField()
     buyer_email = models.EmailField()
-    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    property_id = models.ForeignKey(Property, on_delete=models.CASCADE)
     price_offered = models.DecimalField(max_digits=10, decimal_places=2)
     deed_of_sale_date = models.DateField()
     occupancy_date = models.DateField()
