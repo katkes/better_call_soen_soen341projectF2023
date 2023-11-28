@@ -345,7 +345,7 @@ def reject_offer(request, offer_id):
         offer.delete()
 
         # Send email to the broker
-        broker_email = offer.property.assigned_user.email
+        broker_email = offer.property_id.assigned_user.email
         send_mail(
             subject="Offer Rejected",
             message=f"The offer from {offer.buyer_name} has been rejected for property {offer.property}.",

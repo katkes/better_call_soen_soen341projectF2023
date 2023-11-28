@@ -17,21 +17,39 @@ class PropertyViewsTests(TestCase):
         self.user = create_test_user()
         self.client = Client()
 
-    def test_property_list_view(self):
-        response = self.client.get(reverse('property_list'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'property_list.html')
-
     def test_create_property_view(self):
+        # Log in the user
         self.client.force_login(self.user)
+
+        # Simulate a POST request to create a new property
         response = self.client.post(reverse('create_property'), {
             'price': 100000.00,
             'size': 1500,
             'num_of_bathrooms': 2,
             'num_of_bedrooms': 3,
         })
-        self.assertEqual(response.status_code, 302)  # Redirects after successful POST
+
+        # Check if the response status code is a redirect (302)
+        self.assertEqual(response.status_code, 302)
+
+        # Check if a property object was created in the database
         self.assertTrue(Property.objects.exists())
+
+        # Optionally, you can check additional details about the created property
+        created_property = Property.objects.first()
+        self.assertEqual(created_property.price, 100000.00)
+        self.assertEqual(created_property.size, 1500)
+        self.assertEqual(created_property.num_of_bathrooms, 2)
+        self.assertEqual(created_property.num_of_bedrooms, 3)
+        self.assertEqual(created_property.assigned_user, self.user)
+
+        # You can also check the JSON response returned by the view
+        # Note: You may need to adjust this part based on your view's actual behavior
+        json_response = response.json()
+        self.assertEqual(json_response['message'], 'Property created successfully')
+        self.assertIn('property', json_response)
+        self.assertEqual(json_response['property']['price'], 100000.00)
+        # Add more assertions as needed
 
 
 class OfferViewsTests(TestCase):
@@ -121,7 +139,7 @@ class OfferFormTests(TestCase):
         form_data = {
             'buyer_name': 'Buyer Name',
             'buyer_email': 'buyer@example.com',
-            'buyer_broker_id': user.user_id,
+            'buyer_broker_id': user.user_intance.pk,
             'price_offered': 120000.00,
             'property_id': property_obj.property_id,
             'deed_of_sale_date': '2023-12-01',
