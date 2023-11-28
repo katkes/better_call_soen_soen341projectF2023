@@ -75,14 +75,15 @@ def custom_login(request):
                 return JsonResponse({"message": "User was logged in successfully",
                                      "id": user.id,
                                      "name": user.name,
-                                     "role": user.role})
+                                     "role": user.role,
+                                     "email": user.email,
+                                     "phoneNumber": user.phone_number})
             return JsonResponse({"error": "Invalid email or password"}, status=400)
 
         return JsonResponse({"error": form.errors}, status=400)
 
     form = LoginForm()
     return render(request, 'login.html', {'form': form})
-
 
 
 def user_list(request):
@@ -101,6 +102,7 @@ def user_detail(request, user_id):
     user_data = model_to_dict(user)
     return JsonResponse({'user': user_data})
 
+
 def create_user(request):
     """
     Create a new user and return a JSON response.
@@ -118,12 +120,13 @@ def create_user(request):
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
+
 def update_user(request, user_id):
     """
     Update an existing user and return a JSON response.
     """
     user = get_object_or_404(CustomUser, id=user_id)
-    
+
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
@@ -136,6 +139,7 @@ def update_user(request, user_id):
             return JsonResponse({'error': 'Invalid form data'}, status=400)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
+
 
 def delete_user(request, user_id):
     """
@@ -173,6 +177,7 @@ def search_brokers(request):
 
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
+
 def request_info(request, broker_id):
     """
     Handle a request for information about a broker.
@@ -181,6 +186,7 @@ def request_info(request, broker_id):
     # Handle the request (send email, save to database, etc.)
     # Add your logic here...
     return render(request, 'request_info.html', {'broker': broker})
+
 
 @csrf_exempt
 def request_visit(request, broker_id):
@@ -214,17 +220,53 @@ def request_visit(request, broker_id):
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
-def broker_property_listings(request, broker_id):
-    """
-    Display property listings for a specific broker.
-    """
-    broker = get_object_or_404(CustomUser, id=broker_id)
-    properties = Property.objects.filter(assigned_user=broker)
-    return render(request,
-                  'broker_property_listings.html',
-                  {'broker': broker,
-                   'properties': properties}
-                  )
+# def broker_property_listings(request, broker_id):
+#     """
+#     Display property listings for a specific broker.
+#     """
+#     broker = get_object_or_404(CustomUser, id=broker_id)
+#     properties = Property.objects.filter(assigned_user=broker)
+#     return render(request,
+#                   'broker_property_listings.html',
+#                   {'broker': broker,
+#                    'properties': properties}
+#                   )
+
+@csrf_exempt
+def broker_property_listings(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        print(f"data is {data}")
+        broker_id = data.get('brokerID')
+        print(broker_id)
+
+        try:
+            # Assuming 'assigned_user' field in Property model refers to the broker
+            properties = Property.objects.filter(assigned_user_id=broker_id)
+            print(f"Number of properties associated with broker {broker_id}: {properties.count()}")
+            print(f"searching for broker with {broker_id}")
+            props = Property.objects.all()
+            prop_count = props.count()
+            print(f"Total number of properties: {prop_count}")
+
+            # Serializing property data to JSON response
+            properties_list = [
+                {
+                    "property_id": property_obj.property_id,
+                    "price": str(property_obj.price),
+                    "city": property_obj.city,
+                    # Add other property fields you want to include
+                }
+                for property_obj in properties
+            ]
+
+            return JsonResponse(properties_list, safe=False)
+
+        except Property.DoesNotExist:
+            # return JsonResponse({'error': 'Properties not found for the given broker ID'}, status=404)
+            return JsonResponse([], safe=False)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
 def profile_view(request):
