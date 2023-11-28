@@ -97,3 +97,4 @@ class Offer(models.Model):
     price_offered = models.DecimalField(max_digits=10, decimal_places=2)
     deed_of_sale_date = models.DateField()
     occupancy_date = models.DateField()
+    # assigned_user_id = models.DecimalField(max_digits=10, decimal_places=2)
