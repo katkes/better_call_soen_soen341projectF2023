@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./css/SideBar.css";
 import SignUp from "./SignUpForm";
 import GenerateBrokers from "./GenerateBrokers";
+import AboutUs from "./AboutUs";
 
 function SideBar({setContentText, setbrokering, Brokering}) {
 
@@ -29,7 +30,10 @@ function SideBar({setContentText, setbrokering, Brokering}) {
             setContentText(<SignUp setContentText={setContentText}/>)
         }
     }
-
+    const handleClick6 = () => {
+     
+          setContentText(<AboutUs/>) 
+  }
 
     return (
         <>
@@ -45,7 +49,7 @@ function SideBar({setContentText, setbrokering, Brokering}) {
                     <a id="classElement3" className={`${(sessionStorage.getItem('role') === "broker") ? "none" : ""}`}
                        onClick={handleClick}>My Broker</a>
                     <a id="classElement4" onClick={handleClick12}>Profile</a>
-                    <a id="classElement5" onClick={handleClick12}>About us</a>
+                    <a id="classElement5" onClick={handleClick6}>About us</a>
                 </div>}
             </div>
         </>
