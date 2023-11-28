@@ -76,7 +76,7 @@ function FilterSelect({setContentText}) {
                 if (storedProps) {
                     const parsedProps = JSON.parse(storedProps);
                     console.log("Retrieved props: ", parsedProps);
-                    setContentText(<PropertySection setContentText={setContentText} filteredProperties={ parsedProps}/>);
+                    setContentText(<PropertySection setContentText={setContentText} filteredProperties={parsedProps}/>);
 
                 }
                 // sessionStorage.setItem("props", answer);
@@ -149,7 +149,7 @@ function FilterSelect({setContentText}) {
                     {/* <span class="checkmark"></span> */}
                     {size} ft
                     <label className="label" htmlFor="num_of_bathrooms">Number of Bathrooms<br></br></label>
-                    
+
                     <input className="slider-range"
                            id="num_of_bathrooms"
                            name="num_of_bathrooms"
@@ -163,9 +163,9 @@ function FilterSelect({setContentText}) {
                     />
                     {num_of_bathrooms}
                     {/* <span class="checkmark"></span> */}
-                    
+
                     <label className="label" htmlFor="num_of_bedrooms">Number of Bedrooms<br></br></label>
-                    
+
                     <input className="slider-range"
                            id="num_of_bedrooms"
                            name="num_of_bedrooms"

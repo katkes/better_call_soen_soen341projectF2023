@@ -86,7 +86,6 @@ def custom_login(request):
     return render(request, 'login.html', {'form': form})
 
 
-
 def user_list(request):
     """
     Display a list of users.
@@ -102,6 +101,7 @@ def user_detail(request, user_id):
     user = get_object_or_404(CustomUser, id=user_id)
     user_data = model_to_dict(user)
     return JsonResponse({'user': user_data})
+
 
 def create_user(request):
     """
@@ -120,12 +120,13 @@ def create_user(request):
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
+
 def update_user(request, user_id):
     """
     Update an existing user and return a JSON response.
     """
     user = get_object_or_404(CustomUser, id=user_id)
-    
+
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
@@ -138,6 +139,7 @@ def update_user(request, user_id):
             return JsonResponse({'error': 'Invalid form data'}, status=400)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
+
 
 def delete_user(request, user_id):
     """
@@ -175,6 +177,7 @@ def search_brokers(request):
 
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
+
 def request_info(request, broker_id):
     """
     Handle a request for information about a broker.
@@ -183,6 +186,7 @@ def request_info(request, broker_id):
     # Handle the request (send email, save to database, etc.)
     # Add your logic here...
     return render(request, 'request_info.html', {'broker': broker})
+
 
 @csrf_exempt
 def request_visit(request, broker_id):
@@ -227,20 +231,6 @@ def request_visit(request, broker_id):
 #                   {'broker': broker,
 #                    'properties': properties}
 #                   )
-
-# @csrf_exempt
-# def broker_property_listings(request):
-#     if request.method == "POST":
-#         data = json.loads(request.body)
-#         # print(data)
-#         print("good till now")
-#         broker_id = data.get('brokerId')
-#         print("good till now 2")
-#         broker = get_object_or_404(CustomUser, id=broker_id)
-#         print("good till now 3")
-#         properties = Property.objects.filter(assigned_user=broker)
-#         properties_list = list(properties.values())  # convert queryset to list of dictionaries
-#         return JsonResponse(properties_list, safe=False)  # return JSON response
 
 @csrf_exempt
 def broker_property_listings(request):
