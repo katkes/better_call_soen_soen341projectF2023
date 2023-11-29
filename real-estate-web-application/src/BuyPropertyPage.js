@@ -1,6 +1,8 @@
 import React from "react";
 import "./css/BuyPropertyPage.css";
 import MortgageCalculator from "./MortgageCalculator";
+import submitOffer from "./SubmitOffer";
+import SubmitOffer from "./SubmitOffer";
 
 
 const RealEstateListing = ({type, address, price, previewPhotos, broker, favorite, features}) => {
@@ -37,6 +39,7 @@ const RealEstateListing = ({type, address, price, previewPhotos, broker, favorit
                 </div>
             </div>
             <MortgageCalculator/>
+            <SubmitOffer/>
         </div>
     );
 };
