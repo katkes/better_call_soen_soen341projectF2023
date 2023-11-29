@@ -6,8 +6,9 @@ function SubmitOffer(){
     const [time, setTime] = useState(0);
     const [finalPrice, setFinalPrice] = useState(0);
 
-    function onValueChanges(){
-        setFinalPrice(amount * time); 
+    function onValueChanges(event){
+        event.preventDefault()
+        setFinalPrice(amount * time);
     }
 
     return (
