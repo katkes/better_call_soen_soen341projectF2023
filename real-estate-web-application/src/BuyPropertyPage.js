@@ -1,7 +1,6 @@
 import React from "react";
 import "./css/BuyPropertyPage.css";
 import MortgageCalculator from "./MortgageCalculator";
-import submitOffer from "./SubmitOffer";
 import SubmitOffer from "./SubmitOffer";
 
 

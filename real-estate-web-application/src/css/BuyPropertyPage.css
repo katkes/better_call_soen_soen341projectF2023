@@ -18,6 +18,13 @@
     font-size: 40px;
     color: #001e41;
   }
+
+  h3 {
+    font-family:'Times New Roman', Times, serif;
+    font-weight: lighter;
+    font-size: 30px;
+    color: #001e41;
+  }
   
   .top {
     display: flex;

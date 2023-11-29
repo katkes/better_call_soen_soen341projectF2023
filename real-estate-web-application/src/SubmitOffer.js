@@ -30,16 +30,24 @@ function SubmitOffer() {
 
         return (
             <div>
+                <hr></hr>
+                <h2>Submit an offer</h2>
                 <form action="" method="POST">
-                    <label for="offerAmount">amount per installment ($)</label>
-                    <input name="offerAmount" type="number" onChange={(e) => setAmount(e.target.value)}></input>
-
-                    <label for="offerTime">number of installments (years)</label>
-                    <input name="offerTime" type="number" onChange={(e) => setTime(e.target.value)}></input>
-
-                    <button onClick={onValueChanges}>Calculate total amount</button>
-                    <h2>total amount offered: {finalPrice}</h2>
-                    <button>Submit the offer</button>
+                    <p>Enter the <i>amount per installment</i> and the <i>number of installments</i>.</p>
+                    <div className="input-container">
+                        <div className="input-group">
+                            <label for="offerAmount">Amount per installment ($)</label>
+                            <input name="offerAmount" type="number" onChange={(e) => setAmount(e.target.value)}></input>
+                        </div>
+                        <div className="input-group">
+                            <label for="offerTime">Number of installments (in years)</label>
+                            <input name="offerTime" type="number" onChange={(e) => setTime(e.target.value)}></input>
+                        </div>
+                    </div>
+                    <br></br>
+                    <button className="calculate-button"onClick={onValueChanges}>Calculate total amount</button>
+                    <h3>Total amount offered: ${finalPrice}</h3>
+                    <button className="calculate-button">Submit the offer</button>
                 </form>
             </div>
         );

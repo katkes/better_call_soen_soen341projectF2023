@@ -59,7 +59,7 @@ function MortgageCalculator() {
       </div>
       <br></br>
       <button className="calculate-button" onClick={calculate}>Calculate</button>
-      <h2>Your monthly payment is: ${monthlyPayment}</h2>
+      <h3>Your monthly payment is: ${monthlyPayment}</h3>
     </div>
   );
 }
