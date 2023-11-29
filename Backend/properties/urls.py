@@ -20,7 +20,8 @@ urlpatterns = [
     path('email_form/', views.email_form, name='email_form'),
     path('send_email/', views.send_email, name='send_email'),
     path('email_success/', views.email_success, name='email_success'),
-    path('submit_offer/<int:property_id>/', views.submit_offer, name='submit_offer'),
+    # path('submit_offer/<int:property_id>/', views.submit_offer, name='submit_offer'),
+    path('submit_offer', views.submit_offer, name='submit_offer'),
     path('reject_offer/<int:offer_id>/', views.reject_offer, name='reject_offer'),
     path('accept_offer/<int:offer_id>/', views.accept_offer, name='accept_offer'),
 
