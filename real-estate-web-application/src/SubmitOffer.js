@@ -107,11 +107,11 @@ function SubmitOffer() {
             <div>
                 <form action="" method="POST" onSubmit={handleSubmit}>
                     <label for="offerAmount">amount per installment ($)</label>
-                    <input name="offerAmount" type="number" value={data1}
+                    <input name="offerAmount" type="number" value={formData.data1}
                            onChange={(e) => setAmount(e.target.value)}></input>
 
                     <label for="offerTime">number of installments (years)</label>
-                    <input name="offerTime" type="number" value={data2}
+                    <input name="offerTime" type="number" value={formData.data2}
                            onChange={(e) => setTime(e.target.value)}></input>
 
                     <button onClick={onValueChanges}>Calculate total amount</button>
