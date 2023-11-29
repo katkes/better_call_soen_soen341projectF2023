@@ -1,25 +1,86 @@
 import SingularCard from "./singularCard.js";
+import PropertySection from "./PropertySection";
+import React, {useState, useEffect} from "react";
 
-function AccountPage({phoneNumber, username, email, favoriteProperties, setContentText}){
-//phone number username email, favorite properties
+function AccountPage({phoneNumber, username, email, favoriteProperties, setContentText}) {
+    phoneNumber = sessionStorage.getItem("phoneNumber");
+    username = sessionStorage.getItem("userName");
+    email = sessionStorage.getItem("emailAddress");
 
+    const [brokerProps, setBrokerProps] = useState(null);
 
-    return(
-        <div className="accountPage">
-            <h3>{username}</h3>
-            <h3>{email}</h3>
-            <h3>{phoneNumber}</h3>
+    const [formData, setFormData] = useState({
+        brokerID: sessionStorage.getItem("userID"),
+    });
 
-            <div className="favoriteProperties">
-            <h3>Favorites</h3>
-            <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
-            <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5" setContentText={setContentText}/>
+    const getBrokerProps = async () => {
+        try {
+            const response = await fetch("http://localhost:8000/broker_property_listings/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const answer = await response.json();
+            localStorage.setItem('brokerProps', JSON.stringify(answer));
+            setBrokerProps(answer);
+        } catch (error) {
+            console.log("An error occurred:", error);
+        }
+    };
+
+    useEffect(() => {
+        const userRole = sessionStorage.getItem("role");
+        if (userRole === "broker") {
+            getBrokerProps();
+        }
+    }, []);
+
+    if (sessionStorage.getItem("role") === "broker") {
+        if (brokerProps === null) {
+            return <div>Loading...</div>;
+        }
+
+        return (
+            <div className="accountPage">
+                <h3>{username}</h3>
+                <h3>{email}</h3>
+                <h3>{phoneNumber}</h3>
+                <h3>My Listings</h3>
+                <PropertySection setContentText={setContentText} filteredProperties={brokerProps}/>
+                <div className="favoriteProperties">
+                    <h3>Favorites</h3>
+                    <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5"
+                                  setContentText={setContentText}/>
+                    <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5"
+                                  setContentText={setContentText}/>
+                    {/* More cards */}
+                </div>
             </div>
-        </div>
-    );
+        );
+    } else {
+        return (
+            <div className="accountPage">
+                <h3>{username}</h3>
+                <h3>{email}</h3>
+                <h3>{phoneNumber}</h3>
+                <div className="favoriteProperties">
+                    <h3>Favorites</h3>
+                    <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5"
+                                  setContentText={setContentText}/>
+                    <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5"
+                                  setContentText={setContentText}/>
+                    {/* More cards */}
+                </div>
+            </div>
+        );
+    }
 }
 
-
 export default AccountPage;
-
-

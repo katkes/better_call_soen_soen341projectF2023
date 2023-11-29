@@ -21,6 +21,7 @@ function SingularCard({
   ];
   const broker = "John Doe"; // Assuming this is a default value
   let favorite = false; // Assuming this is a default value
+  // Modify the favourite here
   const features = [
     /* Assuming this is a default value */ "3 Bedrooms",
     "2 Bathrooms",

@@ -1,4 +1,4 @@
-function VisitConfirmation(){
+function VisitConfirmation() {
 
 
     return (
