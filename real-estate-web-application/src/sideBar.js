@@ -27,12 +27,12 @@ function SideBar({setContentText, setbrokering, Brokering}) {
     const handleClick12 = () => {
         if (sessionStorage.getItem("isRegistered")) {
         } else {
-            setContentText(<SignUp setContentText={setContentText}/>)
+            setContentText(<SignUp setContentText={setContentText}/>);
         }
     }
     const handleClick6 = () => {
      
-          setContentText(<AboutUs/>) 
+          setContentText(<AboutUs setContentText={setContentText}/>); 
   }
 
     return (

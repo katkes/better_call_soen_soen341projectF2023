@@ -1,7 +1,12 @@
 import "./css/App.css";
+import React, {useState} from "react";
+import SignUp from "./SignUpForm";
 
-function AboutUs(){
+function AboutUs({setContentText}){
 
+    const handleClick = () => {
+        setContentText(<SignUp setContentText={setContentText}/>);
+    };
 
     return(
         <div className="aboutUsPage">
@@ -14,7 +19,7 @@ function AboutUs(){
                 <br></br>
                 We at Urban Utopia hope to be of convenience to our customers. Thank you for using Urban Utopia!
             </p>
-            <button>Get Started</button>
+            <button onClick={handleClick}>Get Started</button>
         </div>
     );
 }
