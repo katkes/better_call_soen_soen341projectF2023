@@ -5,6 +5,7 @@ function AboutUs(){
 
     return(
         <div className="aboutUsPage">
+            <h2>About Us</h2>
             <img src="./RealEstateStockPhoto.jpeg" alt="homeStockPhoto"></img>
             <p className="p3">
                 Welcome to Urban Utopia! This website is dedicated to facilitate the buying and renting of properties by interfacing brokers, homebuyers and homerenters together.
@@ -13,6 +14,7 @@ function AboutUs(){
                 <br></br>
                 We at Urban Utopia hope to be of convenience to our customers. Thank you for using Urban Utopia!
             </p>
+            <button>Get Started</button>
         </div>
     );
 }
