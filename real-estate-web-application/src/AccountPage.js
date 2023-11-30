@@ -35,10 +35,40 @@ function AccountPage({phoneNumber, username, email, favoriteProperties, setConte
         }
     };
 
+
+    const [offers, setOffers] = useState([]);
+    const getOffers = async (e) => {
+        try {
+            const userID = sessionStorage.getItem("userID");
+            const response = await fetch(`http://localhost:8000/offer_list/${userID}`, {
+                method: "POST",
+                // headers: {
+                //     "Content-Type": "application/json",
+                // },
+                // body: JSON.stringify(brokerUserID),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            // const answer = await response.json();
+            // console.log(JSON.stringify(answer))
+            const {offers_data} = await response.json();
+            setOffers(offers_data || []);
+            // localStorage.setItem('brokerProps', JSON.stringify(answer));
+
+        } catch (error) {
+            console.log("An error occurred:", error);
+        }
+    }
+
+
     useEffect(() => {
         const userRole = sessionStorage.getItem("role");
         if (userRole === "broker") {
             getBrokerProps();
+            getOffers();
         }
     }, []);
 
@@ -54,6 +84,21 @@ function AccountPage({phoneNumber, username, email, favoriteProperties, setConte
                 <h3>{phoneNumber}</h3>
                 <h3>My Listings</h3>
                 <PropertySection setContentText={setContentText} filteredProperties={brokerProps}/>
+                <h3>My Offers</h3>
+                <div className="offers">
+                    {offers.length > 0 ? (
+                        offers.map((offer, index) => (
+                            <div key={index}>
+                                <p>Offer ID: {offer.offer_id}</p>
+                                <p>Amount: {offer.amount}</p>
+                                <p>Property ID: {offer.property_id}</p>
+                                {/* You can display other offer details here */}
+                            </div>
+                        ))
+                    ) : (
+                        <p>No offers available.</p>
+                    )}
+                </div>
                 <div className="favoriteProperties">
                     <h3>Favorites</h3>
                     <SingularCard name="Minecraft House" price="your soul" country="nether" rating="5"

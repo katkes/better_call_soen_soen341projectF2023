@@ -333,9 +333,7 @@ def submit_offer(request):
         if (isinstance(propID,dict)):
             propID = data.get("propID").get("propID")
 
-        print(data)
-        print("here")
-        print(propID)
+
 
         # try:
         #     propID = int(propID)  # Try converting to int if it's a string representation of an integer
@@ -351,7 +349,7 @@ def submit_offer(request):
             'price_offered': price_offered,
             'property_id': property,
         }
-        print(form_data)
+
 
         form = OfferForm(form_data)
         if form.is_valid():
@@ -362,7 +360,7 @@ def submit_offer(request):
     else:
         return JsonResponse({"error": "Invalid request method."}, status=405)
 
-
+@csrf_exempt
 def offer_list(request, user_id):
     """
     Retrieves a list of offers associated with properties assigned to a user.
@@ -374,23 +372,25 @@ def offer_list(request, user_id):
     Returns:
     - JsonResponse: JSON response containing a list of offers associated with the user's properties.
     """
-    matching_properties = Property.objects.filter(assigned_user=user_id)
 
+
+    matching_properties = Property.objects.filter(assigned_user=user_id)
+    print(matching_properties)
     # Initialize a list to store offers data
     offers_data = []
 
     # Loop through the matching properties
     for property_instance in matching_properties:
         # Query for offers associated with the property and assigned_user
-        matching_offers = Offer.objects.filter(property=property_instance)
+        matching_offers = Offer.objects.filter(property_id=property_instance)
 
         # Optionally, you can use the matching_offers queryset as needed
         for offer in matching_offers:
             # Collect offer data as needed (modify this based on your Offer model structure)
             offer_data = {
-                'offer_id': offer.id,
-                'amount': offer.amount,
-                'property_id': property_instance.id,
+                'offer_id': offer.pk,
+                'amount': offer.price_offered,
+                'property_id': property_instance.pk,
                 # Add more fields as needed
             }
             offers_data.append(offer_data)

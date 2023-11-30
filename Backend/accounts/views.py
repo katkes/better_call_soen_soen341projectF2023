@@ -243,11 +243,11 @@ def broker_property_listings(request):
         try:
             # Assuming 'assigned_user' field in Property model refers to the broker
             properties = Property.objects.filter(assigned_user_id=broker_id)
-            print(f"Number of properties associated with broker {broker_id}: {properties.count()}")
-            print(f"searching for broker with {broker_id}")
+            # print(f"Number of properties associated with broker {broker_id}: {properties.count()}")
+            # print(f"searching for broker with {broker_id}")
             props = Property.objects.all()
             prop_count = props.count()
-            print(f"Total number of properties: {prop_count}")
+            # print(f"Total number of properties: {prop_count}")
 
             # Serializing property data to JSON response
             properties_list = [

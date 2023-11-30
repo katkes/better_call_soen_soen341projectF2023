@@ -88,7 +88,7 @@ class Offer(models.Model):
     Methods:
         None
     """
-    offer_id = models.AutoField(primary_key=True, default= 0)
+    offer_id = models.AutoField(primary_key=True)
     buyer_broker_id = models.ForeignKey(Broker, on_delete=models.CASCADE)
     buyer_name = models.CharField(max_length=100,default="your mom")
     buyer_address = models.TextField(default="Montreal")

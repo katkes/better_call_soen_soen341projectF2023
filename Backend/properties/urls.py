@@ -24,6 +24,7 @@ urlpatterns = [
     path('submit_offer/', views.submit_offer, name='submit_offer'),
     path('reject_offer/<int:offer_id>/', views.reject_offer, name='reject_offer'),
     path('accept_offer/<int:offer_id>/', views.accept_offer, name='accept_offer'),
+    path('offer_list/<int:user_id>', views.offer_list, name='offer_list')
 
 
     # Create this view as well
