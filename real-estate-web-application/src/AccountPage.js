@@ -77,6 +77,43 @@ function AccountPage({phoneNumber, username, email, favoriteProperties, setConte
             return <div>Loading...</div>;
         }
 
+        const handleAccept = async (offerId) => {
+  try {
+    const response = await fetch(`http://localhost:8000/accept_offer/${offerId}/`, {
+      method: 'POST',
+      // Optionally add headers or body if needed
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    console.log(`Offer ${offerId} accepted`);
+    // Optionally, you can update your UI or perform additional actions upon successful acceptance
+  } catch (error) {
+    console.error('Error accepting offer:', error);
+  }
+};
+
+const handleReject = async (offerId) => {
+  try {
+    const response = await fetch(`http://localhost:8000/reject_offer/${offerId}/`, {
+      method: 'POST',
+      // Optionally add headers or body if needed
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    console.log(`Offer ${offerId} rejected`);
+    // Optionally, you can update your UI or perform additional actions upon successful rejection
+  } catch (error) {
+    console.error('Error rejecting offer:', error);
+  }
+};
+
+
         return (
             <div className="accountPage">
                 <h3>{username}</h3>
@@ -92,6 +129,8 @@ function AccountPage({phoneNumber, username, email, favoriteProperties, setConte
                                 <p>Offer ID: {offer.offer_id}</p>
                                 <p>Amount: {offer.amount}</p>
                                 <p>Property ID: {offer.property_id}</p>
+                                <button onClick={() => handleAccept(offer.offer_id)}>Accept</button>
+            <button onClick={() => handleReject(offer.offer_id)}>Reject</button>
                                 {/* You can display other offer details here */}
                             </div>
                         ))

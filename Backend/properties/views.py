@@ -429,6 +429,7 @@ def offer_list(request, user_id):
 #
 #     return render(request, 'offer_submission.html', {'form': form, 'property': property_obj})
 
+@csrf_exempt
 def reject_offer(request, offer_id):
     """
     Reject an offer and send an email to the broker. The offer is deleted from the database.
@@ -450,7 +451,7 @@ def reject_offer(request, offer_id):
         broker_email = offer.property_id.assigned_user.email
         send_mail(
             subject="Offer Rejected",
-            message=f"The offer from {offer.buyer_name} has been rejected for property {offer.property}.",
+            message=f"The offer from {offer.buyer_name} has been rejected for property {offer.property_id.pk}.",
             from_email=broker_email,  # Update with your email
             recipient_list=[offer.buyer_email],
         )
@@ -459,7 +460,7 @@ def reject_offer(request, offer_id):
 
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
-
+@csrf_exempt
 def accept_offer(request, offer_id):
     """
     Accept an offer, update the on_sale value, and send an email to the buyer.
@@ -475,13 +476,13 @@ def accept_offer(request, offer_id):
 
     if request.method == 'POST':
         # Perform actions to accept the offer
-        offer.property.for_sale = False  # Set the property's on_sale value to False
-        offer.property.save()
+        offer.property_id.for_sale = False  # Set the property's on_sale value to False
+        offer.property_id.save()
 
         # Send email to the buyer
         send_mail(
             subject="Offer Accepted",
-            message=f"Congratulations! Your offer for property {offer.property} has been accepted.",
+            message=f"Congratulations! Your offer for property {offer.property_id.pk} has been accepted.",
             from_email="your@email.com",  # Update with your email
             recipient_list=[offer.buyer_email],
         )
