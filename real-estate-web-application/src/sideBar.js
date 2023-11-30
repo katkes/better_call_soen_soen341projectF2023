@@ -3,6 +3,7 @@ import "./css/SideBar.css";
 import SignUp from "./SignUpForm";
 import GenerateBrokers from "./GenerateBrokers";
 import AboutUs from "./AboutUs";
+import CreateListing from "./CreateListing";
 
 function SideBar({setContentText, setbrokering, Brokering}) {
 
@@ -35,6 +36,11 @@ function SideBar({setContentText, setbrokering, Brokering}) {
           setContentText(<AboutUs setContentText={setContentText}/>); 
   }
 
+   const handleClick4 = () => {
+
+          setContentText(<CreateListing setContentText={setContentText}/>);
+  }
+
     return (
         <>
             <button className="openbtn" onClick={toggleSidebar}>
@@ -45,7 +51,7 @@ function SideBar({setContentText, setbrokering, Brokering}) {
                 {<div className="sideBar">
                     <a id="classElement1">Buy</a>
                     <a id="classElement2"
-                       className={`${(sessionStorage.getItem('role') === "broker") ? "" : "none"}`}>Sell</a>
+                       className={`${(sessionStorage.getItem('role') === "broker") ? "" : "none"}`} onClick={handleClick4}>Sell</a>
                     <a id="classElement3" className={`${(sessionStorage.getItem('role') === "broker") ? "none" : ""}`}
                        onClick={handleClick}>My Broker</a>
                     <a id="classElement4" onClick={handleClick12}>Profile</a>
