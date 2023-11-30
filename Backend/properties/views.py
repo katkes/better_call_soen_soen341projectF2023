@@ -109,8 +109,10 @@ def property_filter(request):
         data = json.loads(request.body)
         price_upper_bound = int(data.get('Price', DEFAULT_PRICE_UPPER_BOUND))
         size_upper_bound = int(data.get('Size', DEFAULT_SIZE_UPPER_BOUND))
-        bathrooms_upper_bound = int(data.get('numBathrooms', DEFAULT_BATHROOMS_UPPER_BOUND))
-        bedrooms_upper_bound = int(data.get('numBedrooms', DEFAULT_BEDROOMS_UPPER_BOUND))
+        bathrooms_upper_bound = int(
+            data.get('numBathrooms', DEFAULT_BATHROOMS_UPPER_BOUND))
+        bedrooms_upper_bound = int(
+            data.get('numBedrooms', DEFAULT_BEDROOMS_UPPER_BOUND))
 
         properties = Property.objects.filter(
             price__lte=price_upper_bound,
@@ -484,7 +486,8 @@ def accept_offer(request, offer_id):
         # Send email to the buyer
         send_mail(
             subject="Offer Accepted",
-            message=f"Congratulations! Your offer for property {offer.property_id.pk} has been accepted.",
+            message=f"Congratulations! Your offer for property {
+                offer.property_id.pk} has been accepted.",
             from_email="your@email.com",  # Update with your email
             recipient_list=[offer.buyer_email],
         )
