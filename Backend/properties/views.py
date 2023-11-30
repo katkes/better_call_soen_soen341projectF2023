@@ -145,22 +145,24 @@ def property_filter(request):
 
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
-
-def create_property(request, UserId):
+@csrf_exempt
+def create_property(request, user_id):
     """
     Create a new property and return a JSON response.
     """
     if request.method == 'POST':
-        form = PropertyForm(request.POST, request.FILES)
+        data = json.loads(request.body)
+        form = PropertyForm(data)
+        print(data)
         if form.is_valid():
             property_obj = form.save(commit=False)
             property_obj.assigned_user = get_object_or_404(
-                CustomUser, pk=UserId)
+                CustomUser, pk=user_id)
             property_obj.save()
 
             # Convert the property object to a dictionary for the JSON response
             property_data = model_to_dict(property_obj)
-            return JsonResponse({'message': 'Property created successfully', 'property': property_data})
+            return JsonResponse({'message': 'Property created successfully'})
         else:
             return JsonResponse({'error': 'Invalid form data'}, status=400)
     else:
@@ -486,8 +488,7 @@ def accept_offer(request, offer_id):
         # Send email to the buyer
         send_mail(
             subject="Offer Accepted",
-            message=f"Congratulations! Your offer for property {
-                offer.property_id.pk} has been accepted.",
+            message=f"Congratulations! Your offer for property {offer.property_id.pk} has been accepted.",
             from_email="your@email.com",  # Update with your email
             recipient_list=[offer.buyer_email],
         )

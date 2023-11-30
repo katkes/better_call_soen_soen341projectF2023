@@ -4,11 +4,9 @@ import React, { useState } from 'react';
 function CreateListing({ setContentText }) {
   const [propertyData, setPropertyData] = useState({
     price: 0,
-    type: 'house',
     size: 0,
-    location: '',
-    bedrooms: 0,
-    bathrooms: 0,
+      num_of_bathrooms: 0,
+    num_of_bedrooms: 0,
   });
 
   const handleChange = (e) => {
@@ -21,10 +19,9 @@ function CreateListing({ setContentText }) {
 
   const handleCreate = async () => {
     try {
-      let userID = sessionStorage.getItem('userID');
+      let userID = parseInt(sessionStorage.getItem('userID'));
       const response = await fetch(
-        // eslint-disable-next-line no-template-curly-in-string
-        'http://localhost:8000/property/create/${userID}/',
+        `http://localhost:8000/property/create/${userID}/`,
         {
           method: 'POST',
           headers: {
@@ -85,7 +82,7 @@ function CreateListing({ setContentText }) {
       <input
         name='bedrooms'
         type='number'
-        value={propertyData.bedrooms}
+        value={propertyData.num_of_bedrooms}
         onChange={handleChange}
       ></input>
 
@@ -93,7 +90,7 @@ function CreateListing({ setContentText }) {
       <input
         name='bathrooms'
         type='number'
-        value={propertyData.bathrooms}
+        value={propertyData.num_of_bathrooms}
         onChange={handleChange}
       ></input>
 

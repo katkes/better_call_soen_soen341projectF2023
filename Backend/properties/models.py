@@ -34,7 +34,7 @@ class Property(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     city = models.CharField(max_length=50, default="Dorval")
     rating = models.DecimalField(max_digits=3, decimal_places=1, default=0)
-    image = models.ImageField(upload_to='property_images/')
+    image = models.ImageField(upload_to='property_images/', default="")
     assigned_user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
     for_sale = models.BooleanField(default=True)
