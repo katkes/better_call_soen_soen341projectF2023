@@ -12,8 +12,8 @@ function SubmitOffer(propID) {
         userID: sessionStorage.getItem("userID"),
         username: sessionStorage.getItem("userName"),
         role: sessionStorage.getItem("role"),
-        data1: 0,
-        data2: 0,
+        // data1: 0,
+        // data2: 0,
         propID: propID
     });
 

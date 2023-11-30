@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from accounts.models import CustomUser
+from accounts.models import CustomUser, Broker
 from .forms import PropertyForm, OfferForm
 from .models import Offer, Property
 from django.db.models import Q
@@ -342,13 +342,16 @@ def submit_offer(request):
         # except (TypeError, ValueError):
         #     return JsonResponse({"error": "propID must be a string or a number."}, status=400)
 
+        buyer_broker = get_object_or_404(Broker, user_id=userID)
+        property = get_object_or_404(Property, pk=propID)
 
         form_data = {
             'buyer_name': username,
-            'buyer_broker_id': userID,
+            'buyer_broker_id': buyer_broker,
             'price_offered': price_offered,
-            'property_id': propID,
+            'property_id': property,
         }
+        print(form_data)
 
         form = OfferForm(form_data)
         if form.is_valid():
