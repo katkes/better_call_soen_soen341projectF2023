@@ -1,16 +1,20 @@
 import {useState} from "react";
 
-function SubmitOffer() {
+function SubmitOffer(propID) {
 
     const [amount, setAmount] = useState(0);
     const [time, setTime] = useState(0);
     const [finalPrice, setFinalPrice] = useState(0);
 
+    // const [finalPrice, setFinalPrice] = useState(0);
+
     const [formData, setFormData] = useState({
         userID: sessionStorage.getItem("userID"),
+        username: sessionStorage.getItem("userName"),
         role: sessionStorage.getItem("role"),
         data1: 0,
-        data2: 0
+        data2: 0,
+        propID: propID
     });
 
     const handleChange = (e) => {
@@ -27,12 +31,16 @@ function SubmitOffer() {
             setFinalPrice(amount * time);
         }
 
+        function stopAlert(){
+            alert("Please login to submit an offer!")
+        }
+
 
         return (
             <div>
                 <hr></hr>
                 <h2>Submit an offer</h2>
-                <form action="" method="POST">
+                <form action="">
                     <p>Enter the <i>amount per installment</i> and the <i>number of installments</i>.</p>
                     <div className="input-container">
                         <div className="input-group">
@@ -47,12 +55,14 @@ function SubmitOffer() {
                     <br></br>
                     <button className="calculate-button"onClick={onValueChanges}>Calculate total amount</button>
                     <h3>Total amount offered: ${finalPrice}</h3>
-                    <button className="calculate-button">Submit the offer</button>
+                    <button className="calculate-button" onClick={stopAlert}>Submit the offer</button>
                 </form>
             </div>
         );
 
-    } else if (sessionStorage.getItem("role") === "renter") {
+    }
+
+    else if (sessionStorage.getItem("role") === "renter") {
 
         const handleSubmit = async (e) => {
             try {
@@ -77,15 +87,37 @@ function SubmitOffer() {
 
         return (
             <div>
+                <hr></hr>
+                <h2>Submit an offer</h2>
                 <form action="" method="POST" onSubmit={handleSubmit}>
-                    <label for="offerAmount">amount per installment ($)</label>
-                    <input name="offerAmount" type="number" onChange={(e) => setAmount(e.target.value)}></input>
-                    <button>Submit the offer</button>
+                    <p>Enter the <i>amount per monthly installment</i>.</p>
+                    <div className="input-container">
+                        <div className="input-group">
+                            <label htmlFor="offerAmount">Amount per monthly installment ($)</label>
+                            <input name="offerAmount"
+                                   type="number"
+                                   value={formData.data1}
+                                   onChange={handleChange}></input>
+                            {/*<input name="offerAmount" type="number" onChange={(e) => setAmount(e.target.value)}></input>*/}
+                        </div>
+                    </div>
+                    <br></br>
+                    <button className="calculate-button">Submit the offer</button>
                 </form>
             </div>
+
+            // <div>
+            //     <form action="" method="POST" onSubmit={handleSubmit}>
+            //         <label for="offerAmount">amount per monthly installment ($)</label>
+            //         <input name="offerAmount" value={formData.data1} type="number" onChange={(e) => setAmount(e.target.value)}></input>
+            //         <button>Submit the offer</button>
+            //     </form>
+            // </div>
         );
 
-    } else {
+    }
+
+    else {
         function onValueChanges(event) {
             event.preventDefault()
             setFinalPrice(amount * time);

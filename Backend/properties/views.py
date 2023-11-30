@@ -16,7 +16,6 @@ from .forms import PropertyForm, OfferForm
 from .models import Offer, Property
 from django.db.models import Q
 
-
 # Use constants for magic numbers
 DEFAULT_PRICE_UPPER_BOUND = 800000
 DEFAULT_SIZE_UPPER_BOUND = 2000
@@ -44,7 +43,7 @@ def get_properties(request):
                               'num_of_bedrooms': p.num_of_bathrooms,
                               'num_of_bathrooms': p.num_of_bathrooms,
                               'city': p.city,
-                              'rating': p.rating} 
+                              'rating': p.rating}
                              for p in properties]
     return JsonResponse(serialized_properties, safe=False)
 
@@ -87,11 +86,12 @@ def property_search(request):
                 'city': p.city,
                 'rating': p.rating,
                 'broker_name': broker_name,
-                'broker_id' : p.assigned_user_id,
+                'broker_id': p.assigned_user_id,
                 'num_of_bedrooms': p.num_of_bedrooms,
                 'num_of_bathrooms': p.num_of_bathrooms,
                 'size': p.size,
-                'type_of_property' : p.type_of_property
+                'type_of_property': p.type_of_property,
+                'id': p.property_id
             }
             serialized_properties.append(serialized_property)
 
@@ -133,8 +133,10 @@ def property_filter(request):
                 'broker_name': broker_name,
                 'num_of_bedrooms': p.num_of_bathrooms,
                 'num_of_bathrooms': p.num_of_bathrooms,
-                'size': p.size
+                'size': p.size,
+                'id': p.property_id
             }
+            # print(p.property_id)
             serialized_properties.append(serialized_property)
 
         return JsonResponse(serialized_properties, safe=False)
@@ -161,6 +163,7 @@ def create_property(request):
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
+
 def property_detail(request, property_id):
     """
     Retrieve the details of a property and return a JSON response.
@@ -168,6 +171,7 @@ def property_detail(request, property_id):
     property_obj = get_object_or_404(Property, property_id=property_id)
     property_data = model_to_dict(property_obj)
     return JsonResponse({'property': property_data})
+
 
 def property_edit(request, property_id):
     """
@@ -188,6 +192,7 @@ def property_edit(request, property_id):
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
+
 def property_delete(request, property_id):
     """
     Delete an existing property and return a JSON response.
@@ -195,6 +200,7 @@ def property_delete(request, property_id):
     property_obj = get_object_or_404(Property, property_id=property_id)
     property_obj.delete()
     return JsonResponse({'message': 'Property deleted successfully'})
+
 
 def request_visit(request, property_id):
     """
@@ -248,26 +254,61 @@ def email_success(request):
     return render(request, 'email_success.html')
 
 
-def submit_offer(request):
-    """
-    Submits a property offer from a JSON payload.
-    Parameters: 
-    - request (HttpRequest): The HTTP request object.
+# def submit_offer(request):
+#     """
+#     Submits a property offer from a JSON payload.
+#     Parameters:
+#     - request (HttpRequest): The HTTP request object.
+#
+#     Returns:
+#     - JsonResponse: Result of the offer submission.
+#     """
+#     if request.method == "POST":
+#         data = json.loads(request.body)
+#         form_data = {
+#             'buyer_name': str(data.get("buyerName")),
+#             'buyer_email': str(data.get("buyerEmail")),
+#             'buyer_broker_id': int(data.get("buyerBrokerID")),
+#             'price_offered': int(data.get("priceOffered")),
+#             'property_id': int(data.get("propertyID")),
+#             'deed_of_sale_date': str(data.get("deedOfSaleDate")),
+#             'occupancy_date': str(data.get("occupancyDate")),
+#         }
+#         form = OfferForm(form_data)
+#         if form.is_valid():
+#             form.save()
+#             return JsonResponse({"message": "Offer submitted successfully."}, status=201)
+#         else:
+#             return JsonResponse({"errors": form.errors}, status=400)
+#     else:
+#         return JsonResponse({"error": "Invalid request method."}, status=405)
 
-    Returns: 
-    - JsonResponse: Result of the offer submission.
-    """
+@csrf_exempt
+def submit_offer(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        form_data = {
-            'buyer_name': str(data.get("buyerName")),
-            'buyer_email': str(data.get("buyerEmail")),
-            'buyer_broker_id': int(data.get("buyerBrokerID")),
-            'price_offered': int(data.get("priceOffered")),
-            'property_id': int(data.get("propertyID")),
-            'deed_of_sale_date': str(data.get("deedOfSaleDate")),
-            'occupancy_date': str(data.get("occupancyDate")),
-        }
+
+        if (str(data.get("role")) == "renter"):
+            form_data = {
+                'buyer_name': str(data.get("username")),
+                'buyer_broker_id': int(data.get("userID")),
+                'price_offered': int(data.get("data1")),
+                'property_id': int(data.get("propID")),
+            }
+        else:
+            form_data = {
+                'buyer_name': str(data.get("username")),
+                # 'buyer_email': str(data.get("buyerEmail")),
+                'buyer_broker_id': int(data.get("userID")),
+                # 'price_offered': int(data.get("priceOffered")),
+                'price_offered': int(data.get("data1")) * int(data.get("data2")),
+                'property_id': int(data.get("propID")),
+                # 'deed_of_sale_date': str(data.get("deedOfSaleDate")),
+                # 'occupancy_date': str(data.get("occupancyDate")),
+                # 'propID':int(data.get("propID"))
+            }
+
+
         form = OfferForm(form_data)
         if form.is_valid():
             form.save()
@@ -312,7 +353,6 @@ def offer_list(request, user_id):
 
     # Optionally, you can return the offers data as JSON response
     return JsonResponse({'offers_data': offers_data})
-
 
 
 # def submit_offer(request, property_id):
@@ -367,13 +407,14 @@ def reject_offer(request, offer_id):
         send_mail(
             subject="Offer Rejected",
             message=f"The offer from {offer.buyer_name} has been rejected for property {offer.property}.",
-            from_email= broker_email,  # Update with your email
+            from_email=broker_email,  # Update with your email
             recipient_list=[offer.buyer_email],
         )
 
         return JsonResponse({'message': 'Offer rejected successfully'})
 
     return JsonResponse({'error': 'Invalid request method'}, status=400)
+
 
 def accept_offer(request, offer_id):
     """

@@ -4,7 +4,7 @@ import MortgageCalculator from "./MortgageCalculator";
 import SubmitOffer from "./SubmitOffer";
 
 
-const RealEstateListing = ({type, address, price, previewPhotos, broker, favorite, features}) => {
+const RealEstateListing = ({type, address, price, previewPhotos, broker, favorite, features, propID}) => {
 
     return (
         <div className="real-estate-listing">
@@ -38,7 +38,7 @@ const RealEstateListing = ({type, address, price, previewPhotos, broker, favorit
                 </div>
             </div>
             <MortgageCalculator/>
-            <SubmitOffer/>
+            <SubmitOffer propID={propID}/>
         </div>
     );
 };

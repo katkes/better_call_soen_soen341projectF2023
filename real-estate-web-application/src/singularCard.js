@@ -10,6 +10,7 @@ function SingularCard({
   brokerName,
   isForSale = true,
   brokerId,
+    propID,
 }) {
   const type = "Apartment"; // Assuming this is a default value
   const address = "123 Main St, City, State"; // Assuming this is a default value
@@ -35,12 +36,13 @@ function SingularCard({
     setContentText(
       <GenerateBuyPage
         type={type}
-        address={address}
+        address={country}
         price={price}
         previewPhotos={previewPhotos}
         broker={broker}
         favorite={favorite}
         features={features}
+        propID={propID}
       />
     );
   };

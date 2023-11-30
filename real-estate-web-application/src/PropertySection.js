@@ -25,6 +25,7 @@ function PropertySection({setContentText, filteredProperties}) {
                     setContentText={setContentText}
                     brokerName={property.broker_name}
                     brokerId={property.broker_id}
+                    propID = {property.id}
                 />
             ))}
         </section>
