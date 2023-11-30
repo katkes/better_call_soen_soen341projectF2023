@@ -1,39 +1,105 @@
 import "./css/App.css";
-import React, {useState} from "react";
-import SignUp from "./SignUpForm";
+import React, { useState } from 'react';
 
-function CreateListing({setContentText}){
+function CreateListing({ setContentText }) {
+  const [propertyData, setPropertyData] = useState({
+    price: 0,
+    type: 'house',
+    size: 0,
+    location: '',
+    bedrooms: 0,
+    bathrooms: 0,
+  });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPropertyData({
+      ...propertyData,
+      [name]: value,
+    });
+  };
 
-    return(
-      <div className="CreateListing">
-        <label></label>
-        <input name="Price" type="number"></input>
+  const handleCreate = async () => {
+    try {
+      let userID = sessionStorage.getItem('userID');
+      const response = await fetch(
+        // eslint-disable-next-line no-template-curly-in-string
+        'http://localhost:8000/property/create/${userID}/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(propertyData),
+        }
+      );
 
-        <label></label>
-        <select name="type" type="dropmenu">
-            <option value="house">House</option>
-            <option value="appartment">Appartment</option>
-            <option value="studio">Studio</option>
-            <option value="condo">Condo</option>
+      if (response.ok) {
+        // Handle successful creation (you can redirect or show a success message)
+        setContentText('Property created successfully');
+      } else {
+        // Handle unsuccessful creation
+        const data = await response.json();
+        setContentText(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error('Error creating property:', error);
+    }
+  };
 
-        </select>
+  return (
+    <div className='CreateListing'>
+      <label>Price</label>
+      <input
+        name='price'
+        type='number'
+        value={propertyData.price}
+        onChange={handleChange}
+      ></input>
 
-        <label>Size in feet squard </label>
-        <input name="size" type="number"></input>
+      <label>Type</label>
+      <select name='type' value={propertyData.type} onChange={handleChange}>
+        <option value='house'>House</option>
+        <option value='apartment'>Apartment</option>
+        <option value='studio'>Studio</option>
+        <option value='condo'>Condo</option>
+      </select>
 
-        <label>Adress</label>
-        <input name="location" type="text"></input>
+      <label>Size in square feet</label>
+      <input
+        name='size'
+        type='number'
+        value={propertyData.size}
+        onChange={handleChange}
+      ></input>
 
-        <label>Number of bedrooms</label>
-        <input name="number of bedrooms" type="number"></input>
+      <label>Address</label>
+      <input
+        name='location'
+        type='text'
+        value={propertyData.location}
+        onChange={handleChange}
+      ></input>
 
-        <label>Number of bathrooms </label>
-        <input name="number of bathrooms" type="number"></input>
+      <label>Number of bedrooms</label>
+      <input
+        name='bedrooms'
+        type='number'
+        value={propertyData.bedrooms}
+        onChange={handleChange}
+      ></input>
 
-        <button>create</button>
-      </div>
-    );
+      <label>Number of bathrooms</label>
+      <input
+        name='bathrooms'
+        type='number'
+        value={propertyData.bathrooms}
+        onChange={handleChange}
+      ></input>
+
+      <button onClick={handleCreate}>Create</button>
+    </div>
+  );
 }
 
 export default CreateListing;

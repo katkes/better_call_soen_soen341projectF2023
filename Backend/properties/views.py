@@ -144,7 +144,7 @@ def property_filter(request):
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
-def create_property(request):
+def create_property(request, UserId):
     """
     Create a new property and return a JSON response.
     """
@@ -152,7 +152,8 @@ def create_property(request):
         form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
             property_obj = form.save(commit=False)
-            property_obj.assigned_user = request.user
+            property_obj.assigned_user = get_object_or_404(
+                CustomUser, pk=UserId)
             property_obj.save()
 
             # Convert the property object to a dictionary for the JSON response
@@ -185,7 +186,8 @@ def property_edit(request, property_id):
             form.save()
 
             # Convert the updated property object to a dictionary for the JSON response
-            updated_property_data = model_to_dict(Property.objects.get(property_id=property_id))
+            updated_property_data = model_to_dict(
+                Property.objects.get(property_id=property_id))
             return JsonResponse({'message': 'Property updated successfully', 'property': updated_property_data})
         else:
             return JsonResponse({'error': 'Invalid form data'}, status=400)
@@ -330,10 +332,12 @@ def submit_offer(request):
 
         # Ensure that propID is a string or a number
         propID = data.get("propID")
-        if (isinstance(propID,dict)):
+        if (isinstance(propID, dict)):
             propID = data.get("propID").get("propID")
 
-
+        print(data)
+        print("here")
+        print(propID)
 
         # try:
         #     propID = int(propID)  # Try converting to int if it's a string representation of an integer
@@ -349,7 +353,7 @@ def submit_offer(request):
             'price_offered': price_offered,
             'property_id': property,
         }
-
+        print(form_data)
 
         form = OfferForm(form_data)
         if form.is_valid():
@@ -360,7 +364,7 @@ def submit_offer(request):
     else:
         return JsonResponse({"error": "Invalid request method."}, status=405)
 
-@csrf_exempt
+
 def offer_list(request, user_id):
     """
     Retrieves a list of offers associated with properties assigned to a user.
@@ -372,25 +376,23 @@ def offer_list(request, user_id):
     Returns:
     - JsonResponse: JSON response containing a list of offers associated with the user's properties.
     """
-
-
     matching_properties = Property.objects.filter(assigned_user=user_id)
-    print(matching_properties)
+
     # Initialize a list to store offers data
     offers_data = []
 
     # Loop through the matching properties
     for property_instance in matching_properties:
         # Query for offers associated with the property and assigned_user
-        matching_offers = Offer.objects.filter(property_id=property_instance)
+        matching_offers = Offer.objects.filter(property=property_instance)
 
         # Optionally, you can use the matching_offers queryset as needed
         for offer in matching_offers:
             # Collect offer data as needed (modify this based on your Offer model structure)
             offer_data = {
-                'offer_id': offer.pk,
-                'amount': offer.price_offered,
-                'property_id': property_instance.pk,
+                'offer_id': offer.id,
+                'amount': offer.amount,
+                'property_id': property_instance.id,
                 # Add more fields as needed
             }
             offers_data.append(offer_data)
@@ -429,7 +431,6 @@ def offer_list(request, user_id):
 #
 #     return render(request, 'offer_submission.html', {'form': form, 'property': property_obj})
 
-@csrf_exempt
 def reject_offer(request, offer_id):
     """
     Reject an offer and send an email to the broker. The offer is deleted from the database.
@@ -451,7 +452,8 @@ def reject_offer(request, offer_id):
         broker_email = offer.property_id.assigned_user.email
         send_mail(
             subject="Offer Rejected",
-            message=f"The offer from {offer.buyer_name} has been rejected for property {offer.property_id.pk}.",
+            message=f"The offer from {offer.buyer_name}" +
+            "has been rejected for property {offer.property}.",
             from_email=broker_email,  # Update with your email
             recipient_list=[offer.buyer_email],
         )
@@ -460,7 +462,7 @@ def reject_offer(request, offer_id):
 
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
-@csrf_exempt
+
 def accept_offer(request, offer_id):
     """
     Accept an offer, update the on_sale value, and send an email to the buyer.
