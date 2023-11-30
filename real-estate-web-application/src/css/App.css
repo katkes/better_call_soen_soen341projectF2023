@@ -346,3 +346,42 @@ body {
   border: 1px solid #D4A437;
 
 }
+
+/* .CreateListing {
+  display: fl
+} */
+
+.CreateListing label {
+  font-weight: bold;
+  text-align: left;
+  color: rgb(73, 73, 73);
+}
+
+.CreateListing input{
+  height: 20px;
+  width: 250px;
+  padding: 5px;
+  /* margin-bottom: 15px; */
+  border: solid 1px #B1B1B1;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.CreateListing button{
+  top: 15px;
+  right: 20px;
+  background-color: #001e41;
+  color: white;
+  /* border: 1px solid #D4A437; */
+  padding: 10px;
+  border-radius: 25px;
+  width: 200px;
+  font-size: 15px;
+  border: none;
+}
+
+.CreateListing select{
+  width: 250px;
+  height: 30px;
+}
