@@ -283,31 +283,72 @@ def email_success(request):
 #     else:
 #         return JsonResponse({"error": "Invalid request method."}, status=405)
 
+# @csrf_exempt
+# def submit_offer(request):
+#     if request.method == "POST":
+#         data = json.loads(request.body)
+#
+#         if str(data.get("role")) == "renter":
+#             form_data = {
+#                 'buyer_name': str(data.get("username")),
+#                 'buyer_broker_id': int(data.get("userID")),
+#                 'price_offered': int(data.get("data1")),
+#                 'property_id': int(data.get("propID")),
+#             }
+#         else:
+#             form_data = {
+#                 'buyer_name': str(data.get("username")),
+#                 'buyer_broker_id': int(data.get("userID")),
+#                 'price_offered': int(data.get("data1")) * int(data.get("data2")),
+#                 'property_id': int(data.get("propID")),
+#             }
+#
+#         form = OfferForm(form_data)
+#         if form.is_valid():
+#             form.save()
+#             return JsonResponse({"message": "Offer submitted successfully."}, status=201)
+#         else:
+#             return JsonResponse({"errors": form.errors}, status=400)
+#     else:
+#         return JsonResponse({"error": "Invalid request method."}, status=405)
+
 @csrf_exempt
 def submit_offer(request):
     if request.method == "POST":
         data = json.loads(request.body)
 
-        if (str(data.get("role")) == "renter"):
-            form_data = {
-                'buyer_name': str(data.get("username")),
-                'buyer_broker_id': int(data.get("userID")),
-                'price_offered': int(data.get("data1")),
-                'property_id': int(data.get("propID")),
-            }
-        else:
-            form_data = {
-                'buyer_name': str(data.get("username")),
-                # 'buyer_email': str(data.get("buyerEmail")),
-                'buyer_broker_id': int(data.get("userID")),
-                # 'price_offered': int(data.get("priceOffered")),
-                'price_offered': int(data.get("data1")) * int(data.get("data2")),
-                'property_id': int(data.get("propID")),
-                # 'deed_of_sale_date': str(data.get("deedOfSaleDate")),
-                # 'occupancy_date': str(data.get("occupancyDate")),
-                # 'propID':int(data.get("propID"))
-            }
+        role = str(data.get("role"))
+        username = str(data.get("username"))
+        userID = int(data.get("userID"))
 
+        if role == "renter":
+            price_offered = int(data.get("offerAmount"))
+        else:
+            amount = int(data.get("offerAmount"))
+            time = int(data.get("offerTime"))
+            price_offered = amount * time
+
+        # Ensure that propID is a string or a number
+        propID = data.get("propID")
+        if (isinstance(propID,dict)):
+            propID = data.get("propID").get("propID")
+
+        print(data)
+        print("here")
+        print(propID)
+
+        # try:
+        #     propID = int(propID)  # Try converting to int if it's a string representation of an integer
+        # except (TypeError, ValueError):
+        #     return JsonResponse({"error": "propID must be a string or a number."}, status=400)
+
+
+        form_data = {
+            'buyer_name': username,
+            'buyer_broker_id': userID,
+            'price_offered': price_offered,
+            'property_id': propID,
+        }
 
         form = OfferForm(form_data)
         if form.is_valid():
