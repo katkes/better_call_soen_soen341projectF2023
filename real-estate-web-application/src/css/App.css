@@ -258,10 +258,10 @@ body {
   background-color: rgb(3, 23, 24);
 }*/
 
-.input-container {
+/* .input-container {
   display: flex;
   gap: 10px;
-}
+} */
 
 .input-container label {
   font-weight: bold;
@@ -270,7 +270,19 @@ body {
 
 }
 
-.input-container input{
+.input-container select{
+  width: 260px;
+  padding: 7px;
+  margin-bottom: 15px;
+  border: solid 1px #B1B1B1;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  font-size: 16px;
+  font-family: 'Avenir';
+}
+
+.input-container input
+{
   height: 20px;
   width: 250px;
   padding: 5px;
@@ -285,6 +297,7 @@ body {
   display: inline-flex; 
   flex-direction: column;
   margin-right: 20px; 
+  margin-bottom: 25px;
 }
 
 .calculate-button{
