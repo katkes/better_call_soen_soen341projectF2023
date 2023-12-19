@@ -368,7 +368,7 @@ def submit_offer(request):
     else:
         return JsonResponse({"error": "Invalid request method."}, status=405)
 
-
+@csrf_exempt
 def offer_list(request, user_id):
     """
     Retrieves a list of offers associated with properties assigned to a user.
@@ -394,9 +394,9 @@ def offer_list(request, user_id):
         for offer in matching_offers:
             # Collect offer data as needed (modify this based on your Offer model structure)
             offer_data = {
-                'offer_id': offer.id,
+                'offer_id': offer.pk,
                 'amount': offer.amount,
-                'property_id': property_instance.id,
+                'property_id': property_instance.pk,
                 # Add more fields as needed
             }
             offers_data.append(offer_data)
