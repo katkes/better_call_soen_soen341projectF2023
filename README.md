@@ -1,5 +1,5 @@
 # SOEN-341-Real-Estate-Web-Application
-Real estate web application made for SOEN 341 class assignment 
+Real estate web application
 
 ## Project Description 
 Comprehensive Real Estate Web Application designed to help people buy, sell, and rent properties. Our platform offers an intuitive, user-friendly interface that simplifies complex real estate transactions.
