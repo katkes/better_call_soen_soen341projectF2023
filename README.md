@@ -60,6 +60,8 @@ To set up the project locally, follow these steps:
 3. Install dependencies: 'npm install (for front-end) and 'npm install' (for back-end).
 4. Configure the database connection in the 'config.js' file.
 5. Run the application: 'npm start'.
+6. In a separate terminal, navigate to the backend directory: 'Backend'.
+7. Run the backend server: 'python manage.py runserver'
 
 ## Usage Guidelines
 1. Accessing Different Features: Once the application is running, open your web browser and navigate to 'http://localhost:3000' to access the Real Estate Web Application.
